@@ -8,6 +8,7 @@ import SignIn from "../login/SignIn";
 import {findAllReportAction} from "../../actions/reportAction";
 import ReportRow from "./ReportRow";
 import TableScrollbar from 'react-table-scrollbar';
+import Error from "../Error";
 
 function ReportList({
     isLoading, reports, error, findAllReportAction
@@ -116,9 +117,9 @@ function ReportList({
 
                     </>
                     :
-                    <p>
-                       cannot access
-                    </p>
+                    <div>
+                       <Error/>
+                    </div>
             }
         </div>
 

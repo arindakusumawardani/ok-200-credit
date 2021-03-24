@@ -9,6 +9,7 @@ import Menu from "../../components/dashboard/Menu";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faSave} from "@fortawesome/free-solid-svg-icons";
 import Footer from "../../components/dashboard/Footer";
+import Error from "../Error";
 
 const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading}) => {
     const {id} = useParams()
@@ -44,6 +45,9 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading}) => {
 
     return (
         <div>
+            {
+                localStorage.getItem("roles") == "MASTER" ?
+                    <>
             <div>
                 <Header/>
                 <Menu/>
@@ -109,6 +113,12 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading}) => {
                 </div>
             </div>
             <Footer/>
+        </>
+        :
+    <div>
+        <Error/>
+    </div>
+}
         </div>
     )
 }

@@ -61,10 +61,10 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                                         <div className="card-header border-0">
                                                             {/*<h3 className="card-title">Detail Customer</h3>*/}
                                                             <div className="card-tools">
-                                                                <a href="/customer/form" className="btn btn-tool btn-sm">
-                                                                    <i className="fas fa-pencil-alt" />
-                                                                </a>
-                                                                <a href="/customer" className="btn btn-tool btn-sm">
+                                                                {/*<a href="/customer/form" className="btn btn-tool btn-sm">*/}
+                                                                {/*    <i className="fas fa-pencil-alt" />*/}
+                                                                {/*</a>*/}
+                                                                <a href="/dashbord" className="btn btn-tool btn-sm">
                                                                     <i className="fas fa-arrow-left" />
                                                                 </a>
                                                             </div>

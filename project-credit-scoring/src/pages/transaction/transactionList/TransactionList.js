@@ -8,6 +8,7 @@ import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
 import SignIn from "../../login/SignIn";
 import TableScrollbar from 'react-table-scrollbar';
+import Error from "../../Error";
 
 function TransactionList({
                              isLoading,
@@ -95,9 +96,9 @@ function TransactionList({
                         </Containers>
                     </>
                     :
-                    <p>
-                       cannot access
-                    </p>
+                    <div>
+                       <Error/>
+                    </div>
             }
         </div>
 

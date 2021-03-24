@@ -7,6 +7,7 @@ import RowCustomer from "./RowCustomer";
 import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
 import TableScrollbar from 'react-table-scrollbar';
+import Error from "../../Error";
 
 function CustomerList({
                           error,
@@ -25,8 +26,8 @@ function CustomerList({
 
         <div>
             {
-                // localStorage.getItem("roles") == "MASTER" ?
-                //     <>
+                localStorage.getItem("roles") == "MASTER" ?
+                    <>
                         <Containers error={error}>
                             <Header/>
                             <Menu/>
@@ -99,11 +100,11 @@ function CustomerList({
                             </div>
                             {/*<Footer/>*/}
                         </Containers>
-                    // </>
-                    // :
-                    // <div>
-                    //     <SignIn/>
-                    // </div>
+                     </>
+                    :
+                    <div>
+                        <Error/>
+                    </div>
             }
         </div>
 

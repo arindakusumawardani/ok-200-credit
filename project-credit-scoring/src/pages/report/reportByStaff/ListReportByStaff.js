@@ -8,6 +8,7 @@ import Menu from "../../../components/dashboard/Menu";
 import Row from "./Row";
 import Footer from "../../../components/dashboard/Footer";
 import {findAllReportAction} from "../../../actions/reportAction";
+import Error from "../../Error";
 
 function ReportList({
                         isLoading, reports, error, findAllReportAction
@@ -116,9 +117,9 @@ function ReportList({
 
                     </>
                     :
-                    <p>
-                        cannot access
-                    </p>
+                    <div>
+                        <Error/>
+                    </div>
             }
         </div>
 

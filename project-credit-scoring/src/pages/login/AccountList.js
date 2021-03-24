@@ -8,6 +8,7 @@ import Menu from "../../components/dashboard/Menu";
 import Footer from "../../components/dashboard/Footer";
 import SignIn from "./SignIn";
 import swal from "sweetalert";
+import Error from "../Error";
 
 
 function AccountList({
@@ -131,7 +132,7 @@ function AccountList({
                     </>
                     :
                     <div>
-                        <SignIn/>
+                        <Error/>
                     </div>
             }
 

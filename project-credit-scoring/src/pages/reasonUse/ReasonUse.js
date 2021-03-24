@@ -12,6 +12,7 @@ import TransactionRow from "../transaction/transactionList/TransactionRow";
 import SignIn from "../login/SignIn";
 import ReasonRow from "./ReasonRow";
 import Footer from "../../components/dashboard/Footer";
+import Error from "../Error";
 
 
 const ReasonUse = ({findAllNeedAction, needs, error, isLoading}) => {
@@ -24,6 +25,9 @@ const ReasonUse = ({findAllNeedAction, needs, error, isLoading}) => {
 
     return (
         <div>
+            {
+                localStorage.getItem("roles") == "MASTER" ?
+                    <>
             <Containers error={error}>
                 <Header/>
                 <Menu/>
@@ -88,13 +92,14 @@ const ReasonUse = ({findAllNeedAction, needs, error, isLoading}) => {
                 {/*<Footer/>*/}
 
             </Containers>
-            {/*        </>*/}
-            {/*        :*/}
-            {/*        <div>*/}
-            {/*            <SignIn/>*/}
-            {/*        </div>*/}
-            {/*}*/}
             <Footer/>
+                    </>
+                    :
+                    <div>
+                        <Error/>
+                    </div>
+            }
+
         </div>
     )
 }

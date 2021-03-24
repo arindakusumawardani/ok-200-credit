@@ -15,6 +15,7 @@ import {findAllNeedAction} from "../../../actions/needAction";
 import {findAllNeedReducer} from "../../../configs/reducers/needReducer";
 import ReasonRow from "../../reasonUse/ReasonRow";
 import swal from "sweetalert";
+import Error from "../../Error";
 
 const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAction, customer, findCustomerByIdAction, needs, findAllNeedAction}) => {
     const {id} = useParams()
@@ -286,7 +287,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                     <FontAwesomeIcon icon={faSave}/>
                                                                     Submit
                                                                 </Button> {' '}
-                                                                <Button href="/customer"
+                                                                <Button href="/dashboard"
                                                                         style={{background: "#e42256"}}>
                                                                     <FontAwesomeIcon icon={faArrowLeft}/>
                                                                     Cancel
@@ -307,9 +308,9 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
             </div>
         </>
         :
-        <p>
-            cannot access
-        </p>
+        <div>
+            <Error/>
+        </div>
         }
         </div>
 

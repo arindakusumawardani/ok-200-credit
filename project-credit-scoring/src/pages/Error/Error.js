@@ -23,8 +23,7 @@ const Error = () => {
                     <Button href="/dashboard"
                             style={{background: "#e42256"}}>
                         <FontAwesomeIcon
-                            icon={faHome}/>
-                        Cancel
+                            icon={faHome}/> Back
                     </Button>
                 </div>
             </div>

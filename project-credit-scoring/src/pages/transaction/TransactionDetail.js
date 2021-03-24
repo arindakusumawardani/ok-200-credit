@@ -10,6 +10,7 @@ import  NumberFormat from "react-number-format"
 import {Button} from "reactstrap";
 import {findByIdApprovalAction, saveApprovalAction} from "../../actions/approvalAction";
 import Footer from "../../components/dashboard/Footer";
+import Error from "../Error";
 
 
 function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprovalAction, savedApprove}) {
@@ -95,7 +96,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                             <a href="/transaction/form" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-pencil-alt"/>
                                                             </a>
-                                                            <a href="/transaction" className="btn btn-tool btn-sm">
+                                                            <a href="/dashboard" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-arrow-left"/>
                                                             </a>
                                                         </div>
@@ -197,7 +198,9 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                         </div>
                     </>
                     :
-                    <div> cannot access</div>
+                    <div>
+                        <Error/>
+                    </div>
             }
         </div>
     )

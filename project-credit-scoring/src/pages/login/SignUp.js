@@ -16,6 +16,7 @@ import DropdownList from "../../components/DropdownList/DropdownList";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import swal from "sweetalert";
+import Error from "../Error";
 
 const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) => {
     const {id} = useParams()
@@ -285,7 +286,7 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
                     </>
                     :
                     <div>
-                        <p>error</p>
+                        <Error/>
                     </div>
             }
         </div>
