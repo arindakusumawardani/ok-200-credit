@@ -107,7 +107,7 @@ export default function Menu() {
                 </a>
               </li>
               <li className="nav-item has-treeview">
-                <a href="/staff/transaction" className="nav-link">
+                <a href="/approval/staff" className="nav-link">
                   <i className="nav-icon fas fa-wallet"/>
                   <p>
                     Transaction

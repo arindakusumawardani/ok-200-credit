@@ -17,6 +17,7 @@ import ReasonUse from "../pages/reasonUse/ReasonUse";
 import Error from "../pages/Error";
 import ListCustomerByStaff from "../pages/customer/listCustomerByStaff/ListCustomerByStaff";
 import ReasonForm from "../pages/reasonUse/ReasonForm";
+import ListTransactionByStaff from "../pages/transaction/listTransactionByStaff/ListTransactionByStaff";
 
 const routes = [
     {
@@ -112,6 +113,11 @@ const routes = [
     {
         path: '/staff/customer',
         component: <ListCustomerByStaff/>,
+        exact: true
+    },
+    {
+        path: '/approval/staff',
+        component: <ListTransactionByStaff/>,
         exact: true
     },
 

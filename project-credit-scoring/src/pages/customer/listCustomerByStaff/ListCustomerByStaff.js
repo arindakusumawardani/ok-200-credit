@@ -113,9 +113,9 @@ function CustomerListBySubmitter({
 
 const mapStateToProps = (state) => {
     return {
-        error: state.findAllCustomerByIdReducer.error,
-        customers: state.findAllCustomerByIdReducer.data || [],
-        isLoading: state.findAllCustomerByIdReducer.isLoading
+        error: state.findAllCustomerBySubmitter.error,
+        customers: state.findAllCustomerBySubmitter.data || [],
+        isLoading: state.findAllCustomerBySubmitter.isLoading
     }
 }
 

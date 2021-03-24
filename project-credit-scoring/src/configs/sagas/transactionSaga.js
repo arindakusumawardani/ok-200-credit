@@ -133,5 +133,5 @@ export function* watchUpdateTransactionById() {
 }
 
 export function* watchFindAllTransactionByStaff() {
-    yield takeLatest (FIND_TRANSACTION_BY_STAFF, findTransactionByStaffSaga)
+    yield takeLatest (FIND_ALL_TRANSACTION, findTransactionByStaffSaga)
 }

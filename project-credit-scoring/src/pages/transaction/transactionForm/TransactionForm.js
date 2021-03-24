@@ -64,7 +64,18 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
 
     useEffect(() => {
         if (savedTransaction) {
-            history.push('/transaction')
+
+            if (localStorage.getItem("roles") == "MASTER") {
+                history.push('/transaction')
+            } else if (localStorage.getItem("roles") == "STAFF") {
+                history.push('/approval/staff')
+            } else if (localStorage.getItem("roles") == "SUPERVISOR") {
+                history.push('/transaction')
+            } else {
+                swal("*Sorry you are not allowed to sign here")
+            }
+
+            // history.push('/transaction')
         }
     }, [savedTransaction, history])
 
@@ -100,7 +111,6 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
         {
             localStorage.getItem("roles") == "MASTER" || localStorage.getItem("roles") == "STAFF" ?
                 <>
-
             <Container error={error}/>
             <Header/>
             <Menu/>

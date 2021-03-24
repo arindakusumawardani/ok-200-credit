@@ -3,11 +3,10 @@ import Containers from '../../../components/Containers/Container'
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {findAllTransactionAction} from "../../../actions/transactionAction";
-import TransactionRow from "./TransactionRow";
 import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
-import SignIn from "../../login/SignIn";
 import TableScrollbar from 'react-table-scrollbar';
+import Row from "../../transaction/listTransactionByStaff/Row";
 
 function TransactionList({
                              isLoading,
@@ -18,14 +17,17 @@ function TransactionList({
 
     const onReload = () => {
         findAllTransactionAction();
+
+        console.log("on reload", )
     };
 
     useEffect(onReload, [findAllTransactionAction])
 
+
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" || localStorage.getItem("roles") == "SUPERVISOR" ?
+                localStorage.getItem("roles") == "STAFF" ?
                     <>
                         <Containers error={error}>
                             <Header/>
@@ -47,7 +49,6 @@ function TransactionList({
 
                                                 <div className="card">
                                                     <div className="card-header border-0">
-                                                        {/*<h3 className="card-title">List Customer</h3>*/}
                                                         <div className="card-tools">
 
                                                         </div>
@@ -56,7 +57,8 @@ function TransactionList({
                                                     <div className="card-body table-responsive p-0">
                                                         <TableScrollbar rows={10}>
                                                             <table className="table table-striped table-valign-middle">
-                                                                <thead style={{textAlign: "left", background:"#FCE051"}}>
+                                                                <thead
+                                                                    style={{textAlign: "left", background: "#FCE051"}}>
                                                                 <tr>
                                                                     <th>No</th>
                                                                     <th>Name</th>
@@ -72,8 +74,8 @@ function TransactionList({
                                                                     !isLoading ?
                                                                         transactions?.list?.map((e, i) => {
                                                                             return (
-                                                                                <TransactionRow key={i} data={e}
-                                                                                                number={(transactions.page * transactions.size) + 1 + i}/>
+                                                                                <Row key={i} data={e}
+                                                                                     number={(transactions.page * transactions.size) + 1 + i}/>
                                                                             )
                                                                         }) :
                                                                         <tr>
@@ -106,9 +108,9 @@ function TransactionList({
 
 const mapStateToProps = (state) => {
     return {
-        error: state.finAllTransactionReducer.error,
-        transactions: state.finAllTransactionReducer.data || [],
-        isLoading: state.finAllTransactionReducer.isLoading
+        error: state.findAllTransactionByStaff.error,
+        transactions: state.findAllTransactionByStaff.data || [],
+        isLoading: state.findAllTransactionByStaff.isLoading
     }
 }
 

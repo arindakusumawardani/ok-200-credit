@@ -1,13 +1,13 @@
 import {combineReducers} from "redux";
 import {
-  findAllCustomerByIdReducer,
+  findAllCustomerByIdReducer, findAllCustomerBySubmitter,
   findAllCustomerReducer,
   findCustomerByIdReducer,
   saveCustomerReducer,
   updateCustomerReducer
 } from "./customerReducer";
 import {
-  finAllTransactionReducer,
+  finAllTransactionReducer, findAllTransactionByStaff,
   findTransactionByIdReducer,
   saveTransactionReducer,
   updateTransactionReducer
@@ -32,13 +32,14 @@ const rootReducer = combineReducers({
   findCustomerByIdReducer,
   updateCustomerReducer,
 
-  findAllCustomerByIdReducer,
+  findAllCustomerBySubmitter,
 
   //TRANSACTION
   finAllTransactionReducer,
   saveTransactionReducer,
   findTransactionByIdReducer,
   updateTransactionReducer,
+  findAllTransactionByStaff,
 
   //LOGIN
   loginReducer,

@@ -121,7 +121,7 @@ export const updateCustomerReducer = (state = {}, action) => {
     }
 }
 
-export const findAllCustomerByIdReducer = (state = initialState, action) => {
+export const findAllCustomerBySubmitter = (state = initialState, action) => {
     // console.log("ini action", action)
     switch (action.type) {
         case FIND_ALL_CUSTOMER:
