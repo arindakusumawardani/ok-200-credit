@@ -76,6 +76,11 @@ export const FIND_ALL_REPORT = "FIND_ALL_REPORT"
 export const FIND_ALL_REPORT_SUCCESS = "FIND_ALL_REPORT_SUCCESS"
 export const FIND_ALL_REPORT_FAILURE = " FIND_ALL_REPORT_FAILURE"
 
+//--------------------REPORT BY STAFF--------------------------------
+export const FIND_REPORT_BY_STAFF = "FIND_REPORT_BY_STAFF"
+export const FIND_REPORT_BY_STAFF_SUCCESS = "FIND_REPORT_BY_STAFF_SUCCESS"
+export const FIND_REPORT_BY_STAFF_FAILURE = "FIND_REPORT_BY_STAFF_FAILURE"
+
 //----------------------APPROVAL----------------------------------------
 export const SAVE_APPROVAL = "SAVE_APPROVAL"
 export const SAVE_APPROVAL_SUCCESS = "SAVE_APPROVAL_SUCCESS"

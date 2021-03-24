@@ -115,7 +115,7 @@ export default function Menu() {
                 </a>
               </li>
               <li className="nav-item has-treeview">
-                <a href="/staff/report" className="nav-link">
+                <a href="/report/staff" className="nav-link">
                   <i className="nav-icon fas fa-check-double"/>
                   <p>
                     Report

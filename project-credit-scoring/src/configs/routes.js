@@ -18,6 +18,7 @@ import Error from "../pages/Error";
 import ListCustomerByStaff from "../pages/customer/listCustomerByStaff/ListCustomerByStaff";
 import ReasonForm from "../pages/reasonUse/ReasonForm";
 import ListTransactionByStaff from "../pages/transaction/listTransactionByStaff/ListTransactionByStaff";
+import ListReportByStaff from "../pages/report/reportByStaff/ListReportByStaff";
 
 const routes = [
     {
@@ -118,6 +119,11 @@ const routes = [
     {
         path: '/approval/staff',
         component: <ListTransactionByStaff/>,
+        exact: true
+    },
+    {
+        path: '/report/staff',
+        component: <ListReportByStaff/>,
         exact: true
     },
 

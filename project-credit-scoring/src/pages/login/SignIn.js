@@ -22,7 +22,8 @@ const SignIn = ({loginData, isLoading, error, dispatchLoginAction}) => {
 
     const history = useHistory();
 
-    const onSubmit = () => {
+    const handleLogin = (e) => {
+        e.preventDefault()
         const isValid = validate();
 
         if (isValid) {
@@ -110,7 +111,7 @@ const SignIn = ({loginData, isLoading, error, dispatchLoginAction}) => {
                     <div>
                         <img src={undraw_Access_account_re_8spm} alt=""
                              className="img-fluid d-none d-md-block"/>
-                             <br/>
+                        <br/>
 
                     </div>
 
@@ -118,9 +119,8 @@ const SignIn = ({loginData, isLoading, error, dispatchLoginAction}) => {
 
                 <div className="col-md-7 col-lg-6 ml-auto">
                     <h1 style={{color: "#e42256", fontSize: "55px"}}>Sign In</h1><br/>
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <div className="row">
-
                             <div className="input-group col-lg-12 mb-4">
                                 <div className="input-group-prepend">
                                         <span className="input-group-text bg-white px-4 border-md border-right-0">
@@ -168,21 +168,12 @@ const SignIn = ({loginData, isLoading, error, dispatchLoginAction}) => {
                                 <div style={{fontSize: 12, color: "red"}}>{validation}</div>
                                 <Button
                                     style={{background: "#e42256"}}
-                                    onClick={() => onSubmit()}
+                                    type="submit"
                                     block>
                                         <span className="font-weight-bold"
                                               style={{color: "#ffff"}}>SIGN IN</span>
                                 </Button>
                             </div>
-                            {/*<div className="text-center w-100">*/}
-                            {/*    <br/>*/}
-                            {/*    <p className="text-muted font-weight-bold">*/}
-                            {/*        Forgot Password?*/}
-                            {/*        <a href="#" className="text-primary ml-2">Click here</a>*/}
-                            {/*    </p>*/}
-                            {/*    <hr/>*/}
-                            {/*</div>*/}
-
                         </div>
                     </form>
                 </div>
