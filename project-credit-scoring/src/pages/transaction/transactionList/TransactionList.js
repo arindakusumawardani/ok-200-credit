@@ -65,7 +65,7 @@ function TransactionList({
                                                                 <th>Loan</th>
                                                                 <th>Tenor</th>
                                                                 <th>Interest Rate</th>
-                                                                <th>Action</th>
+                                                                <th>Pending Approval</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody style={{textAlign: "left"}}>

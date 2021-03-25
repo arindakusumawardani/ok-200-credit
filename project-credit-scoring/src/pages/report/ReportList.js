@@ -63,7 +63,6 @@ function ReportList({
                                                             </tr>
                                                             <tr>
                                                                 <th>No</th>
-                                                                <th>Approval</th>
                                                                 <th>Name</th>
                                                                 <th>Email</th>
                                                                 <th>Id Number</th>
@@ -81,6 +80,7 @@ function ReportList({
                                                                 <th>Credit ratio</th>
                                                                 <th>Finance Criteria</th>
                                                                 <th>Employee Criteria</th>
+                                                                <th>Approval</th>
                                                                 <th>Submitted Date</th>
                                                                 <th>Approved Date</th>
                                                             </tr>

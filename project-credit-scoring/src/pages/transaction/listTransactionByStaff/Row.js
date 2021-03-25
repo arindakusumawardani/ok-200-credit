@@ -2,6 +2,7 @@ import React from 'react'
 import {Button} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
+import NumberFormat from "react-number-format";
 
 const Row = ({data, number}) => {
 
@@ -12,9 +13,12 @@ const Row = ({data, number}) => {
             <td>{number}</td>
             <td>{data.transaction.customer.name}</td>
             <td>{data.transaction.customer.employeeType} </td>
-            <td>{data.transaction.loan}</td>
-            <td>{data.transaction.tenor}</td>
-            <td>{data.transaction.interestRate}</td>
+            <td><NumberFormat value={data.transaction.loan}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              prefix={'Rp '}/></td>
+            <td>{data.transaction.tenor} month</td>
+            <td>{data.transaction.interestRate} %</td>
             <td>
                 <Button href={`/transaction/${data.id}`} style={{background:"#e42256"}}>
                     <FontAwesomeIcon icon={faQuestionCircle}/>

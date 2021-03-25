@@ -63,8 +63,9 @@ const ReasonUse = ({findAllNeedAction, needs, error, isLoading}) => {
                                                 <thead style={{textAlign: "left"}}>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Id</th>
+                                                    {/*<th>Id</th>*/}
                                                     <th>Type</th>
+                                                    <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody style={{textAlign: "left"}}>

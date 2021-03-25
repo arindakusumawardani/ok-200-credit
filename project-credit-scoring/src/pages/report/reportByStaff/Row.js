@@ -1,4 +1,5 @@
 import React from 'react'
+import NumberFormat from "react-number-format";
 
 const Row = ({data, onUpdate, number}) => {
     console.log("row", data)
@@ -6,33 +7,45 @@ const Row = ({data, onUpdate, number}) => {
 
         <tr>
             <td>{number}</td>
-            <td>
-                {data.approval.approve ?
-                    "TRUE" : "FALSE"
-                }
-            </td>
             <td>{data.approval.transaction.customer.name}</td>
             <td>{data.approval.transaction.customer.email}</td>
             <td>{data.approval.transaction.customer.idNumber}</td>
             <td>{data.approval.transaction.customer.address}</td>
             <td>{data.approval.transaction.customer.employeeType}</td>
-            <td>{data.approval.transaction.income}</td>
-            <td>{data.approval.transaction.outcome}</td>
-            <td>{data.approval.transaction.loan}</td>
-            <td>{data.approval.transaction.interestRate}</td>
-            <td>{data.approval.transaction.tenor}</td>
-            <td>{data.approval.transaction.mainLoan}</td>
-            <td>{data.approval.transaction.interest}</td>
-            <td>{data.approval.transaction.installmentTotal}</td>
-            <td>{data.approval.transaction.installment}</td>
-            <td>{data.approval.transaction.creditRatio}</td>
+                <td><NumberFormat value={data.approval.transaction.income}
+                                  displayType={'text'}
+                                  thousandSeparator={true}
+                                  prefix={'Rp'}/></td>
+                <td><NumberFormat value={data.approval.transaction.outcome}
+                                  displayType={'text'}
+                                  thousandSeparator={true}
+                                  prefix={'Rp'}/></td>
+                <td><NumberFormat value={data.approval.transaction.loan}
+                                  displayType={'text'}
+                                  thousandSeparator={true}
+                                  prefix={'Rp'}/></td>
+                <td>{data.approval.transaction.interestRate}%</td>
+            <td>{data.approval.transaction.tenor} month</td>
+            <td><NumberFormat value={data.approval.transaction.mainLoan}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              prefix={'Rp'}/></td>
+            <td><NumberFormat value={data.approval.transaction.interest}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              prefix={'Rp'}/></td>
+            <td><NumberFormat value={data.approval.transaction.installmentTotal}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              prefix={'Rp'}/></td>
+            <td><NumberFormat value={data.approval.transaction.installment}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              prefix={'Rp'}/></td>
             <td>
-                {data.approval.transaction.financeCriteria ?
-                    "TRUE" : "FALSE"}
-            </td>
-            <td>
-                {data.approval.transaction.employeeCriteria ?
-                    "TRUE" : "FALSE"}
+                {data.approval.approve ?
+                    "APPROVE" : "REJECT"
+                }
             </td>
             <td>{data.submitDate}</td>
             <td>{data.approvalDate}</td>

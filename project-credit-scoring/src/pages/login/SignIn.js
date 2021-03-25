@@ -118,7 +118,8 @@ const SignIn = ({loginData, isLoading, error, dispatchLoginAction}) => {
                 </div>
 
                 <div className="col-md-7 col-lg-6 ml-auto">
-                    <h1 style={{color: "#e42256", fontSize: "55px"}}>Sign In</h1><br/>
+                    <h1 style={{color: "#e42256", fontSize: "55px"}}>OK 200</h1><br/>
+                    <h5 style={{color: "#e42256", fontSize: "35px"}}>Credit Partner</h5><br/>
                     <form onSubmit={handleLogin}>
                         <div className="row">
                             <div className="input-group col-lg-12 mb-4">

@@ -46,6 +46,7 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
 
     useEffect(() => {
         if (saveAccount) {
+            swal("Register Success", "", "success")
             history.push('/master')
         }
         if (error) {
@@ -118,7 +119,7 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
                                                     <div className="card-header border-0">
                                                         {/*<h3 className="card-title">Detail Customer</h3>*/}
                                                         <div className="card-tools">
-                                                            <a href="/dashboard" className="btn btn-tool btn-sm">
+                                                            <a href="/master" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-arrow-left"/>
                                                             </a>
                                                         </div>
@@ -131,13 +132,14 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
                                                                     <div className="col-md-5 pr-lg-5 mb-5 mb-md-0">
                                                                         <img src={undraw_Updated_resume_re_q1or} alt=""
                                                                              className="img-fluid mb-3 d-none d-md-block"/>
+                                                                    </div>
+
+                                                                    <div className="col-md-7 col-lg-6 ml-auto">
+
                                                                         <h1 style={{
                                                                             color: "#e42256",
                                                                             fontSize: "55px"
                                                                         }}>Create Account</h1>
-                                                                    </div>
-
-                                                                    <div className="col-md-7 col-lg-6 ml-auto">
 
                                                                         {!isLoading ?
                                                                             <Form onSubmit={handleSubmit}>
@@ -239,21 +241,21 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
                                                                                         />
                                                                                     </div>
 
-                                                                                    <div
-                                                                                        className="input-group col-lg-12 mb-4">
-                                                                                        <FormGroup>
-                                                                                            <Label for="profilePicture"
-                                                                                                   sm={4}>Profile
-                                                                                                Photo</Label>
-                                                                                            <Col sm={12}>
-                                                                                                <Input
-                                                                                                    type="file"
-                                                                                                    name="profilePicture"
-                                                                                                    onChange={handlePhoto}
-                                                                                                    accept="image/jpeg, image/png"/>
-                                                                                            </Col>
-                                                                                        </FormGroup>
-                                                                                    </div>
+                                                                                    {/*<div*/}
+                                                                                    {/*    className="input-group col-lg-12 mb-4">*/}
+                                                                                    {/*    <FormGroup>*/}
+                                                                                    {/*        <Label for="profilePicture"*/}
+                                                                                    {/*               sm={4}>Profile*/}
+                                                                                    {/*            Photo</Label>*/}
+                                                                                    {/*        <Col sm={12}>*/}
+                                                                                    {/*            <Input*/}
+                                                                                    {/*                type="file"*/}
+                                                                                    {/*                name="profilePicture"*/}
+                                                                                    {/*                onChange={handlePhoto}*/}
+                                                                                    {/*                accept="image/jpeg, image/png"/>*/}
+                                                                                    {/*        </Col>*/}
+                                                                                    {/*    </FormGroup>*/}
+                                                                                    {/*</div>*/}
 
                                                                                     <div
                                                                                         className="form-group col-lg-12 mx-auto mb-0">

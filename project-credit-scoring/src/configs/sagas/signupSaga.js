@@ -83,7 +83,7 @@ function* updateAccountSaga(action) {
 }
 
 function* removeAccountById(action) {
-    let result = yield axios.delete(`/users/${action.id}`)
+    let result = yield axios.delete(`/master/${action.id}`)
         .then(data => {
             console.log("ini action", data)
             return ({

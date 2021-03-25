@@ -94,7 +94,7 @@ function AccountList({
                                     <div className="card-body table-responsive p-0">
                                         <table className="table table-striped table-valign-middle">
 
-                                        <thead>
+                                        <thead style={{textAlign:"left"}}>
                     <tr>
                         <th>Number</th>
                         <th>Username</th>
@@ -105,7 +105,7 @@ function AccountList({
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{textAlign:"left"}}>
                     {
                         !isLoading ?
                             accounts?.list?.map((e,i) => {

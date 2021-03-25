@@ -48,6 +48,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
         console.log(approval)
         // history.push('/report')
         swal("Approve!", "Transaction has been approved!", "success");
+
     }
 
     const handleReject = () => {
@@ -73,12 +74,12 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
     //     console.log("handleSubmit", approval)
     // }
 
-    // useEffect(() => {
-    //     if (savedApprove) {
-    //         // history.push('/report')
-    //         console.log("useeffect", approval)
-    //     }
-    // })
+    useEffect(() => {
+        if (savedApprove) {
+            history.push('/report')
+            console.log("useeffect", savedApprove)
+        }
+    }, [savedApprove])
 
     useEffect(() => {
         if (id && transaction) {
@@ -101,7 +102,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" || localStorage.getItem("roles") == "SUPERVISOR" ?
+                localStorage.getItem("roles") == "STAFF" || localStorage.getItem("roles") == "SUPERVISOR" ?
                     <>
                         <div>
                             <Header/>
@@ -124,12 +125,17 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                     <div className="card-header border-0">
                                                         {/*<h3 className="card-title">Detail Customer</h3>*/}
                                                         <div className="card-tools">
-                                                            <a href="/transaction/form" className="btn btn-tool btn-sm">
-                                                                <i className="fas fa-pencil-alt"/>
-                                                            </a>
-                                                            <a href="/dashboard" className="btn btn-tool btn-sm">
+                                                            {/*<a href="/transaction/form" className="btn btn-tool btn-sm">*/}
+                                                            {/*    <i className="fas fa-pencil-alt"/>*/}
+                                                            {/*</a>*/}
+                                                            {localStorage.getItem("roles") == "SUPERVISOR" &&
+                                                            <a href="/transaction" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-arrow-left"/>
-                                                            </a>
+                                                            </a>}
+                                                            {localStorage.getItem("roles") == "STAFF" &&
+                                                            <a href="/approval/staff" className="btn btn-tool btn-sm">
+                                                                <i className="fas fa-arrow-left"/>
+                                                            </a>}
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
@@ -150,21 +156,21 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                 <td><NumberFormat value={data?.transaction?.income}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
-                                                                                  prefix={'Rp'}/></td>
+                                                                                  prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Outcome</td>
                                                                 <td><NumberFormat value={data?.transaction?.outcome}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
-                                                                                  prefix={'Rp'}/></td>
+                                                                                  prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Loan</td>
                                                                 <td><NumberFormat value={data?.transaction?.loan}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
-                                                                                  prefix={'Rp'}/></td>
+                                                                                  prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Tenor</td>
@@ -179,20 +185,31 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                 <td><NumberFormat value={data?.transaction?.mainLoan}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
-                                                                                  prefix={'Rp'}/></td>
+                                                                                  prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Interest</td>
-                                                                <td> {data?.transaction?.interest}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Installment Total</td>
-                                                                <td>Rp {data?.transaction?.installmentTotal}</td>
+                                                                <td><NumberFormat value={data?.transaction?.interest}
+                                                                                  displayType={'text'}
+                                                                                  thousandSeparator={true}
+                                                                                  prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Installment</td>
-                                                                <td>Rp {data?.transaction?.installment}</td>
+                                                                <td><NumberFormat value={data?.transaction?.installment}
+                                                                                  displayType={'text'}
+                                                                                  thousandSeparator={true}
+                                                                                  prefix={'Rp '}/></td>
                                                             </tr>
+                                                            <tr>
+                                                                <td>Installment Total</td>
+                                                                <td><NumberFormat value={data?.transaction?.installmentTotal}
+                                                                                  displayType={'text'}
+                                                                                  thousandSeparator={true}
+                                                                                  prefix={'Rp '}/></td>
+                                                            </tr>
+                                                            {localStorage.getItem("roles") == "SUPERVISOR" &&
+                                                                <>
                                                             <tr>
                                                                 <td>Credit ratio</td>
                                                                 <td>{data?.transaction?.creditRatio} %</td>
@@ -209,10 +226,12 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                     "True" : "False"
                                                                 }</td>
                                                             </tr>
+                                                            </>}
                                                             <tr>
                                                                 <td>Notes</td>
                                                                 <td>{data?.transaction?.notes}</td>
                                                             </tr>
+                                                            {localStorage.getItem("roles") == "SUPERVISOR" &&
                                                             <tr>
                                                                 <td>
                                                                     <Button style={{background: "#e42256"}}
@@ -228,7 +247,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                         Reject
                                                                     </Button>
                                                                 </td>
-                                                            </tr>
+                                                            </tr>}
 
                                                             </tbody>
                                                         </table>
@@ -254,8 +273,8 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
 const mapStateToProps = (state) => {
     return {
         isLoading: state.findApprovalByIdReducer || state.saveApprovalReducer.loading,
-        transaction: state.findApprovalByIdReducer.data || [],
-        savedApprove: state.saveApprovalReducer.data || []
+        transaction: state.findApprovalByIdReducer.data,
+        savedApprove: state.saveApprovalReducer.data
     }
 }
 

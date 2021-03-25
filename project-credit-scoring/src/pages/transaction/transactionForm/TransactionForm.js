@@ -137,7 +137,9 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                     <Form onSubmit={handleSubmit}>
                                                         <FormGroup row>
                                                             <Label for="income" sm={2}
-                                                                   style={{textAlign: "left"}}>Income</Label>
+                                                                   style={{textAlign: "left"}}>Income
+                                                                <span style={{color:"red"}}> *</span>
+                                                            </Label>
                                                             <Col sm={10}>
                                                                 <InputGroup>
                                                                     <InputGroupText>Rp</InputGroupText>
@@ -158,7 +160,9 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                         </FormGroup>
                                                         <FormGroup row>
                                                             <Label for="outcome" sm={2}
-                                                                   style={{textAlign: "left"}}>Outcome</Label>
+                                                                   style={{textAlign: "left"}}>Outcome
+                                                                <span style={{color:"red"}}> *</span>
+                                                            </Label>
                                                             <Col sm={10}>
                                                                 <InputGroup>
                                                                     <InputGroupText>Rp</InputGroupText>
@@ -177,7 +181,9 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                         </FormGroup>
                                                         <FormGroup row>
                                                             <Label for="loan" sm={2}
-                                                                   style={{textAlign: "left"}}>Loan</Label>
+                                                                   style={{textAlign: "left"}}>Loan
+                                                                <span style={{color:"red"}}> *</span>
+                                                            </Label>
                                                             <Col sm={10}>
                                                                 <InputGroup>
                                                                     <InputGroupText>Rp</InputGroupText>
@@ -197,7 +203,9 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                         </FormGroup>
                                                         <FormGroup row>
                                                             <Label htmlFor="tenor" sm={2}
-                                                                   style={{textAlign: "left"}}>Tenor</Label>
+                                                                   style={{textAlign: "left"}}>Tenor
+                                                                <span style={{color:"red"}}> *</span>
+                                                            </Label>
                                                             <Col sm={10}>
                                                                 <Input required
                                                                        onChange={handleChange}
@@ -209,7 +217,9 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                         </FormGroup>
                                                         <FormGroup row>
                                                             <Label for="interestRate" sm={2}
-                                                                   style={{textAlign: "left"}}>Interest Rate</Label>
+                                                                   style={{textAlign: "left"}}>Interest Rate
+                                                                <span style={{color:"red"}}> *</span>
+                                                            </Label>
                                                             <Col sm={10}>
                                                                 <InputGroup>
                                                                     <Input
@@ -223,10 +233,11 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                 </InputGroup>
                                                             </Col>
                                                         </FormGroup>
-                                                        {/*{!isLoading ?*/}
                                                         <FormGroup row>
                                                             <Label for="select" sm={2} style={{textAlign: "left"}}>Need
-                                                                Type</Label>
+                                                                Type
+                                                                <span style={{color:"red"}}> *</span>
+                                                            </Label>
                                                             <Col sm={10} >
                                                                     <select onChange={e => setData({...data, needType: e.target.value})}>
                                                                         <option selected disabled hidden>Choose here</option>
@@ -234,50 +245,23 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                         <option key={i} value={e.id} data={e} selected={e.id == data?.id || false}>{e.type}</option>
                                                                         ))}
                                                                     </select>
-
-
-                                                                {/*<select name="need" onChange={handleChange}>*/}
-                                                                {/*    */}
-                                                                {/*    {needs?.list?.map((e, i) => (*/}
-                                                                {/*        <option key={i} value={e.id}*/}
-                                                                {/*                selected={e.id == data?.id || false}>{e.type}</option>*/}
-                                                                {/*    ))}*/}
-                                                                {/*</select>*/}
-
-                                                                {/*<DropdownList*/}
-                                                                {/*    data={[*/}
-                                                                {/*        needs?.list?.map(e => {*/}
-                                                                {/*            return (*/}
-                                                                {/*                {value: e.id, label: e.type}*/}
-                                                                {/*            )*/}
-                                                                {/*        })*/}
-                                                                {/*        // {value: "CAPITAL", label: "CAPITAL"},*/}
-                                                                {/*        // {*/}
-                                                                {/*        //     value: "CONSUMPTIVE",*/}
-                                                                {/*        //     label: "CONSUMPTIVE"*/}
-                                                                {/*        // },*/}
-                                                                {/*        // {value: "INVESTMENT", label: "INVESTMENT"}*/}
-                                                                {/*    ]}*/}
-                                                                {/*    value={data?.needType}*/}
-                                                                {/*    placeholder="Select Need Type"*/}
-                                                                {/*    handleDropdown={handleNeed}*/}
-                                                                {/*/>*/}
                                                             </Col>
                                                         </FormGroup>
-                                                        {/*:*/}
-                                                        {/*    <p>Loading...</p>*/}
 
                                                         <FormGroup row>
                                                             <Label for="notes" sm={2}
-                                                                   style={{textAlign: "left"}}>Note</Label>
+                                                                   style={{textAlign: "left"}}>Note
+                                                                <span style={{color:"red"}}> *</span>
+                                                            </Label>
                                                             <Col sm={10}>
                                                                 <Input
                                                                     required
                                                                     onChange={handleChange}
                                                                     value={data?.notes || ''}
-                                                                    type="text"
+                                                                    type="textarea"
                                                                     name="notes"
                                                                     id="notes"
+                                                                    maxLength={250}
                                                                     placeholder="input note"/>
                                                             </Col>
                                                         </FormGroup>
@@ -287,7 +271,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                     <FontAwesomeIcon icon={faSave}/>
                                                                     Submit
                                                                 </Button> {' '}
-                                                                <Button href="/dashboard"
+                                                                <Button href="/customer/staff"
                                                                         style={{background: "#e42256"}}>
                                                                     <FontAwesomeIcon icon={faArrowLeft}/>
                                                                     Cancel

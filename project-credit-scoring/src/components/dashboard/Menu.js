@@ -45,42 +45,42 @@ export default function Menu() {
                 <a href="/master" className="nav-link">
                   <i className="nav-icon fas fa-users"/>
                   <p>
-                    List Account
+                    Account User
                   </p>
                 </a>
               </li>
+              {/*<li className="nav-item has-treeview">*/}
+              {/*  <a href="/customer/form" className="nav-link">*/}
+              {/*    <i className="nav-icon fas fa-user-check"/>*/}
+              {/*    <p>*/}
+              {/*      Form Customer*/}
+              {/*    </p>*/}
+              {/*  </a>*/}
+              {/*</li>*/}
               <li className="nav-item has-treeview">
-                <a href="/customer/form" className="nav-link">
-                  <i className="nav-icon fas fa-user-check"/>
-                  <p>
-                    Form Customer
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item has-treeview">
-                <a href="/customer" className="nav-link">
+                <a href="/need" className="nav-link">
                   <i className="nav-icon fas fa-list-alt"/>
                   <p>
-                    List Customer
+                    Loan Purpose
                   </p>
                 </a>
               </li>
-              <li className="nav-item has-treeview">
-                <a href="/transaction" className="nav-link">
-                  <i className="nav-icon fas fa-wallet"/>
-                  <p>
-                    Transaction
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item has-treeview">
-                <a href="/report" className="nav-link">
-                  <i className="nav-icon fas fa-check-double"/>
-                  <p>
-                    Report
-                  </p>
-                </a>
-              </li>
+              {/*<li className="nav-item has-treeview">*/}
+              {/*  <a href="/transaction" className="nav-link">*/}
+              {/*    <i className="nav-icon fas fa-wallet"/>*/}
+              {/*    <p>*/}
+              {/*      Transaction*/}
+              {/*    </p>*/}
+              {/*  </a>*/}
+              {/*</li>*/}
+              {/*<li className="nav-item has-treeview">*/}
+              {/*  <a href="/report" className="nav-link">*/}
+              {/*    <i className="nav-icon fas fa-check-double"/>*/}
+              {/*    <p>*/}
+              {/*      Report*/}
+              {/*    </p>*/}
+              {/*  </a>*/}
+              {/*</li>*/}
             </ul>
             }
             {localStorage.getItem("roles") == "STAFF" &&
@@ -90,19 +90,19 @@ export default function Menu() {
                 role="menu"
                 data-accordion="false"
             >
-              <li className="nav-item has-treeview">
-                <a href="/customer/form" className="nav-link">
-                  <i className="nav-icon fas fa-user-check"/>
-                  <p>
-                    Form Customer
-                  </p>
-                </a>
-              </li>
+              {/*<li className="nav-item has-treeview">*/}
+              {/*  <a href="/customer/form" className="nav-link">*/}
+              {/*    <i className="nav-icon fas fa-user-check"/>*/}
+              {/*    <p>*/}
+              {/*      Form Customer*/}
+              {/*    </p>*/}
+              {/*  </a>*/}
+              {/*</li>*/}
               <li className="nav-item has-treeview">
                 <a href="/customer/staff" className="nav-link">
                   <i className="nav-icon fas fa-list-alt"/>
                   <p>
-                    List Customer
+                    Customer
                   </p>
                 </a>
               </li>
