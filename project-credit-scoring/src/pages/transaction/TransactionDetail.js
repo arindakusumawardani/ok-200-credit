@@ -5,8 +5,8 @@ import {useParams, useHistory, Redirect} from 'react-router-dom'
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSave} from "@fortawesome/free-solid-svg-icons";
-import  NumberFormat from "react-number-format"
+import {faCheck, faCross, faSave} from "@fortawesome/free-solid-svg-icons";
+import NumberFormat from "react-number-format"
 import {Button} from "reactstrap";
 import {findByIdApprovalAction, saveApprovalAction} from "../../actions/approvalAction";
 import Footer from "../../components/dashboard/Footer";
@@ -16,30 +16,54 @@ import Error from "../Error";
 function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprovalAction, savedApprove}) {
 
     const {id} = useParams()
+    const [redirect] = useState(false)
     const [data, setData] = useState({})
-    // const [approval, setApproval] = useState({
-    //     transaction: "",
-    //     approve: ""
-    // })
+    const [approval, setApproval] = useState({
+        id: null,
+        approve: null
+    })
 
     const history = useHistory()
 
+    // const handleApproval = () => {
+    //     saveApprovalAction({
+    //         transaction: data?.transaction?.id,
+    //         approve: true
+    //     })
+    //     history.push('/report')
+    //     // console.log("handle", )
+    // }
+
     const handleApproval = () => {
-        saveApprovalAction ({
-            transaction: data.id,
+        setApproval({
+            id: data?.transaction?.id,
             approve: true
         })
+
+        saveApprovalAction({
+            id: data.id,
+            approve: {
+                approve: true
+            }
+        })
+        console.log(approval)
         history.push('/report')
+
     }
 
     const handleReject = () => {
-        saveApprovalAction ({
-            transaction: data.id,
-            approve: false
-        })
-        history.push('/report')
-    }
 
+
+        saveApprovalAction({
+            id: data.id,
+            approve: {
+                approve: false
+            }
+        })
+
+        console.log(approval)
+    }
+    //
     // const handleSubmit = (e) => {
     //     e.preventDefault()
     //     saveApprovalAction(approval)
@@ -48,8 +72,9 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
     // }
 
     useEffect(() => {
-        if(savedApprove) {
+        if (savedApprove) {
             // history.push('/report')
+            console.log("useeffect", approval)
         }
     })
 
@@ -67,16 +92,20 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
         }
     }, [id, findByIdDispatch])
 
+    if (redirect === true) {
+        return <Redirect to="/report"/>
+    }
+
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ||  localStorage.getItem("roles") == "SUPERVISOR" ?
+                localStorage.getItem("roles") == "MASTER" || localStorage.getItem("roles") == "SUPERVISOR" ?
                     <>
                         <div>
                             <Header/>
                             <Menu/>
                             <div className="content-wrapper">
-                                    <div className="content-header">
+                                <div className="content-header">
                                     <div className="container-fluid">
                                         <div className="row mb-2">
                                             <div className="col-sm-6">
@@ -116,15 +145,24 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                             </tr>
                                                             <tr>
                                                                 <td>Income</td>
-                                                                <td><NumberFormat value={data?.transaction?.income} displayType={'text'} thousandSeparator={true} prefix={'Rp'} /></td>
+                                                                <td><NumberFormat value={data?.transaction?.income}
+                                                                                  displayType={'text'}
+                                                                                  thousandSeparator={true}
+                                                                                  prefix={'Rp'}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Outcome</td>
-                                                                <td><NumberFormat value={data?.transaction?.outcome} displayType={'text'} thousandSeparator={true} prefix={'Rp'} /></td>
+                                                                <td><NumberFormat value={data?.transaction?.outcome}
+                                                                                  displayType={'text'}
+                                                                                  thousandSeparator={true}
+                                                                                  prefix={'Rp'}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Loan</td>
-                                                                <td><NumberFormat value={data?.transaction?.loan} displayType={'text'} thousandSeparator={true} prefix={'Rp'} /></td>
+                                                                <td><NumberFormat value={data?.transaction?.loan}
+                                                                                  displayType={'text'}
+                                                                                  thousandSeparator={true}
+                                                                                  prefix={'Rp'}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Tenor</td>
@@ -136,7 +174,10 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                             </tr>
                                                             <tr>
                                                                 <td>Main Loan</td>
-                                                                <td><NumberFormat value={data?.transaction?.mainLoan} displayType={'text'} thousandSeparator={true} prefix={'Rp'} /></td>
+                                                                <td><NumberFormat value={data?.transaction?.mainLoan}
+                                                                                  displayType={'text'}
+                                                                                  thousandSeparator={true}
+                                                                                  prefix={'Rp'}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Interest</td>
@@ -172,14 +213,16 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <Button style={{background: "#e42256"}} onClick={handleApproval}>
-                                                                        <FontAwesomeIcon icon={faSave}/>
+                                                                    <Button style={{background: "#e42256"}}
+                                                                            onClick={handleApproval}>
+                                                                        <FontAwesomeIcon icon={faCheck}/>
                                                                         Approve
                                                                     </Button>
                                                                 </td>
                                                                 <td>
-                                                                    <Button style={{background: "#e42256"}} onClick={handleReject}>
-                                                                        <FontAwesomeIcon icon={faSave}/>
+                                                                    <Button style={{background: "#e42256"}}
+                                                                            onClick={handleReject}>
+                                                                        <FontAwesomeIcon icon={faCross}/>
                                                                         Reject
                                                                     </Button>
                                                                 </td>

@@ -13,13 +13,19 @@ import {
 } from "../constants/actions";
 
 function* saveApprovalSaga(action) {
-    let model = action.model
-    let method = 'POST', url = '/approval'
+    console.log("ACTION", action.model.id)
+    console.log("ACTION", action.model.approve)
+    let model = action.model.approve
+    let method = 'PATCH', url = `/approval/${action.model.id}`
+    console.log("INI ACTION", action)
 
     let result = yield axios ({
         url: url,
         method: method,
-        data: model
+        data: model,
+        headers: {
+            "Content-Type": "application/json"
+        }
     })
         .then(data => {
             return{

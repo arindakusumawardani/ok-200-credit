@@ -13,6 +13,7 @@ const initialState = {
 }
 
 export const saveApprovalReducer = (state = { ...initialState}, action) => {
+    console.log("REDUCER", action)
     switch (action.type) {
         case SAVE_APPROVAL:
             return{

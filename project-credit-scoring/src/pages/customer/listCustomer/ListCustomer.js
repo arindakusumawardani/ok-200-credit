@@ -8,6 +8,7 @@ import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
 import TableScrollbar from 'react-table-scrollbar';
 import Error from "../../Error";
+import Footer from "../../../components/dashboard/Footer";
 
 function CustomerList({
                           error,
@@ -98,7 +99,7 @@ function CustomerList({
                                     </div>
                                 </div>
                             </div>
-                            {/*<Footer/>*/}
+                            <Footer/>
                         </Containers>
                      </>
                     :

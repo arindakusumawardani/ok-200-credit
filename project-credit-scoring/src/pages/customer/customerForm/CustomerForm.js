@@ -39,7 +39,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
         if (id !== data.id) {
             findCustomerByIdAction(id);
             setData(customer)
-            // console.log("ini useffect", customer)
+            console.log("ini useffect", customer)
         }
     }, [customer])
 
@@ -146,7 +146,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
     const handleSubmit = (e) => {
         e.preventDefault()
         saveCustomerAction(data)
-
+        console.log("INI DATA",data)
         // swal("Save Success!", "", "success");
     }
 
