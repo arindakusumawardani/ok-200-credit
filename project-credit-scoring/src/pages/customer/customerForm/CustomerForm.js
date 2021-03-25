@@ -147,7 +147,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
         e.preventDefault()
         saveCustomerAction(data)
         console.log("INI DATA",data)
-        // swal("Save Success!", "", "success");
+        swal("Save Success!", "", "success");
     }
 
     if (redirect === true) {

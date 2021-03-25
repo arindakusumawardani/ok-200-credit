@@ -32,20 +32,20 @@ export default function Header() {
 
       {/* Right navbar links */}
       <ul className="navbar-nav ml-auto">
-        {localStorage.getItem("roles") == "MASTER" &&
-        <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <a className="nav-link" href="/need">
-                  <FontAwesomeIcon icon={faFolderPlus}/>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/register">
-                  <FontAwesomeIcon icon={faUserPlus}/>
-                </a>
-              </li>
-        </ul>
-        }
+        {/*{localStorage.getItem("roles") == "MASTER" &&*/}
+        {/*<ul className="navbar-nav ml-auto">*/}
+        {/*      <li className="nav-item">*/}
+        {/*        <a className="nav-link" href="/need">*/}
+        {/*          <FontAwesomeIcon icon={faFolderPlus}/>*/}
+        {/*        </a>*/}
+        {/*      </li>*/}
+        {/*      <li className="nav-item">*/}
+        {/*        <a className="nav-link" href="/register">*/}
+        {/*          <FontAwesomeIcon icon={faUserPlus}/>*/}
+        {/*        </a>*/}
+        {/*      </li>*/}
+        {/*</ul>*/}
+        {/*}*/}
         <li className="nav-item">
           <a
             className="nav-link"

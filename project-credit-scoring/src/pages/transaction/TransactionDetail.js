@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {findByIdTransactionAction} from "../../actions/transactionAction";
 import {connect} from "react-redux";
 import {useParams, useHistory, Redirect} from 'react-router-dom'
 import Header from "../../components/dashboard/Header";
@@ -9,8 +8,8 @@ import {faCheck, faCross, faSave} from "@fortawesome/free-solid-svg-icons";
 import NumberFormat from "react-number-format"
 import {Button} from "reactstrap";
 import {findByIdApprovalAction, saveApprovalAction} from "../../actions/approvalAction";
-import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
+import swal from "sweetalert";
 
 
 function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprovalAction, savedApprove}) {
@@ -47,8 +46,8 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
             }
         })
         console.log(approval)
-        history.push('/report')
-
+        // history.push('/report')
+        swal("Approve!", "Transaction has been approved!", "success");
     }
 
     const handleReject = () => {
@@ -64,6 +63,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
             }
         })
         console.log(approval)
+        swal("Reject!", "Transaction has been rejected!", "success");
     }
     //
     // const handleSubmit = (e) => {

@@ -67,11 +67,11 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
         if (savedTransaction) {
 
             if (localStorage.getItem("roles") == "MASTER") {
+                swal("Success!", "Add transaction success!", "success");
                 history.push('/transaction')
             } else if (localStorage.getItem("roles") == "STAFF") {
+                swal("Success!", "Add transaction success!", "success");
                 history.push('/approval/staff')
-            } else if (localStorage.getItem("roles") == "SUPERVISOR") {
-                history.push('/transaction')
             } else {
                 swal("*Sorry you are not allowed to sign here")
             }

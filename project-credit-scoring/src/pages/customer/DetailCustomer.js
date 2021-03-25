@@ -64,7 +64,7 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                                                 {/*<a href="/customer/form" className="btn btn-tool btn-sm">*/}
                                                                 {/*    <i className="fas fa-pencil-alt" />*/}
                                                                 {/*</a>*/}
-                                                                <a href="/dashbord" className="btn btn-tool btn-sm">
+                                                                <a href="/dashboard" className="btn btn-tool btn-sm">
                                                                     <i className="fas fa-arrow-left" />
                                                                 </a>
                                                             </div>
