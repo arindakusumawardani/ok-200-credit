@@ -52,7 +52,10 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
     }
 
     const handleReject = () => {
-
+        setApproval({
+            id: data?.transaction?.id,
+            approve: false
+        })
 
         saveApprovalAction({
             id: data.id,
@@ -60,7 +63,6 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                 approve: false
             }
         })
-
         console.log(approval)
     }
     //
@@ -71,12 +73,12 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
     //     console.log("handleSubmit", approval)
     // }
 
-    useEffect(() => {
-        if (savedApprove) {
-            // history.push('/report')
-            console.log("useeffect", approval)
-        }
-    })
+    // useEffect(() => {
+    //     if (savedApprove) {
+    //         // history.push('/report')
+    //         console.log("useeffect", approval)
+    //     }
+    // })
 
     useEffect(() => {
         if (id && transaction) {
