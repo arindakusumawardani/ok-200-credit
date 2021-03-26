@@ -27,7 +27,7 @@ function CustomerList({
 
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("roles") == "STAFF" ?
                     <>
                         <Containers error={error}>
                             <Header/>

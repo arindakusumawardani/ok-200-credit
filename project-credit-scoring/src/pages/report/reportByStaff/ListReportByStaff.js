@@ -65,18 +65,18 @@ function ReportList({
                                                                     <th>No</th>
                                                                     <th>Name</th>
                                                                     <th>Email</th>
-                                                                    <th>Id Number</th>
+                                                                    <th>Id Card</th>
                                                                     <th>Address</th>
                                                                     <th>Employee Type</th>
                                                                     <th>Income</th>
                                                                     <th>Outcome</th>
-                                                                    <th>Loan</th>
+                                                                    <th>Loan Amount</th>
                                                                     <th>Interest Rate</th>
                                                                     <th>Tenor</th>
-                                                                    <th>Main Loan</th>
+                                                                    <th>Principle</th>
                                                                     <th>Interest</th>
-                                                                    <th>Installment Total</th>
                                                                     <th>Installment</th>
+                                                                    <th>Installment Total</th>
                                                                     <th>Approval</th>
                                                                     <th>Submitted Date</th>
                                                                     <th>Approved Date</th>

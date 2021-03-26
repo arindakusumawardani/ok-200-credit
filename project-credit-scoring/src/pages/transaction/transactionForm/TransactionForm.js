@@ -110,7 +110,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
     return (
         <div>
         {
-            localStorage.getItem("roles") == "MASTER" || localStorage.getItem("roles") == "STAFF" ?
+            localStorage.getItem("roles") == "STAFF" ?
                 <>
             <Container error={error}/>
             <Header/>
@@ -181,7 +181,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                         </FormGroup>
                                                         <FormGroup row>
                                                             <Label for="loan" sm={2}
-                                                                   style={{textAlign: "left"}}>Loan
+                                                                   style={{textAlign: "left"}}>Loan Amount
                                                                 <span style={{color:"red"}}> *</span>
                                                             </Label>
                                                             <Col sm={10}>
@@ -234,8 +234,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                             </Col>
                                                         </FormGroup>
                                                         <FormGroup row>
-                                                            <Label for="select" sm={2} style={{textAlign: "left"}}>Need
-                                                                Type
+                                                            <Label for="select" sm={2} style={{textAlign: "left"}}>Loan Purpose
                                                                 <span style={{color:"red"}}> *</span>
                                                             </Label>
                                                             <Col sm={10} >

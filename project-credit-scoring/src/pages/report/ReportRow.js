@@ -34,14 +34,14 @@ const ReportRow = ({data, onUpdate, number}) => {
                                   displayType={'text'}
                                   thousandSeparator={true}
                                   prefix={'Rp'}/></td>
-                <td><NumberFormat value={data.approval.transaction.installmentTotal}
-                                  displayType={'text'}
-                                  thousandSeparator={true}
-                                  prefix={'Rp'}/></td>
                 <td><NumberFormat value={data.approval.transaction.installment}
                                   displayType={'text'}
                                   thousandSeparator={true}
                                   prefix={'Rp'}/></td>
+            <td><NumberFormat value={data.approval.transaction.installmentTotal}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              prefix={'Rp'}/></td>
             <td>{data.approval.transaction.creditRatio}%</td>
             <td>
                     {data.approval.transaction.financeCriteria ?

@@ -53,7 +53,7 @@ const routes = [
     },
     {
         path: '/customer/staff',
-        component: <ListCustomerByStaff />,
+        component: <ListCustomer />,
         exact: true
     },
     {
@@ -111,11 +111,11 @@ const routes = [
         component: <Error/>,
         exact: true
     },
-    {
-        path: '/staff/customer',
-        component: <ListCustomerByStaff/>,
-        exact: true
-    },
+    // {
+    //     path: '/staff/customer',
+    //     component: <ListCustomer/>,
+    //     exact: true
+    // },
     {
         path: '/approval/staff',
         component: <ListTransactionByStaff/>,

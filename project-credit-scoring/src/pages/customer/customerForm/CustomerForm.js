@@ -123,7 +123,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
         let value = e.target.value
         if(name = "idNumber") {
 
-            if(value.length <= 15)
+            if(value.length <= 16)
                 setData({...data, [name]: value})
 
         } else {
@@ -145,9 +145,15 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        saveCustomerAction(data)
+        if(data?.idNumber.length == 16  ) {
+            saveCustomerAction(data)
+            swal("Save Success!", "", "success");
+
+        } else {
+
+            swal("Sorry Id Number must be 16 digit!", "", "warning");
+        }
         console.log("INI DATA",data)
-        swal("Save Success!", "", "success");
     }
 
     if (redirect === true) {
@@ -222,8 +228,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                     value={data?.idNumber || ''}
                                                                                     type="number"
                                                                                     name="idNumber"
-                                                                                    maxLength={'15'}
-                                                                                    minLength={'15'}
+                                                                                    minLength={16}
                                                                                     placeholder="input ID number"/>
                                                                             </Col>
                                                                         </FormGroup>
@@ -248,10 +253,10 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             <Col sm={9}>
                                                                                 <DropdownList
                                                                                     data={[
-                                                                                        {value: "NON", label: "NON"},
+                                                                                        {value: "NON", label: "NON EMPLOYEE"},
                                                                                         {
                                                                                             value: "REGULAR",
-                                                                                            label: "REGULAR"
+                                                                                            label: "EMPLOYEE"
                                                                                         },
                                                                                         {
                                                                                             value: "CONTRACT",

@@ -35,7 +35,7 @@ export default function Content() {
                                         <p className="d-flex flex-column text-right">
                       <span className="font-weight-bold">
                         {/*<i className="ion ion-android-arrow-up text-success"/>{" "}*/}
-                          12%
+                          12
                       </span>
                                             <span className="text-muted">Customer</span>
                                         </p>
@@ -49,7 +49,7 @@ export default function Content() {
                                         <p className="d-flex flex-column text-right">
                       <span className="font-weight-bold">
                         {/*<i className="ion ion-android-arrow-up text-warning"/>{" "}*/}
-                          0.8%
+                          8
                       </span>
                                             <span className="text-muted">Transaction</span>
                                         </p>
@@ -62,12 +62,42 @@ export default function Content() {
                                         <p className="d-flex flex-column text-right">
                       <span className="font-weight-bold">
                         {/*<i className="ion ion-android-arrow-down text-danger"/>{" "}*/}
-                          1%
+                          1
                       </span>
-                                            <span className="text-muted">Report</span>
+                                            <span className="text-muted">Approved</span>
                                         </p>
                                     </div>
                                     {/* /.d-flex */}
+
+                                    <div
+                                        className="d-flex justify-content-between align-items-center border-bottom mb-3">
+                                        <p className="text-success text-xl">
+                                            <i className="ion ion-ios-people-outline"/>
+                                        </p>
+                                        <p className="d-flex flex-column text-right">
+                      <span className="font-weight-bold">
+                        {/*<i className="ion ion-android-arrow-up text-success"/>{" "}*/}
+                          12
+                      </span>
+                                            <span className="text-muted">Rejected</span>
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        className="d-flex justify-content-between align-items-center border-bottom mb-3">
+                                        <p className="text-success text-xl">
+                                            <i className="ion ion-ios-people-outline"/>
+                                        </p>
+                                        <p className="d-flex flex-column text-right">
+                      <span className="font-weight-bold">
+                        {/*<i className="ion ion-android-arrow-up text-success"/>{" "}*/}
+                          12
+                      </span>
+                                            <span className="text-muted">Total Funds Lent</span>
+                                        </p>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>

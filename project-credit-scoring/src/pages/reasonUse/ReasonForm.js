@@ -10,6 +10,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faSave} from "@fortawesome/free-solid-svg-icons";
 import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
+import swal from "sweetalert";
 
 const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading}) => {
     const {id} = useParams()
@@ -20,9 +21,14 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading}) => {
 
     useEffect(() => {
         if (saveNeedType) {
+            swal("Add Loan Purpose Success", "", "success")
             history.push('/need')
         }
-    }, [saveNeedType, history])
+        // if (error) {
+        //     swal("Sorry data already exist",'', "error")
+        // }
+        console.log("error", error)
+    }, [saveNeedType, history, error])
 
     const handleChange = (e) => {
         let name = e.target.name

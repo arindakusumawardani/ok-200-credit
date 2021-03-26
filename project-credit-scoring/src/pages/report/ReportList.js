@@ -70,13 +70,13 @@ function ReportList({
                                                                 <th>Employee Type</th>
                                                                 <th>Income</th>
                                                                 <th>Outcome</th>
-                                                                <th>Loan</th>
+                                                                <th>Loan Amount</th>
                                                                 <th>Interest Rate</th>
                                                                 <th>Tenor</th>
-                                                                <th>Main Loan</th>
+                                                                <th>Principle</th>
                                                                 <th>Interest</th>
-                                                                <th>Installment Total</th>
                                                                 <th>Installment</th>
+                                                                <th>Installment Total</th>
                                                                 <th>Credit ratio</th>
                                                                 <th>Finance Criteria</th>
                                                                 <th>Employee Criteria</th>

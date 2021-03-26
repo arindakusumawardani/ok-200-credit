@@ -4,7 +4,7 @@ import {useParams, useHistory, Redirect} from 'react-router-dom'
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheck, faCross, faSave} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faCheckCircle, faCross, faSave, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 import NumberFormat from "react-number-format"
 import {Button} from "reactstrap";
 import {findByIdApprovalAction, saveApprovalAction} from "../../actions/approvalAction";
@@ -151,6 +151,18 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                 <td>Employee Type</td>
                                                                 <td>{data?.transaction?.customer?.employeeType}</td>
                                                             </tr>
+                                                            {data?.transaction?.customer?.employeeType == "CONTRACT"
+                                                            &&
+                                                            <>
+                                                                <tr>
+                                                                    <td>Contract Start</td>
+                                                                    <td>{data?.transaction?.customer?.contractStart}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Contract Length</td>
+                                                                    <td>{data?.transaction?.customer?.contractLength}</td>
+                                                                </tr>
+                                                            </>}
                                                             <tr>
                                                                 <td>Income</td>
                                                                 <td><NumberFormat value={data?.transaction?.income}
@@ -236,14 +248,14 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                 <td>
                                                                     <Button style={{background: "#e42256"}}
                                                                             onClick={handleApproval}>
-                                                                        <FontAwesomeIcon icon={faCheck}/>
+                                                                        <FontAwesomeIcon icon={faCheckCircle}/>
                                                                         Approve
                                                                     </Button>
                                                                 </td>
                                                                 <td>
                                                                     <Button style={{background: "#e42256"}}
                                                                             onClick={handleReject}>
-                                                                        <FontAwesomeIcon icon={faCross}/>
+                                                                        <FontAwesomeIcon icon={faTimesCircle}/>
                                                                         Reject
                                                                     </Button>
                                                                 </td>
