@@ -63,7 +63,7 @@ function TransactionList({
                                                                     <th>No</th>
                                                                     <th>Name</th>
                                                                     <th>Employee Type</th>
-                                                                    <th>Loan</th>
+                                                                    <th>Loan Amount</th>
                                                                     <th>Tenor</th>
                                                                     <th>Interest Rate</th>
                                                                     <th>Pending Approval</th>

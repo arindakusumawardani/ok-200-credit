@@ -110,7 +110,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
     return (
         <div>
         {
-            localStorage.getItem("roles") == "MASTER" || localStorage.getItem("roles") == "STAFF" ?
+            localStorage.getItem("roles") == "STAFF" ?
                 <>
             <Container error={error}/>
             <Header/>

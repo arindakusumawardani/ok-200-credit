@@ -145,9 +145,15 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        saveCustomerAction(data)
+        if(data?.idNumber.length == 15  ) {
+            saveCustomerAction(data)
+            swal("Save Success!", "", "success");
+
+        } else {
+
+            swal("Arifin ganteng!", "", "warning");
+        }
         console.log("INI DATA",data)
-        swal("Save Success!", "", "success");
     }
 
     if (redirect === true) {
@@ -222,8 +228,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                     value={data?.idNumber || ''}
                                                                                     type="number"
                                                                                     name="idNumber"
-                                                                                    maxLength={'15'}
-                                                                                    minLength={'15'}
+                                                                                    minLength={15}
                                                                                     placeholder="input ID number"/>
                                                                             </Col>
                                                                         </FormGroup>
@@ -248,10 +253,10 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             <Col sm={9}>
                                                                                 <DropdownList
                                                                                     data={[
-                                                                                        {value: "NON", label: "NON"},
+                                                                                        {value: "NON", label: "NON EMPLOYEE"},
                                                                                         {
                                                                                             value: "REGULAR",
-                                                                                            label: "REGULAR"
+                                                                                            label: "EMPLOYEE"
                                                                                         },
                                                                                         {
                                                                                             value: "CONTRACT",
