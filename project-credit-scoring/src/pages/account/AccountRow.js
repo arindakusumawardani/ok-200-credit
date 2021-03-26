@@ -18,7 +18,7 @@ const AccountRow = ({data, number, onUpdate, onDeleted}) => {
             </td>
             <td>{data.role}</td>
             <td>
-                <a onClick={onUpdate} className="text-muted">
+                <a onClick={onUpdate} href={`/edit/id`} className="text-muted">
                     <i className="fas fa-pencil-alt" />
                 </a>{' '}
                 <a onClick={onDeleted} className="text-muted">

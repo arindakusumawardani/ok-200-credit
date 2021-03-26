@@ -1,14 +1,14 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import AccountRow from "./AccountRow";
-import {findAllAccountAction, removeByIdAccountAction} from "../../actions/signupAction";
+import {findAccountByIdAction, findAllAccountAction, removeByIdAccountAction} from "../../actions/signupAction";
 import {connect} from "react-redux";
 import Containers from '../../components/Containers/Container'
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import Footer from "../../components/dashboard/Footer";
-import SignIn from "./SignIn";
 import swal from "sweetalert";
 import Error from "../Error";
+import {useParams} from 'react-router-dom';
 
 
 function AccountList({
@@ -19,6 +19,8 @@ function AccountList({
                          dispatchRemoveById,
                          isRemoved
                      }) {
+
+
 
     const onReload = () => {
         findAllAccountAction();
@@ -142,7 +144,7 @@ function AccountList({
 
 const mapStateToProps = (state) => {
     return {
-        accounts: state.findAllAccountReducer.data || [],
+        accounts: state.findAllAccountReducer.data,
         isLoading: state.findAllAccountReducer.isLoading,
         error: state.findAllAccountReducer.error || state.removeAccountByIdReducer.error,
         isRemoved: state.removeAccountByIdReducer

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {findAllCustomerAction} from '../../../actions/customerAction'
 import {connect} from "react-redux"
 import Containers from "../../../components/Containers/Container";
-import SignIn from "../../login/SignIn";
+import SignIn from "../../account/SignIn";
 import RowCustomer from "./RowCustomer";
 import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";

@@ -1,15 +1,15 @@
 import React from "react";
 import TransactionList from "../pages/transaction/transactionList";
 import CustomerForm from "../pages/customer/customerForm";
-import SignIn from "../pages/login/SignIn";
+import SignIn from "../pages/account/SignIn";
 import HomeMaster from "../pages/home/HomeMaster";
-import SignUp from "../pages/login/SignUp";
+import SignUp from "../pages/account/SignUp";
 import TransactionForm from "../pages/transaction/transactionForm";
 import Dashboard from "../components/dashboard";
 import ListCustomer from "../pages/customer/listCustomer";
 import DetailCustomer from "../pages/customer/DetailCustomer";
 import CustomerDetail from "../pages/customer/DetailCustomer";
-import AccountList from "../pages/login/AccountList";
+import AccountList from "../pages/account/AccountList";
 import TransactionDetail from "../pages/transaction/TransactionDetail";
 import ReportList from "../pages/report/ReportList";
 import ReportDetail from "../pages/report/ReportDetail";
@@ -19,6 +19,7 @@ import ListCustomerByStaff from "../pages/customer/listCustomerByStaff/ListCusto
 import ReasonForm from "../pages/reasonUse/ReasonForm";
 import ListTransactionByStaff from "../pages/transaction/listTransactionByStaff/ListTransactionByStaff";
 import ListReportByStaff from "../pages/report/reportByStaff/ListReportByStaff";
+import EditAccount from "../pages/account/EditAccount";
 
 const routes = [
     {
@@ -32,10 +33,16 @@ const routes = [
         exact: true
     },
     {
-        path: '/users/:id',
+        path: '/master/:id',
         component: <SignUp/>,
         exact: true
+
     },
+    // {
+    //     path: '/users/:id',
+    //     component: <SignUp/>,
+    //     exact: true
+    // },
     {
         path: '/need',
         component: <ReasonUse/>,
@@ -126,6 +133,11 @@ const routes = [
         component: <ListReportByStaff/>,
         exact: true
     },
+    {
+        path: '/edit/id',
+        component: <EditAccount/>,
+        exact: true
+    }
 
 ];
 

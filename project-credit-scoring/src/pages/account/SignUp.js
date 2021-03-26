@@ -18,7 +18,7 @@ import Menu from "../../components/dashboard/Menu";
 import swal from "sweetalert";
 import Error from "../Error";
 
-const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) => {
+const SignUp = ({saveDispatch, error, saveAccount, user, isLoading}) => {
     const {id} = useParams()
     const [redirect] = useState(false)
 
@@ -31,8 +31,6 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
         username: "",
         fullName: "",
         email: "",
-        password: "",
-        profilePicture: "",
         role: ""
     })
     const history = useHistory()
@@ -40,9 +38,10 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
     useEffect(() => {
         if (id !== data.id) {
             findAccountByIdAction(id);
-            setData(users)
+            setData(user)
         }
-    }, [users])
+        console.log("useEffect", user)
+    }, [user])
 
     useEffect(() => {
         if (saveAccount) {
@@ -298,7 +297,7 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
 }
 const mapStateToProps = (state) => {
     return {
-        users: state.findAccountByIdReducer.data,
+        user: state.findAccountByIdReducer.data,
         saveAccount: state.saveAccountReducer.data,
         error: state.saveAccountReducer.error,
         isLoading: state.findAccountByIdReducer.isLoading,

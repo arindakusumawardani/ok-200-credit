@@ -2,6 +2,7 @@ import React from "react";
 import {useHistory} from "react-router";
 import {faFolderPlus, faHome, faSignOutAlt, faUserPlus, faUsers} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
 
 export default function Header() {
 
@@ -24,9 +25,9 @@ export default function Header() {
           </a>
         </li>
         <li className="nav-item d-none d-sm-inline-block">
-          <a href="/master/home" className="nav-link">
+          <Link to="/dashboard" className="nav-link">
             <FontAwesomeIcon icon={faHome}/>
-          </a>
+          </Link>
         </li>
       </ul>
 

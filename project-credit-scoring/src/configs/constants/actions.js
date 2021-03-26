@@ -49,7 +49,7 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 
-//-----------------------SIGN UP--------------------------------
+//-----------------------CREATE ACCOUNT--------------------------------
 
 export const FIND_ALL_ACCOUNT = "FIND_ALL_ACCOUNT"
 export const FIND_ALL_ACCOUNT_SUCCESS = "FIND_ALL_ACCOUNT_SUCCESS"

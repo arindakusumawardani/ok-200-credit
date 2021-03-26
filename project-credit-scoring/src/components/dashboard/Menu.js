@@ -1,6 +1,7 @@
 import React from "react";
 import {faCheckDouble, faUsers} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
 
 export default function Menu() {
   return (
@@ -42,12 +43,12 @@ export default function Menu() {
                 data-accordion="false"
             >
               <li className="nav-item has-treeview">
-                <a href="/master" className="nav-link">
+                <Link to="/master" className="nav-link">
                   <i className="nav-icon fas fa-users"/>
                   <p>
                     Account User
                   </p>
-                </a>
+                </Link>
               </li>
               {/*<li className="nav-item has-treeview">*/}
               {/*  <a href="/customer/form" className="nav-link">*/}

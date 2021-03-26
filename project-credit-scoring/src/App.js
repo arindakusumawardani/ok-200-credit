@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import store from './configs/store';
 
 
-import SignIn from "./pages/login/SignIn";
+import SignIn from "./pages/account/SignIn";
 
 
 

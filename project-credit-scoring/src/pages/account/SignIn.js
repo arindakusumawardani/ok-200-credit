@@ -45,11 +45,11 @@ const SignIn = ({loginData, isLoading, error, dispatchLoginAction}) => {
 
             //pilih role
             if (loginData.roles === "MASTER") {
-                history.push('/master/home')
+                history.push('/dashboard')
             } else if (loginData.roles === "STAFF") {
-                history.push('/master/home')
+                history.push('/dashboard')
             } else if (loginData.roles === "SUPERVISOR") {
-                history.push('/master/home')
+                history.push('/dashboard')
             } else {
                 setValidation("*Sorry you are not allowed to sign here")
             }

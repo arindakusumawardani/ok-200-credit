@@ -33,16 +33,16 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
 
     useEffect(onReload, [findAllNeedAction])
 
-    const handleCustomer = () => {
-        setData({
-            ...data,
-            customer: customer.id
-        })
-    }
-
-    const handleNeed = (e) => {
-        setData({...data, needType: e.id})
-    }
+    // const handleCustomer = () => {
+    //     setData({
+    //         ...data,
+    //         customer: customer.id
+    //     })
+    // }
+    //
+    // const handleNeed = (e) => {
+    //     setData({...data, needType: e.id})
+    // }
 
     useEffect(() => {
         findAllNeedAction()
@@ -100,6 +100,9 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(data?.transaction?.customer?.employeeType !== "NON EMPLOYEE" ) {
+
+        }
         saveTransactionAction(data)
         // console.log(data)
     }
@@ -151,7 +154,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                         id="tanpa-rupiah"
                                                                         onChange={handleCurrency}
                                                                         value={data?.income || ''}
-                                                                        placeholder="income"
+                                                                        placeholder="input nominal"
                                                                         thousandSeparator={true}/>
                                                                     {/*</Input>*/}
                                                                     <InputGroupText>.00</InputGroupText>
@@ -173,7 +176,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                         id="tanpa-rupiah"
                                                                         onChange={handleCurrency}
                                                                         value={data?.outcome || ''}
-                                                                        placeholder="outcome"
+                                                                        placeholder="input nominal"
                                                                         thousandSeparator={true}/>
                                                                     <InputGroupText>.00</InputGroupText>
                                                                 </InputGroup>
@@ -187,7 +190,6 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                             <Col sm={10}>
                                                                 <InputGroup>
                                                                     <InputGroupText>Rp</InputGroupText>
-
                                                                     <NumberFormat
                                                                         required
                                                                         name="loan"
@@ -195,7 +197,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                         id="tanpa-rupiah"
                                                                         onChange={handleCurrency}
                                                                         value={data?.loan || ''}
-                                                                        placeholder="outcome"
+                                                                        placeholder="input nominal"
                                                                         thousandSeparator={true}/>
                                                                     <InputGroupText>.00</InputGroupText>
                                                                 </InputGroup>
@@ -205,6 +207,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                             <Label htmlFor="tenor" sm={2}
                                                                    style={{textAlign: "left"}}>Tenor
                                                                 <span style={{color:"red"}}> *</span>
+                                                                <p style={{fontSize:"0.7vw", color:"grey"}}>(max. 6 month)</p>
                                                             </Label>
                                                             <Col sm={10}>
                                                                 <Input required
@@ -251,6 +254,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                             <Label for="notes" sm={2}
                                                                    style={{textAlign: "left"}}>Note
                                                                 <span style={{color:"red"}}> *</span>
+                                                                <p style={{fontSize:"0.7vw", color:"grey"}}>(max. 250 character     )</p>
                                                             </Label>
                                                             <Col sm={10}>
                                                                 <Input

@@ -8,7 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faSave} from "@fortawesome/free-solid-svg-icons";
 import Container from "../../../components/Containers/Container";
 import DropdownList from "../../../components/DropdownList/DropdownList";
-import SignIn from "../../login/SignIn";
+import SignIn from "../../account/SignIn";
 import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
 import swal from "sweetalert";

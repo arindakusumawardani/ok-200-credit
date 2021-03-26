@@ -1,24 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from 'react-router-dom';
-import {Input, ModalFooter} from "reactstrap";
 import {connect} from "react-redux";
 import {findCustomerByIdAction} from "../../actions/customerAction";
-import {Button} from "reactstrap";
-import {Col} from "reactstrap";
-import {Label} from "reactstrap";
-import {FormGroup} from "reactstrap";
-import {Form} from "reactstrap";
-import {ModalBody} from "reactstrap";
-import {ModalHeader} from "reactstrap";
-import {Modal} from "reactstrap";
-import Container from "../../components/Containers";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
-import DropdownList from "../../components/DropdownList/DropdownList";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft, faHandshake, faIdCard, faMailBulk, faSave, faUser} from "@fortawesome/free-solid-svg-icons";
-import man from "../../assets/images/icon/man.png"
-import id from "../../assets/images/icon/id.svg"
+import {faHandshake, faIdCard, faMailBulk, faUser} from "@fortawesome/free-solid-svg-icons";
 
 function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
 
