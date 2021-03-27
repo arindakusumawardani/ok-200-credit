@@ -57,7 +57,6 @@ function AccountList({
         }
     }, [isRemoved])
 
-
     return (
         <div>
             {

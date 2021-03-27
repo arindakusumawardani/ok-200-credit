@@ -1,6 +1,14 @@
 import React from "react";
 import {useHistory} from "react-router";
-import {faFolderPlus, faHome, faSignOutAlt, faUserPlus, faUsers} from "@fortawesome/free-solid-svg-icons";
+import {
+  faCogs,
+  faFolderPlus,
+  faHome, faLock,
+  faSignOutAlt,
+  faUserCog,
+  faUserPlus,
+  faUsers
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
 
@@ -47,6 +55,28 @@ export default function Header() {
         {/*      </li>*/}
         {/*</ul>*/}
         {/*}*/}
+        {localStorage.getItem("roles") == "STAFF" &&
+        <>
+          <li className="nav-item dropdown">
+            <a className="nav-link" data-toggle="dropdown">
+              {/*<i className="far fa-bell" />*/}
+              <FontAwesomeIcon icon={faCogs}/>
+            </a>
+            <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <div className="dropdown-divider" />
+              <a href="#" className="dropdown-item">
+                <FontAwesomeIcon icon={faUserCog}/> Setting Profile
+                <span className="float-right text-muted text-sm"></span>
+              </a>
+              <div className="dropdown-divider" />
+              <a href="/staff/password" className="dropdown-item">
+                <FontAwesomeIcon icon={faLock} /> Change Password
+                <span className="float-right text-muted text-sm"></span>
+              </a>
+            </div>
+          </li>
+        </>
+        }
         <li className="nav-item">
           <a
             className="nav-link"

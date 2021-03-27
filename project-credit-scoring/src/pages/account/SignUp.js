@@ -18,30 +18,28 @@ import Menu from "../../components/dashboard/Menu";
 import swal from "sweetalert";
 import Error from "../Error";
 
-const SignUp = ({saveDispatch, error, saveAccount, user, isLoading}) => {
+const SignUp = ({saveDispatch, error, saveAccount, account, isLoading}) => {
     const {id} = useParams()
     const [redirect] = useState(false)
-
-    const [roles, setRoles] = useState('')
-
     const [photo, setPhoto] = useState({
         profilePicture: {}
     })
     const [data, setData] = useState({
-        username: "",
-        fullName: "",
-        email: "",
-        role: ""
+        // username: "",
+        // fullName: "",
+        // email: "",
+        // role: ""
     })
     const history = useHistory()
 
     useEffect(() => {
-        if (id !== data.id) {
+        if (id && parseInt(id) !== data.id) {
             findAccountByIdAction(id);
-            setData(user)
+            setData(account)
         }
-        console.log("useEffect", user)
-    }, [user])
+        console.log("useEffect", data)
+        console.log("useEffect data", data.id)
+    }, [account])
 
     useEffect(() => {
         if (saveAccount) {
@@ -53,27 +51,27 @@ const SignUp = ({saveDispatch, error, saveAccount, user, isLoading}) => {
         }
     }, [saveAccount, history, error])
 
-    const handlePhoto = async (e) => {
-        let name = e.target.name
-        let value = e.target.files[0]
-        setPhoto({...photo, [name]: value})
-
-        const formData = new FormData()
-        formData.append("file", value)
-        formData.append("upload_preset", "ve2u0qv8")
-
-        const response = await fetch("https://api.cloudinary.com/v1_1/nielnaga/image/upload", {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            body: formData // body data type must match "Content-Type" header
-        }).then(res => res.json())
-            .then(res => {
-                console.log(res.url)
-                setData({
-                    ...data,
-                    [name]: res.url
-                })
-            })
-    }
+    // const handlePhoto = async (e) => {
+    //     let name = e.target.name
+    //     let value = e.target.files[0]
+    //     setPhoto({...photo, [name]: value})
+    //
+    //     const formData = new FormData()
+    //     formData.append("file", value)
+    //     formData.append("upload_preset", "ve2u0qv8")
+    //
+    //     const response = await fetch("https://api.cloudinary.com/v1_1/nielnaga/image/upload", {
+    //         method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    //         body: formData // body data type must match "Content-Type" header
+    //     }).then(res => res.json())
+    //         .then(res => {
+    //             console.log(res.url)
+    //             setData({
+    //                 ...data,
+    //                 [name]: res.url
+    //             })
+    //         })
+    // }
 
     const handleChange = (e) => {
         let name = e.target.name
@@ -297,9 +295,9 @@ const SignUp = ({saveDispatch, error, saveAccount, user, isLoading}) => {
 }
 const mapStateToProps = (state) => {
     return {
-        user: state.findAccountByIdReducer.data,
+        account: state.findAccountByIdReducer.data,
         saveAccount: state.saveAccountReducer.data,
-        error: state.saveAccountReducer.error,
+        error: state.findAccountByIdReducer.error,
         isLoading: state.findAccountByIdReducer.isLoading,
         update: state.updateAccountReducer
     }

@@ -20,6 +20,7 @@ import ReasonForm from "../pages/reasonUse/ReasonForm";
 import ListTransactionByStaff from "../pages/transaction/listTransactionByStaff/ListTransactionByStaff";
 import ListReportByStaff from "../pages/report/reportByStaff/ListReportByStaff";
 import EditAccount from "../pages/account/EditAccount";
+import EditPassword from "../pages/profile/EditPassword";
 
 const routes = [
     {
@@ -131,6 +132,11 @@ const routes = [
     {
         path: '/report/staff',
         component: <ListReportByStaff/>,
+        exact: true
+    },
+    {
+        path: '/staff/password',
+        component: <EditPassword/>,
         exact: true
     },
     {

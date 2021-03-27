@@ -18,16 +18,16 @@ const AccountRow = ({data, number, onUpdate, onDeleted}) => {
             </td>
             <td>{data.role}</td>
             <td>
-                <a onClick={onUpdate} href={`/edit/id`} className="text-muted">
+                <a onClick={onUpdate} href={`/master/${data.id}`} className="text-muted">
                     <i className="fas fa-pencil-alt" />
                 </a>{' '}
                 <a onClick={onDeleted} className="text-muted">
                     <i className="fas fa-trash-alt" />
                 </a>{' '}
 
-                {/*<Button onClick={onUpdate} href={`/users/${data.id}`} style={{background:"#e42256"}}>*/}
-                {/*    <FontAwesomeIcon icon={faPencilAlt}/>*/}
-                {/*</Button>{' '}*/}
+                    {/*<Button onClick={onUpdate} href={`/users/${data.id}`} style={{background:"#e42256"}}>*/}
+                    {/*    <FontAwesomeIcon icon={faPencilAlt}/>*/}
+                    {/*</Button>{' '}*/}
                 {/*<Button onClick={onDeleted} style={{background:"#e42256"}}>*/}
                 {/*    <FontAwesomeIcon icon={faTrash}/>*/}
                 {/*</Button>*/}
