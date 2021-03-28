@@ -25,12 +25,6 @@ const AccountRow = ({data, number, onUpdate, onDeleted}) => {
                     <i className="fas fa-trash-alt" />
                 </a>{' '}
 
-                    {/*<Button onClick={onUpdate} href={`/users/${data.id}`} style={{background:"#e42256"}}>*/}
-                    {/*    <FontAwesomeIcon icon={faPencilAlt}/>*/}
-                    {/*</Button>{' '}*/}
-                {/*<Button onClick={onDeleted} style={{background:"#e42256"}}>*/}
-                {/*    <FontAwesomeIcon icon={faTrash}/>*/}
-                {/*</Button>*/}
             </td>
         </tr>
     )

@@ -3,7 +3,6 @@ import {Redirect, useHistory, useParams} from 'react-router-dom'
 import undraw_Updated_resume_re_q1or from "../../assets/images/undraw_Updated_resume_re_q1or.svg"
 import {
     faEnvelope,
-    faKey, faServer,
     faUser,
     faUserCircle
 } from "@fortawesome/free-solid-svg-icons";
@@ -21,9 +20,6 @@ import Error from "../Error";
 const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccountByIdAction}) => {
     const {id} = useParams()
     const [redirect] = useState(false)
-
-
-    const [roles, setRoles] = useState('')
 
     const [photo, setPhoto] = useState({
         profilePicture: {}

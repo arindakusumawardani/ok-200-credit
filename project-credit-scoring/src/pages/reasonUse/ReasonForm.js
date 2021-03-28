@@ -3,7 +3,7 @@ import {useHistory, useParams} from 'react-router-dom'
 import { Redirect} from "react-router-dom"
 import {connect} from "react-redux"
 import { Button, Form, FormGroup, Input, Label, Col} from "reactstrap";
-import {saveNeedAction} from "../../actions/needAction";
+import {findNeedByIdAction, saveNeedAction} from "../../actions/needAction";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -12,7 +12,7 @@ import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
 import swal from "sweetalert";
 
-const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading}) => {
+const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, findNeedByIdAction }) => {
     const {id} = useParams()
     const [redirect] = useState(false)
 
@@ -20,13 +20,25 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading}) => {
     const history = useHistory()
 
     useEffect(() => {
+        if(id) {
+            findNeedByIdAction(id)
+        }
+    }, [id, findNeedByIdAction])
+
+    useEffect(() => {
+        if (id && needType) {
+            setData({...needType})
+        }
+    }, [needType])
+
+    useEffect(() => {
         if (saveNeedType) {
             swal("Add Loan Purpose Success", "", "success")
             history.push('/need')
         }
-        // if (error) {
-        //     swal("Sorry data already exist",'', "error")
-        // }
+        if (error) {
+            swal("Sorry data already exist",'', "error")
+        }
         console.log("error", error)
     }, [saveNeedType, history, error])
 
@@ -41,7 +53,7 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         saveNeedAction(data)
-
+        swal("Save Success!", "", "success");
         console.log("handlesubmit", data)
     }
 
@@ -132,13 +144,19 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading}) => {
 const mapStateToProps = (state) => {
     return {
         saveNeedType: state.saveNeedReducer.data,
-        error: state.saveNeedReducer.err,
-        isLoading: state.saveNeedReducer.isLoading
+        error: state.saveNeedReducer.error,
+        isLoading: state.saveNeedReducer.isLoading || state.findNeedTypeByIdReducer.isLoading,
+        needType: state.findNeedTypeByIdReducer.data,
+        update: state.updateNeedTypeReducer
+
 
     }
 }
 
-const mapDispatchToProps = {saveNeedAction}
+const mapDispatchToProps = {
+    saveNeedAction,
+    findNeedByIdAction
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReasonForm)

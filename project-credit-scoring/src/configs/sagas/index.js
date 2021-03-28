@@ -22,7 +22,7 @@ import {
 } from "./signupSaga";
 import {watchFindAllReport, watchFindReportByStaff} from "./reportSaga";
 import {watchFindAllApproval, watchFindApprovalById, watchSaveApproval} from "./approvalSaga";
-import {watchFindAllNeed, watchSaveNeed} from "./needSaga";
+import {watchFindAllNeed, watchFindByIdNeed, watchRemoveNeedById, watchSaveNeed, watchUpdateNeedById} from "./needSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -55,6 +55,9 @@ export default function* rootSaga() {
 
     watchSaveNeed(),
     watchFindAllNeed(),
+    watchFindByIdNeed(),
+    watchUpdateNeedById(),
+    watchRemoveNeedById(),
 
     watchFindAllTransactionByStaff()
   ])

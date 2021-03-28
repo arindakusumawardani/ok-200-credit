@@ -12,10 +12,8 @@ import CustomerDetail from "../pages/customer/DetailCustomer";
 import AccountList from "../pages/account/AccountList";
 import TransactionDetail from "../pages/transaction/TransactionDetail";
 import ReportList from "../pages/report/ReportList";
-import ReportDetail from "../pages/report/ReportDetail";
 import ReasonUse from "../pages/reasonUse/ReasonUse";
 import Error from "../pages/Error";
-import ListCustomerByStaff from "../pages/customer/listCustomerByStaff/ListCustomerByStaff";
 import ReasonForm from "../pages/reasonUse/ReasonForm";
 import ListTransactionByStaff from "../pages/transaction/listTransactionByStaff/ListTransactionByStaff";
 import ListReportByStaff from "../pages/report/reportByStaff/ListReportByStaff";
@@ -39,11 +37,6 @@ const routes = [
         exact: true
 
     },
-    // {
-    //     path: '/users/:id',
-    //     component: <SignUp/>,
-    //     exact: true
-    // },
     {
         path: '/need',
         component: <ReasonUse/>,
@@ -51,6 +44,11 @@ const routes = [
     },
     {
         path: '/need/form',
+        component: <ReasonForm/>,
+        exact: true
+    },
+    {
+        path: '/need/:id',
         component: <ReasonForm/>,
         exact: true
     },

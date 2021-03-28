@@ -22,7 +22,13 @@ import {
 } from "./signupReducer";
 import {findAllReportByStaff, findAllReportReducer} from "./reportReducer";
 import {saveApprovalReducer, findAllApprovalReducer, findApprovalByIdReducer} from "./approvalReducer";
-import {findAllNeedReducer, saveNeedReducer} from "./needReducer";
+import {
+  findAllNeedReducer,
+  findNeedTypeByIdReducer,
+  removeNeedTypeByIdReducer,
+  saveNeedReducer,
+  updateNeedTypeReducer
+} from "./needReducer";
 
 
 const rootReducer = combineReducers({
@@ -63,6 +69,10 @@ const rootReducer = combineReducers({
   //NEEDTYPE
   findAllNeedReducer,
   saveNeedReducer,
+  findNeedTypeByIdReducer,
+  updateNeedTypeReducer,
+  removeNeedTypeByIdReducer,
+
 })
 
 export default rootReducer

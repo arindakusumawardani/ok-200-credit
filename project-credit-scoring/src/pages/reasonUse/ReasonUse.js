@@ -5,7 +5,7 @@ import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {Container, Button, Form} from "reactstrap";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
-import {findAllNeedAction} from "../../actions/needAction";
+import {findAllNeedAction, removeByIdNeedAction} from "../../actions/needAction";
 import {connect} from "react-redux";
 import Containers from "../../components/Containers/Container";
 import TransactionRow from "../transaction/transactionList/TransactionRow";
@@ -13,15 +13,46 @@ import SignIn from "../account/SignIn";
 import ReasonRow from "./ReasonRow";
 import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
+import swal from "sweetalert";
 
 
-const ReasonUse = ({findAllNeedAction, needs, error, isLoading}) => {
+const ReasonUse = ({findAllNeedAction, needs, error, isLoading, removeByIdNeedAction, isRemoved}) => {
 
     const onReload = () => {
         findAllNeedAction();
     }
 
+    const onDelete = (id) => {
+        swal({
+            title: "Are you sure to delete this data?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(willDelete => {
+                if (willDelete) {
+                    removeByIdNeedAction(id);
+                    swal("Successful deleted", {
+                        icon: "success"
+                    });
+                } else {
+                    swal("Failed to delete")
+                }
+            });
+    };
+
+
     useEffect(onReload, [findAllNeedAction])
+
+    useEffect(() => {
+        onReload()
+    }, [findAllNeedAction])
+
+    useEffect(() => {
+        if(isRemoved) {
+            onReload()
+        }
+    }, [isRemoved])
 
     return (
         <div>
@@ -73,7 +104,7 @@ const ReasonUse = ({findAllNeedAction, needs, error, isLoading}) => {
                                                     !isLoading ?
                                                         needs?.list?.map((e, i) => {
                                                             return (
-                                                                <ReasonRow key={i} data={e}
+                                                                <ReasonRow onDeleted={() => onDelete(e.id)} key={i} data={e}
                                                                            number={(needs.page * needs.size) + 1 + i}/>
                                                             )
                                                         }) :
@@ -108,13 +139,16 @@ const ReasonUse = ({findAllNeedAction, needs, error, isLoading}) => {
 const mapStateToProps = (state) => {
     return {
         needs: state.findAllNeedReducer.data,
-        error: state.findAllNeedReducer,
-        isLoading: state.findAllNeedReducer.isLoading
+        error: state.findAllNeedReducer.error || state.removeNeedTypeByIdReducer.error,
+        isLoading: state.findAllNeedReducer.isLoading,
+        isRemoved: state.removeNeedTypeByIdReducer
+
     }
 }
 
 const mapDispatchToProps = {
-    findAllNeedAction
+    findAllNeedAction,
+    removeByIdNeedAction
 }
 
 
