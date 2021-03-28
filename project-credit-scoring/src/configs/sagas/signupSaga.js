@@ -29,12 +29,11 @@ function* findAllAccountSaga() {
 
 
 function* saveAccountSaga(action) {
-    console.log("saga", action.model)
     let model = action.model;
     let method = 'POST', url = '/master/signup';
     if (model.id) {
         method = "PATCH";
-        url = `/master/${model.id}`
+        url += `/${model.id}`
     }
 
     let result = yield axios({
@@ -58,7 +57,7 @@ function* saveAccountSaga(action) {
 }
 
 function* findAccountByIdSaga(action) {
-    let result = yield axios.get(`/master/${action.id}`)
+    let result = yield axios.get(`/users/${action.id}`)
         .then(data => {
             return ({
                 type: FIND_ALL_ACCOUNT_SUCCESS,

@@ -1,4 +1,4 @@
-import {Button, Container, Table} from "reactstrap";
+import {Button, Container, Spinner, Table} from "reactstrap";
 import Containers from '../../../components/Containers/Container'
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
@@ -78,7 +78,9 @@ function TransactionList({
                                                                         )
                                                                     }) :
                                                                     <tr>
-                                                                        <td colSpan="3"> Loading..</td>
+                                                                        <div>
+                                                                            <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                        </div>
                                                                     </tr>
                                                             }
                                                             </tbody>

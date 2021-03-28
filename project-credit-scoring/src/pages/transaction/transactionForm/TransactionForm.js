@@ -1,4 +1,4 @@
-import {InputGroupText, InputGroup, FormGroup, Form, Input, Label, Button, Col} from "reactstrap";
+import {InputGroupText, InputGroup, FormGroup, Form, Input, Label, Button, Col, Spinner} from "reactstrap";
 import Container from "../../../components/Containers/Container";
 import {Redirect, useHistory, useParams} from 'react-router-dom'
 import {saveTransactionAction} from "../../../actions/transactionAction";
@@ -282,7 +282,9 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                             </Col>
                                                         </FormGroup>
                                                     </Form> :
-                                                    <div>Loading...</div>
+                                                    <div>
+                                                        <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                    </div>
                                                 }
                                             </div>
                                         </div>

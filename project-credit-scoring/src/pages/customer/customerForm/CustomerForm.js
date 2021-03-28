@@ -3,7 +3,7 @@ import {useHistory, useParams} from 'react-router-dom'
 import {findCustomerByIdAction, saveCustomerAction} from "../../../actions/customerAction"
 import { Redirect} from "react-router-dom"
 import {connect} from "react-redux"
-import { Button, Form, FormGroup, Input, Label, Col} from "reactstrap";
+import {Button, Form, FormGroup, Input, Label, Col, Spinner} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faSave} from "@fortawesome/free-solid-svg-icons";
 import Container from "../../../components/Containers/Container";
@@ -349,7 +349,9 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             </Col>
                                                                         </FormGroup>
                                                                     </Form> :
-                                                                    <div>Loading...</div>
+                                                                    <div>
+                                                                        <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                    </div>
                                                                 }
                                                             </div>
                                                         </div>

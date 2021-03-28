@@ -25,8 +25,8 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
     return (
         <div>
             {
-                // localStorage.getItem("roles") == "MASTER" ?
-                //     <>
+                localStorage.getItem("roles") == "STAFF" ?
+                    <>
                         <div>
                             <Header/>
                             <Menu/>
@@ -113,8 +113,8 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                             </div>
                         </div>
                     // </>
-                    // :
-                    // <div> cannot access</div>
+                    :
+                    <div> cannot access</div>
             }
         </div>
 

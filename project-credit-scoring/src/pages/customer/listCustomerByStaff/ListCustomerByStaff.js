@@ -8,6 +8,7 @@ import TableScrollbar from 'react-table-scrollbar';
 import Row from "./Row";
 import Error from "../../Error";
 import Footer from "../../../components/dashboard/Footer";
+import {Spinner} from "reactstrap";
 
 function CustomerListBySubmitter({
                           error,
@@ -85,7 +86,9 @@ function CustomerListBySubmitter({
                                                                 })
                                                                 :
                                                                 <tr>
-                                                                    <td colSpan="3"> Loading..</td>
+                                                                    <div>
+                                                                        <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                    </div>
                                                                 </tr>
                                                         }
                                                         </tbody>

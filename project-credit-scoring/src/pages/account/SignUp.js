@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "./login.css"
-import {Input, Label, FormGroup, Button, Container, Form, Col} from "reactstrap";
+import {Spinner, Input, Label, FormGroup, Button, Container, Form, Col} from "reactstrap";
 import {findAccountByIdAction, saveAccountAction} from "../../actions/signupAction";
 import {connect} from "react-redux";
 import DropdownList from "../../components/DropdownList/DropdownList";
@@ -18,28 +18,31 @@ import Menu from "../../components/dashboard/Menu";
 import swal from "sweetalert";
 import Error from "../Error";
 
-const SignUp = ({saveDispatch, error, saveAccount, account, isLoading}) => {
+const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) => {
     const {id} = useParams()
     const [redirect] = useState(false)
+
+    const [roles, setRoles] = useState('')
+
     const [photo, setPhoto] = useState({
         profilePicture: {}
     })
     const [data, setData] = useState({
-        // username: "",
-        // fullName: "",
-        // email: "",
-        // role: ""
+        username: "",
+        fullName: "",
+        email: "",
+        password: "",
+        profilePicture: "",
+        role: ""
     })
     const history = useHistory()
 
     useEffect(() => {
-        if (id && parseInt(id) !== data.id) {
+        if (id !== data.id) {
             findAccountByIdAction(id);
-            setData(account)
+            setData(users)
         }
-        console.log("useEffect", data)
-        console.log("useEffect data", data.id)
-    }, [account])
+    }, [users])
 
     useEffect(() => {
         if (saveAccount) {
@@ -51,27 +54,27 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading}) => {
         }
     }, [saveAccount, history, error])
 
-    // const handlePhoto = async (e) => {
-    //     let name = e.target.name
-    //     let value = e.target.files[0]
-    //     setPhoto({...photo, [name]: value})
-    //
-    //     const formData = new FormData()
-    //     formData.append("file", value)
-    //     formData.append("upload_preset", "ve2u0qv8")
-    //
-    //     const response = await fetch("https://api.cloudinary.com/v1_1/nielnaga/image/upload", {
-    //         method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    //         body: formData // body data type must match "Content-Type" header
-    //     }).then(res => res.json())
-    //         .then(res => {
-    //             console.log(res.url)
-    //             setData({
-    //                 ...data,
-    //                 [name]: res.url
-    //             })
-    //         })
-    // }
+    const handlePhoto = async (e) => {
+        let name = e.target.name
+        let value = e.target.files[0]
+        setPhoto({...photo, [name]: value})
+
+        const formData = new FormData()
+        formData.append("file", value)
+        formData.append("upload_preset", "ve2u0qv8")
+
+        const response = await fetch("https://api.cloudinary.com/v1_1/nielnaga/image/upload", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            body: formData // body data type must match "Content-Type" header
+        }).then(res => res.json())
+            .then(res => {
+                console.log(res.url)
+                setData({
+                    ...data,
+                    [name]: res.url
+                })
+            })
+    }
 
     const handleChange = (e) => {
         let name = e.target.name
@@ -198,25 +201,25 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading}) => {
                                                                                             className="form-control bg-white border-left-0 border-md"/><br/>
                                                                                     </div>
 
-                                        {/*                                            <div*/}
-                                        {/*                                                className="input-group col-lg-12 mb-4">*/}
-                                        {/*                                                <div*/}
-                                        {/*                                                    className="input-group-prepend">*/}
-                                        {/*<span className="input-group-text bg-white px-4 border-md border-right-0">*/}
-                                        {/*    <FontAwesomeIcon icon={faKey}/>*/}
-                                        {/*</span>*/}
-                                        {/*                                                </div>*/}
-                                        {/*                                                <input*/}
-                                        {/*                                                    required*/}
-                                        {/*                                                    onChange={handleChange}*/}
-                                        {/*                                                    value={data?.password}*/}
-                                        {/*                                                    type="password"*/}
-                                        {/*                                                    name="password"*/}
-                                        {/*                                                    placeholder="Password"*/}
-                                        {/*                                                    minLength={4}*/}
-                                        {/*                                                    maxLength={10}*/}
-                                        {/*                                                    className="form-control bg-white border-left-0 border-md"/><br/>*/}
-                                        {/*                                            </div>*/}
+                                                                                    {/*                                            <div*/}
+                                                                                    {/*                                                className="input-group col-lg-12 mb-4">*/}
+                                                                                    {/*                                                <div*/}
+                                                                                    {/*                                                    className="input-group-prepend">*/}
+                                                                                    {/*<span className="input-group-text bg-white px-4 border-md border-right-0">*/}
+                                                                                    {/*    <FontAwesomeIcon icon={faKey}/>*/}
+                                                                                    {/*</span>*/}
+                                                                                    {/*                                                </div>*/}
+                                                                                    {/*                                                <input*/}
+                                                                                    {/*                                                    required*/}
+                                                                                    {/*                                                    onChange={handleChange}*/}
+                                                                                    {/*                                                    value={data?.password}*/}
+                                                                                    {/*                                                    type="password"*/}
+                                                                                    {/*                                                    name="password"*/}
+                                                                                    {/*                                                    placeholder="Password"*/}
+                                                                                    {/*                                                    minLength={4}*/}
+                                                                                    {/*                                                    maxLength={10}*/}
+                                                                                    {/*                                                    className="form-control bg-white border-left-0 border-md"/><br/>*/}
+                                                                                    {/*                                            </div>*/}
 
                                                                                     <div
                                                                                         className="input-group col-lg-12 mb-4">
@@ -267,7 +270,9 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading}) => {
                                                                                 </div>
                                                                             </Form>
                                                                             :
-                                                                            <div>Loading...</div>
+                                                                            <div>
+                                                                                <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                            </div>
                                                                         }
 
                                                                     </div>
@@ -295,10 +300,10 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading}) => {
 }
 const mapStateToProps = (state) => {
     return {
-        account: state.findAccountByIdReducer.data,
+        users: state.findAccountByIdReducer.data,
         saveAccount: state.saveAccountReducer.data,
-        error: state.findAccountByIdReducer.error,
-        isLoading: state.findAccountByIdReducer.isLoading,
+        error: state.saveAccountReducer.error,
+        isLoading: state.findAccountByIdReducer.isLoading || state.saveAccountReducer.isLoading,
         update: state.updateAccountReducer
     }
 }
