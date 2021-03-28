@@ -3,7 +3,7 @@ import {useHistory, useParams} from 'react-router-dom'
 import { Redirect} from "react-router-dom"
 import {connect} from "react-redux"
 import { Button, Form, FormGroup, Input, Label, Col} from "reactstrap";
-import {findNeedByIdAction, saveNeedAction} from "../../actions/needAction";
+import {findNeedByIdAction, saveNeedAction, updateNeedAction} from "../../actions/needAction";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -12,7 +12,7 @@ import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
 import swal from "sweetalert";
 
-const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, findNeedByIdAction }) => {
+const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, findNeedByIdAction, update, updateNeedAction }) => {
     const {id} = useParams()
     const [redirect] = useState(false)
 
@@ -52,9 +52,14 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        saveNeedAction(data)
+        if (id) {
+            updateNeedAction(id, data)
+        } else {
+            saveNeedAction(data)
+        }
         swal("Save Success!", "", "success");
         console.log("handlesubmit", data)
+        history.push('/need')
     }
 
     if (redirect === true) {
@@ -88,7 +93,7 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
                                             <div className="col-md-12">
                                                 <div className="form form-container">
                                                     {!isLoading ?
-                                                        <Form onSubmit={handleSubmit}>
+                                                        <Form onSubmit={(e) => handleSubmit(e)}>
                                                             <FormGroup row>
                                                                 <Label htmlFor="type" sm={3} style={{textAlign:"left"}}>Need
                                                                     Type</Label>
@@ -147,7 +152,7 @@ const mapStateToProps = (state) => {
         error: state.saveNeedReducer.error,
         isLoading: state.saveNeedReducer.isLoading || state.findNeedTypeByIdReducer.isLoading,
         needType: state.findNeedTypeByIdReducer.data,
-        update: state.updateNeedTypeReducer
+        update: state.updateNeedTypeReducer.data
 
 
     }
@@ -155,6 +160,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     saveNeedAction,
+    updateNeedAction,
     findNeedByIdAction
 }
 

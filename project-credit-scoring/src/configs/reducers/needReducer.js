@@ -9,7 +9,7 @@ import {
     SAVE_NEEDTYPE,
     SAVE_NEEDTYPE_FAILURE,
     SAVE_NEEDTYPE_SUCCESS,
-    UPDATE_NEEDTYPE,
+    UPDATE_NEEDTYPE, UPDATE_NEEDTYPE_FAILURE,
     UPDATE_NEEDTYPE_SUCCESS
 } from "../constants/actions";
 import {act} from "@testing-library/react";
@@ -110,14 +110,33 @@ export const findNeedTypeByIdReducer =(state = initialState, action) => {
     }
 }
 
-export const updateNeedTypeReducer = (state = {}, action) => {
+export const updateNeedTypeReducer = (state = {...initialState}, action) => {
     switch (action.type){
         case UPDATE_NEEDTYPE:
-            return true
+            return {
+                ...state,
+                data: null,
+                isLoading: true
+            }
         case UPDATE_NEEDTYPE_SUCCESS:
-            return true
+            return {
+                data: action.data,
+                isLoading: false,
+                error: null
+            };
+        case UPDATE_NEEDTYPE_FAILURE:
+            return {
+                data: null,
+                isLoading: false,
+                error: action.error
+            };
         default:
-            return false
+            return {
+                ...state,
+                data: null,
+                isLoading: false,
+                error: null
+            };
     }
 }
 

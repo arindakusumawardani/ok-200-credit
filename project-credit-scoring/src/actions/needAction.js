@@ -26,9 +26,10 @@ export function findNeedByIdAction(id) {
     }
 }
 
-export function updateNeedAction(payload) {
+export function updateNeedAction(id, payload) {
     return {
         type: UPDATE_NEEDTYPE,
+        id,
         payload
     }
 }

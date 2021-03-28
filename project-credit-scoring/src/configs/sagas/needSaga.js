@@ -11,10 +11,7 @@ import {
     SAVE_NEEDTYPE_SUCCESS,
     UPDATE_NEEDTYPE,
     FIND_NEEDTYPE_BY_ID_SUCCESS,
-    FIND_NEEDTYPE_BY_ID_FAILURE,
-    UPDATE_ACCOUNT,
-    REMOVE_ACCOUNT_BY_ID_SUCCESS,
-    REMOVE_ACCOUNT_BY_ID_FAILURE, FIND_ACCOUNT_BY_ID, REMOVE_ACCOUNT_BY_ID
+    FIND_NEEDTYPE_BY_ID_FAILURE, UPDATE_NEEDTYPE_SUCCESS
 } from "../constants/actions";
 import {put, takeLatest} from "redux-saga/effects"
 import axios from "axios";
@@ -63,10 +60,10 @@ function* saveNeedSaga(action) {
 
 
 function* findNeedByIdSaga(action) {
-    console.log("SAGA ID", action)
+    // console.log("SAGA ID", action)
     let result = yield axios.get(`/need/${action.id}`)
         .then(data => {
-            console.log("DATA", data)
+            // console.log("DATA", data)
             return ({
                 type: FIND_NEEDTYPE_BY_ID_SUCCESS,
                 data: data
@@ -81,13 +78,38 @@ function* findNeedByIdSaga(action) {
     yield put(result)
 }
 
-function* updateNeedSaga(action) {
-    let result = false
+// function* updateNeedSaga(action) {
+//     let result = false
+//
+//     yield put({
+//         type: UPDATE_NEEDTYPE,
+//         data: result
+//     })
+// }
 
-    yield put({
-        type: UPDATE_NEEDTYPE,
-        data: result
+function* updateNeedSaga(action) {
+    const url = `/need/${action.id}`
+    const method = 'PUT'
+    const model = action.payload
+
+    let result = yield axios({
+        url: url,
+        method: method,
+        data: model
     })
+        .then(data => {
+            return ({
+                type: UPDATE_NEEDTYPE_SUCCESS,
+                data: result
+            })
+        })
+        .catch(err => {
+            return ({
+                type: FIND_NEEDTYPE_BY_ID_FAILURE,
+                error: err
+            })
+        })
+    yield put(result)
 }
 
 function* removeNeedById(action) {
