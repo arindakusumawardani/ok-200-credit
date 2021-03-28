@@ -22,7 +22,7 @@ export function saveAccountAction(model) {
 export function findAccountByIdAction(id) {
     return{
         type: FIND_ACCOUNT_BY_ID,
-        id
+        id:id
     }
 }
 

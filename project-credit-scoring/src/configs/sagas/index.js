@@ -40,7 +40,6 @@ export default function* rootSaga() {
 
     watchFindAllAccount(),
     watchSaveAccount(),
-
     watchFindByIdAccount(),
     watchUpdateAccountById(),
     watchRemoveById(),

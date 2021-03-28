@@ -14,6 +14,7 @@ const initialState = {
     error: null
 }
 
+
 export const findAllAccountReducer = (state = initialState, action) => {
     // console.log("ini action", action)
     switch (action.type) {
@@ -73,11 +74,13 @@ export const saveAccountReducer = (state = {...initialState}, action) => {
     }
 }
 
-export const findAccountByIdReducer = (state = {...initialState, data: false}, action) => {
+export const findAccountByIdReducer = (state= initialState, action) => {
+    console.log("reducer by id", action)
     switch (action.type) {
         case FIND_ACCOUNT_BY_ID:
             return {
                 ...state,
+                data: null,
                 isLoading: true
             }
         case FIND_ACCOUNT_BY_ID_SUCCESS:
@@ -88,13 +91,14 @@ export const findAccountByIdReducer = (state = {...initialState, data: false}, a
             };
         case FIND_ACCOUNT_BY_ID_FAILURE:
             return {
-                data: false,
+                data: null,
                 isLoading: false,
                 error: action.error
             };
         default:
             return {
                 ...state,
+                data: null,
                 isLoading: false,
                 error: null,
             };

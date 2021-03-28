@@ -18,9 +18,10 @@ import Menu from "../../components/dashboard/Menu";
 import swal from "sweetalert";
 import Error from "../Error";
 
-const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) => {
+const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccountByIdAction}) => {
     const {id} = useParams()
     const [redirect] = useState(false)
+
 
     const [roles, setRoles] = useState('')
 
@@ -35,14 +36,33 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
         profilePicture: "",
         role: ""
     })
+
+    // const [model, setModel] = useState({})
     const history = useHistory()
 
     useEffect(() => {
-        if (id !== data.id) {
-            findAccountByIdAction(id);
-            setData(users)
+        if (id) {
+            findAccountByIdAction(id)
         }
-    }, [users])
+    }, [id, findAccountByIdAction])
+
+    useEffect(() => {
+        if (id && account) {
+            setData({...account})
+        }
+    }, [account])
+    console.log("ini id", id)
+
+    // console.log("this account", model)
+    // useEffect(() => {
+    //     if (id !== data.id) {
+    //         findAccountByIdAction(id);
+    //         setData(account)
+    //     }
+    //     console.log("AKUN", account)
+    //     console.log("DATA", data.id)
+    //     console.log(data)
+    // }, [account])
 
     useEffect(() => {
         if (saveAccount) {
@@ -93,10 +113,11 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
 
         e.preventDefault()
         saveDispatch(data)
+        swal("Save Success!", "", "success");
     }
 
     if (redirect === true) {
-        return <Redirect to="/users"/>
+        return <Redirect to="/master"/>
     }
 
     return (
@@ -148,9 +169,9 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
                                                                                         className="input-group col-lg-12 mb-4">
                                                                                         <div
                                                                                             className="input-group-prepend">
-                                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                            <FontAwesomeIcon icon={faUserCircle}/>
-                                        </span>
+                                                                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                                <FontAwesomeIcon icon={faUserCircle}/>
+                                                                                            </span>
                                                                                         </div>
                                                                                         <input
                                                                                             required
@@ -167,14 +188,14 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
                                                                                         className="input-group col-lg-12 mb-4">
                                                                                         <div
                                                                                             className="input-group-prepend">
-                                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                            <FontAwesomeIcon icon={faUser}/>
-                                        </span>
+                                                                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                                <FontAwesomeIcon icon={faUser}/>
+                                                                                            </span>
                                                                                         </div>
                                                                                         <input
                                                                                             required
                                                                                             onChange={handleChange}
-                                                                                            value={data?.username || ""}
+                                                                                            value={data.username || ""}
                                                                                             type="text"
                                                                                             name="username"
                                                                                             placeholder="Username"
@@ -194,7 +215,7 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
                                                                                         <input
                                                                                             required
                                                                                             onChange={handleChange}
-                                                                                            value={data?.email || ""}
+                                                                                            value={data.email || ""}
                                                                                             type="email"
                                                                                             name="email"
                                                                                             placeholder="Email Address"
@@ -235,7 +256,7 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
                                                                                                     label: "SUPERVISOR"
                                                                                                 }
                                                                                             ]}
-                                                                                            value={data?.role}
+                                                                                            value={data.role}
                                                                                             placeholder="Select Role"
                                                                                             handleDropdown={handleRoles}
                                                                                         />
@@ -300,7 +321,7 @@ const SignUp = ({saveDispatch, error, saveAccount, users, update, isLoading}) =>
 }
 const mapStateToProps = (state) => {
     return {
-        users: state.findAccountByIdReducer.data,
+        account: state.findAccountByIdReducer.data,
         saveAccount: state.saveAccountReducer.data,
         error: state.saveAccountReducer.error,
         isLoading: state.findAccountByIdReducer.isLoading || state.saveAccountReducer.isLoading,
@@ -309,7 +330,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    saveDispatch: saveAccountAction, findAccountByIdAction
+    saveDispatch: saveAccountAction,
+    findAccountByIdAction
 }
 
 export default connect(mapStateToProps,

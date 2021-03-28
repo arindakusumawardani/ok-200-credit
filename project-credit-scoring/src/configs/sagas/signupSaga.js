@@ -1,6 +1,6 @@
 import axios from "../api";
 import {
-    FIND_ACCOUNT_BY_ID,
+    FIND_ACCOUNT_BY_ID, FIND_ACCOUNT_BY_ID_FAILURE, FIND_ACCOUNT_BY_ID_SUCCESS,
     FIND_ALL_ACCOUNT,
     FIND_ALL_ACCOUNT_FAILURE,
     FIND_ALL_ACCOUNT_SUCCESS, REMOVE_ACCOUNT_BY_ID, REMOVE_ACCOUNT_BY_ID_FAILURE, REMOVE_ACCOUNT_BY_ID_SUCCESS,
@@ -33,7 +33,7 @@ function* saveAccountSaga(action) {
     let method = 'POST', url = '/master/signup';
     if (model.id) {
         method = "PATCH";
-        url += `/${model.id}`
+        url = `/master/${model.id}`
     }
 
     let result = yield axios({
@@ -57,16 +57,18 @@ function* saveAccountSaga(action) {
 }
 
 function* findAccountByIdSaga(action) {
-    let result = yield axios.get(`/users/${action.id}`)
+    console.log("SAGA ID", action)
+    let result = yield axios.get(`/master/${action.id}`)
         .then(data => {
+            console.log("DATA", data)
             return ({
-                type: FIND_ALL_ACCOUNT_SUCCESS,
+                type: FIND_ACCOUNT_BY_ID_SUCCESS,
                 data: data
             })
         })
         .catch(e => {
             return ({
-                type: FIND_ALL_ACCOUNT_FAILURE,
+                type: FIND_ACCOUNT_BY_ID_FAILURE,
                 error: e
             })
         })

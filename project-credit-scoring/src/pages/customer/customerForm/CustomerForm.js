@@ -43,7 +43,6 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
         }
     }, [customer])
 
-
     useEffect(() => {
         if (saveCustomer) {
 
@@ -98,7 +97,6 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                 })
             })
     }
-
 
     const uploadProfilePhoto = async () => {
         const formData = new FormData()
