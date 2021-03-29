@@ -1,6 +1,6 @@
-import {Button, Container, Spinner, Table} from "reactstrap";
+import {Button, ButtonGroup, Container, Spinner, Table} from "reactstrap";
 import Containers from '../../../components/Containers/Container'
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {findAllTransactionAction} from "../../../actions/transactionAction";
 import TransactionRow from "./TransactionRow";
@@ -9,24 +9,49 @@ import Menu from "../../../components/dashboard/Menu";
 import SignIn from "../../account/SignIn";
 import TableScrollbar from 'react-table-scrollbar';
 import Error from "../../Error";
+import {PaginationButton} from "../../../components/Buttons";
 
 function TransactionList({
                              isLoading,
                              transactions,
                              error,
-                             findAllTransactionAction
+                             findAllTransactionAction,
+    size, total, currentPage
                          }) {
 
+    const [transaction, setTransaction] = useState([])
+
+    const [pageParam, setPageParam] = useState(0)
+    const [sizeParam, setSizeParam] = useState(10)
+
+    const totalPage = Math.ceil(total/size)
+
+    useEffect(() => {
+        onReload()
+    }, [pageParam, sizeParam])
+
+    useEffect(() => {
+        onReload()
+    }, [])
+
+    useEffect(() => {
+        if(transaction) {
+            setTransaction(transactions)
+        }
+    }, [transactions])
+
     const onReload = () => {
-        findAllTransactionAction();
+        findAllTransactionAction(
+            {page: pageParam, size: sizeParam}
+        );
     };
 
-    useEffect(onReload, [findAllTransactionAction])
+    useEffect(onReload, [findAllTransactionAction, pageParam, sizeParam])
 
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" || localStorage.getItem("roles") == "SUPERVISOR" ?
+               localStorage.getItem("roles") == "SUPERVISOR" ?
                     <>
                         <Containers error={error}>
                             <Header/>
@@ -55,6 +80,14 @@ function TransactionList({
                                                     </div>
 
                                                     <div className="card-body table-responsive p-0">
+
+                                                        <h5>Limit</h5>
+                                                        <ButtonGroup size="sm">
+                                                            <Button onClick={() => {setSizeParam(1)}}>1</Button>
+                                                            <Button onClick={() => {setSizeParam(2)}}>2</Button>
+                                                            <Button onClick={() => {setSizeParam(3)}}>3</Button>
+                                                        </ButtonGroup>
+
                                                         <TableScrollbar rows={10}>
                                                         <table className="table table-striped table-valign-middle">
                                                             <thead style={{textAlign: "left", background:"#FCE051"}}>
@@ -71,10 +104,11 @@ function TransactionList({
                                                             <tbody style={{textAlign: "left"}}>
                                                             {
                                                                 !isLoading ?
-                                                                    transactions?.list?.map((e, i) => {
+                                                                    // transactions?.list?.map((e, i) => {
+                                                                    transaction.map((e, i) => {
                                                                         return (
                                                                             <TransactionRow key={i} data={e}
-                                                                                            number={(transactions.page * transactions.size) + 1 + i}/>
+                                                                                            number={(pageParam * sizeParam) + 1 + i}/>
                                                                         )
                                                                     }) :
                                                                     <tr>
@@ -86,6 +120,13 @@ function TransactionList({
                                                             </tbody>
                                                         </table>
                                                         </TableScrollbar>
+
+                                                        <br></br>
+                                                        <PaginationButton
+                                                            currentPage = {currentPage}
+                                                            setPage={setPageParam}
+                                                            totalPage={totalPage}
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,8 +134,6 @@ function TransactionList({
                                     </div>
                                 </div>
                             </div>
-                            {/*<Footer/>*/}
-
                         </Containers>
                     </>
                     :
@@ -103,15 +142,17 @@ function TransactionList({
                     </div>
             }
         </div>
-
     )
 };
 
 const mapStateToProps = (state) => {
     return {
-        error: state.finAllTransactionReducer.error,
-        transactions: state.finAllTransactionReducer.data || [],
-        isLoading: state.finAllTransactionReducer.isLoading
+        error: state.findAllTransactionReducer.error,
+        transactions: state.findAllTransactionReducer.data || [],
+        isLoading: state.findAllTransactionReducer.isLoading,
+        size: state.findAllTransactionReducer.pagination.size,
+        total: state.findAllTransactionReducer.pagination.total,
+        currentPage: state.findAllTransactionReducer.pagination.page
     }
 }
 

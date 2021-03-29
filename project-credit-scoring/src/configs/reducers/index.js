@@ -7,7 +7,7 @@ import {
   updateCustomerReducer
 } from "./customerReducer";
 import {
-  finAllTransactionReducer, findAllTransactionByStaff,
+  finAllTransactionReducer, findAllTransactionByStaff, findAllTransactionReducer,
   findTransactionByIdReducer,
   saveTransactionReducer,
   updateTransactionReducer
@@ -41,7 +41,7 @@ const rootReducer = combineReducers({
   findAllCustomerBySubmitter,
 
   //TRANSACTION
-  finAllTransactionReducer,
+  findAllTransactionReducer,
   saveTransactionReducer,
   findTransactionByIdReducer,
   updateTransactionReducer,

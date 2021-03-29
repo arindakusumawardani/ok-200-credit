@@ -10,7 +10,7 @@ import TableScrollbar from 'react-table-scrollbar';
 import Error from "../../Error";
 import Footer from "../../../components/dashboard/Footer";
 import {PaginationButton} from "../../../components/Buttons";
-import {ButtonGroup, Button} from "reactstrap";
+import {ButtonGroup, Button, Spinner} from "reactstrap";
 
 function CustomerList({
                           error,
@@ -121,7 +121,9 @@ function CustomerList({
                                                                     })
                                                                     :
                                                                     <tr>
-                                                                        <td colSpan="3"> Loading..</td>
+                                                                        <div>
+                                                                            <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                        </div>
                                                                     </tr>
                                                             }
                                                             {

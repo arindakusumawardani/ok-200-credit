@@ -4,10 +4,16 @@ import {
     SAVE_TRANSACTION,
     UPDATE_TRANSACTION
 } from "../configs/constants/actions";
+import pagination from "../configs/sagas/pagination";
 
-export function findAllTransactionAction() {
+export function findAllTransactionAction(pagination) {
     return {
         type: FIND_ALL_TRANSACTION,
+        pagination: {
+            page: pagination.page,
+            size: pagination.size
+        }
+
     }
 }
 

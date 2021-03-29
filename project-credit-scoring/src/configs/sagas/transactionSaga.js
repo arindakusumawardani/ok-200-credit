@@ -15,14 +15,25 @@ import {
     SAVE_TRANSACTION_SUCCESS,
     UPDATE_TRANSACTION_SUCCESS
 } from "../constants/actions";
+import pagination from "./pagination";
 
 function* findAllTransactionSaga(data) {
+    let parameter = pagination(data)
 
-    let result = yield axios.get("/approval/waiting")
+    // console.log("PARAMETER: ", action)
+
+    parameter = parameter.replace(/\s+/g, '+')
+
+    let result = yield axios.get(`/approval/waiting?${parameter}`)
         .then (data => {
             return ({
                 type : FIND_ALL_TRANSACTION_SUCCESS,
-                data: data
+                data: data.list,
+                pagination: {
+                    size: data.size,
+                    total: data.total,
+                    page: data.page
+                },
             })
         })
         .catch(err => {
@@ -96,11 +107,21 @@ function* updateTransactionSaga(action) {
 }
 
 function* findTransactionByStaffSaga(action) {
-    let result = yield axios.get('/approval/staff')
+    let parameter = pagination(action)
+
+    // console.log("PARAMETER: ", action)
+
+    parameter = parameter.replace(/\s+/g, '+')
+    let result = yield axios.get(`/approval/staff?${parameter}`)
         .then(data => {
             return ({
                 type: FIND_TRANSACTION_BY_STAFF_SUCCESS,
-                data: data
+                data: data.list,
+                pagination: {
+                    size: data.size,
+                    total: data.total,
+                    page: data.page
+                },
             })
         })
         .catch(e => {

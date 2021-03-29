@@ -66,7 +66,6 @@ function CustomerListBySubmitter({
                                                         <thead style={{textAlign: "left", background:"#FCE051"}}>
                                                         <tr>
                                                             <th>Number</th>
-                                                            {/*<th>Submitter</th>*/}
                                                             <th>Customer Name</th>
                                                             <th>ID Card</th>
                                                             <th>Employee Type</th>

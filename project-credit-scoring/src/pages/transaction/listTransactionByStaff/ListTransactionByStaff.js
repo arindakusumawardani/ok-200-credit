@@ -1,27 +1,53 @@
-import {Button, Container, Table} from "reactstrap";
+import {ButtonGroup, Button, Container, Table, Spinner} from "reactstrap";
 import Containers from '../../../components/Containers/Container'
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {findAllTransactionAction} from "../../../actions/transactionAction";
 import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
 import TableScrollbar from 'react-table-scrollbar';
 import Row from "../../transaction/listTransactionByStaff/Row";
+import {PaginationButton} from "../../../components/Buttons";
 
 function TransactionList({
                              isLoading,
                              transactions,
                              error,
-                             findAllTransactionAction
+                             findAllTransactionAction,
+    size, total, currentPage
                          }) {
 
+    const [transaction, setTransaction] = useState([])
+    const [pageParam, setPageParam] = useState(0)
+    const [sizeParam, setSizeParam] = useState(50)
+
+    const totalPage = Math.ceil(total/size)
+
+    useEffect(() => {
+        onReload()
+    }, [pageParam, sizeParam])
+
+    console.log("SIZE", sizeParam)
+
+    useEffect(() => {
+        onReload()
+    }, [])
+
+    useEffect(() => {
+        if(transaction) {
+            setTransaction(transactions)
+        }
+    }, [transactions])
+
     const onReload = () => {
-        findAllTransactionAction();
+        findAllTransactionAction(
+            {page: pageParam, size: sizeParam}
+        );
 
         console.log("on reload", )
     };
 
-    useEffect(onReload, [findAllTransactionAction])
+    useEffect(onReload, [findAllTransactionAction, pageParam, sizeParam])
 
 
     return (
@@ -55,6 +81,12 @@ function TransactionList({
                                                     </div>
 
                                                     <div className="card-body table-responsive p-0">
+                                                        <h5>Limit</h5>
+                                                        <ButtonGroup size="sm">
+                                                            <Button onClick={() => {setSizeParam(1)}}>1</Button>
+                                                            <Button onClick={() => {setSizeParam(2)}}>2</Button>
+                                                            <Button onClick={() => {setSizeParam(3)}}>3</Button>
+                                                        </ButtonGroup>
                                                         <TableScrollbar rows={10}>
                                                             <table className="table table-striped table-valign-middle">
                                                                 <thead
@@ -72,19 +104,27 @@ function TransactionList({
                                                                 <tbody style={{textAlign: "left"}}>
                                                                 {
                                                                     !isLoading ?
-                                                                        transactions?.list?.map((e, i) => {
+                                                                        transactions.map((e, i) => {
                                                                             return (
                                                                                 <Row key={i} data={e}
-                                                                                     number={(transactions.page * transactions.size) + 1 + i}/>
+                                                                                     number={(pageParam * sizeParam) + 1 + i}/>
                                                                             )
                                                                         }) :
                                                                         <tr>
-                                                                            <td colSpan="3"> Loading..</td>
+                                                                            <div>
+                                                                                <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                            </div>
                                                                         </tr>
                                                                 }
                                                                 </tbody>
                                                             </table>
                                                         </TableScrollbar>
+                                                        <br></br>
+                                                        <PaginationButton
+                                                            currentPage = {currentPage}
+                                                            setPage={setPageParam}
+                                                            totalPage={totalPage}
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,7 +150,11 @@ const mapStateToProps = (state) => {
     return {
         error: state.findAllTransactionByStaff.error,
         transactions: state.findAllTransactionByStaff.data || [],
-        isLoading: state.findAllTransactionByStaff.isLoading
+        isLoading: state.findAllTransactionByStaff.isLoading,
+        size: state.findAllTransactionByStaff.pagination.size,
+        total: state.findAllTransactionByStaff.pagination.total,
+        currentPage: state.findAllTransactionByStaff.pagination.page
+
     }
 }
 
