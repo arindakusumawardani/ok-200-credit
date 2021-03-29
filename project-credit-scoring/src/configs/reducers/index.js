@@ -29,6 +29,13 @@ import {
   saveNeedReducer,
   updateNeedTypeReducer
 } from "./needReducer";
+import {
+  findAllRoleReducer,
+  findRoleByIdReducer,
+  findRoleTypeByIdReducer,
+  removeRoleTypeByIdReducer,
+  saveRoleReducer
+} from "./roleReducer";
 
 
 const rootReducer = combineReducers({
@@ -72,6 +79,12 @@ const rootReducer = combineReducers({
   findNeedTypeByIdReducer,
   updateNeedTypeReducer,
   removeNeedTypeByIdReducer,
+
+  //ROLE
+  findAllRoleReducer,
+  saveRoleReducer,
+  removeRoleTypeByIdReducer,
+  findRoleByIdReducer
 
 })
 

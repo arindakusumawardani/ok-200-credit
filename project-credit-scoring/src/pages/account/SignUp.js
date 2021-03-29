@@ -16,8 +16,9 @@ import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import swal from "sweetalert";
 import Error from "../Error";
+import {findAllRoleAction} from "../../actions/roleAction";
 
-const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccountByIdAction}) => {
+const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccountByIdAction, roles, findAllRoleAction}) => {
     const {id} = useParams()
     const [redirect] = useState(false)
 
@@ -32,14 +33,22 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
         profilePicture: "",
         role: ""
     })
-
-    // const [model, setModel] = useState({})
     const history = useHistory()
+
+    const onReload = () => {
+        findAllRoleAction()
+    }
+    useEffect(onReload, [findAllRoleAction])
+
+    useEffect(() => {
+        findAllRoleAction()
+    }, [findAllRoleAction])
 
     useEffect(() => {
         if (id) {
             findAccountByIdAction(id)
         }
+        console.log("")
     }, [id, findAccountByIdAction])
 
     useEffect(() => {
@@ -110,6 +119,8 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
         e.preventDefault()
         saveDispatch(data)
         swal("Save Success!", "", "success");
+
+        console.log("submit" , data)
     }
 
     if (redirect === true) {
@@ -217,45 +228,29 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                                                             placeholder="Email Address"
                                                                                             className="form-control bg-white border-left-0 border-md"/><br/>
                                                                                     </div>
-
-                                                                                    {/*                                            <div*/}
-                                                                                    {/*                                                className="input-group col-lg-12 mb-4">*/}
-                                                                                    {/*                                                <div*/}
-                                                                                    {/*                                                    className="input-group-prepend">*/}
-                                                                                    {/*<span className="input-group-text bg-white px-4 border-md border-right-0">*/}
-                                                                                    {/*    <FontAwesomeIcon icon={faKey}/>*/}
-                                                                                    {/*</span>*/}
-                                                                                    {/*                                                </div>*/}
-                                                                                    {/*                                                <input*/}
-                                                                                    {/*                                                    required*/}
-                                                                                    {/*                                                    onChange={handleChange}*/}
-                                                                                    {/*                                                    value={data?.password}*/}
-                                                                                    {/*                                                    type="password"*/}
-                                                                                    {/*                                                    name="password"*/}
-                                                                                    {/*                                                    placeholder="Password"*/}
-                                                                                    {/*                                                    minLength={4}*/}
-                                                                                    {/*                                                    maxLength={10}*/}
-                                                                                    {/*                                                    className="form-control bg-white border-left-0 border-md"/><br/>*/}
-                                                                                    {/*                                            </div>*/}
-
                                                                                     <div
                                                                                         className="input-group col-lg-12 mb-4">
 
-                                                                                        <DropdownList
-                                                                                            data={[
-                                                                                                {
-                                                                                                    value: "STAFF",
-                                                                                                    label: "STAFF"
-                                                                                                },
-                                                                                                {
-                                                                                                    value: "SUPERVISOR",
-                                                                                                    label: "SUPERVISOR"
-                                                                                                }
-                                                                                            ]}
-                                                                                            value={data.role}
-                                                                                            placeholder="Select Role"
-                                                                                            handleDropdown={handleRoles}
-                                                                                        />
+                                                                                        <div>
+                                                                                            <Col sm={15}>
+                                                                                                <select
+                                                                                                    style={{width:"36vw", height:"calc(1.5em + .75rem + 2px)",
+                                                                                                        borderRadius:"0.5vw", outlineColor:"#ced4da"}}
+                                                                                                    onChange={e => setData({
+                                                                                                        ...data,
+                                                                                                        role: e.target.value
+                                                                                                    })}>
+                                                                                                    <option selected disabled hidden>Choose
+                                                                                                        here
+                                                                                                    </option>
+                                                                                                    {roles?.list?.map((e, i) => (
+                                                                                                        <option key={i} value={e.name}
+                                                                                                                data={e}
+                                                                                                                selected={e.id == data?.id || false}>{e.name}</option>
+                                                                                                    ))}
+                                                                                                </select>
+                                                                                            </Col>
+                                                                                        </div>
                                                                                     </div>
 
                                                                                     {/*<div*/}
@@ -321,13 +316,15 @@ const mapStateToProps = (state) => {
         saveAccount: state.saveAccountReducer.data,
         error: state.saveAccountReducer.error,
         isLoading: state.findAccountByIdReducer.isLoading || state.saveAccountReducer.isLoading,
-        update: state.updateAccountReducer
+        update: state.updateAccountReducer,
+        roles: state.findAllRoleReducer.data
     }
 }
 
 const mapDispatchToProps = {
     saveDispatch: saveAccountAction,
-    findAccountByIdAction
+    findAccountByIdAction,
+    findAllRoleAction
 }
 
 export default connect(mapStateToProps,

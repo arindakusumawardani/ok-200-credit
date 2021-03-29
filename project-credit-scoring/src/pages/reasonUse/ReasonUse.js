@@ -150,7 +150,6 @@ const mapStateToProps = (state) => {
         error: state.findAllNeedReducer.error || state.removeNeedTypeByIdReducer.error,
         isLoading: state.findAllNeedReducer.isLoading,
         isRemoved: state.removeNeedTypeByIdReducer
-
     }
 }
 

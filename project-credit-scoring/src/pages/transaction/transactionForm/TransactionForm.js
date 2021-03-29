@@ -7,13 +7,11 @@ import {connect} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faSave} from "@fortawesome/free-solid-svg-icons";
 import {findCustomerByIdAction} from "../../../actions/customerAction";
-import DropdownList from "../../../components/DropdownList/DropdownList";
 import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
 import NumberFormat from 'react-number-format';
 import {findAllNeedAction} from "../../../actions/needAction";
 import {findAllNeedReducer} from "../../../configs/reducers/needReducer";
-import ReasonRow from "../../reasonUse/ReasonRow";
 import swal from "sweetalert";
 import Error from "../../Error";
 
@@ -36,17 +34,6 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
     }
 
     useEffect(onReload, [findAllNeedAction])
-
-    // const handleCustomer = () => {
-    //     setData({
-    //         ...data,
-    //         customer: customer.id
-    //     })
-    // }
-    //
-    // const handleNeed = (e) => {
-    //     setData({...data, needType: e.id})
-    // }
 
     useEffect(() => {
         findAllNeedAction()

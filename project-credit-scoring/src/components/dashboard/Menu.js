@@ -42,6 +42,15 @@ export default function Menu() {
                 role="menu"
                 data-accordion="false"
             >
+                <li className="nav-item has-treeview">
+                    <Link to="/role" className="nav-link">
+                        <i className="nav-icon fas fa-users"/>
+                        <p>
+                            Management Roles
+                        </p>
+                    </Link>
+                </li>
+
               <li className="nav-item has-treeview">
                 <Link to="/master" className="nav-link">
                   <i className="nav-icon fas fa-users"/>

@@ -19,6 +19,7 @@ import ListTransactionByStaff from "../pages/transaction/listTransactionByStaff/
 import ListReportByStaff from "../pages/report/reportByStaff/ListReportByStaff";
 import EditAccount from "../pages/account/EditAccount";
 import EditPassword from "../pages/profile/EditPassword";
+import RoleMenu from "../pages/role/RoleMenu";
 import RoleList from "../pages/role/RoleList";
 
 const routes = [
@@ -141,6 +142,11 @@ const routes = [
     {
         path: '/edit/id',
         component: <EditAccount/>,
+        exact: true
+    },
+    {
+        path: '/role/form',
+        component: <RoleMenu/>,
         exact: true
     },
     {

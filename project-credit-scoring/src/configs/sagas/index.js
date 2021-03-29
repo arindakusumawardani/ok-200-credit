@@ -23,6 +23,7 @@ import {
 import {watchFindAllReport, watchFindReportByStaff} from "./reportSaga";
 import {watchFindAllApproval, watchFindApprovalById, watchSaveApproval} from "./approvalSaga";
 import {watchFindAllNeed, watchFindByIdNeed, watchRemoveNeedById, watchSaveNeed, watchUpdateNeedById} from "./needSaga";
+import {watchFindAllRole, watchFindByIdRole, watchRemoveRoleById, watchSaveRole} from "./roleSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -59,6 +60,11 @@ export default function* rootSaga() {
     watchUpdateNeedById(),
     watchRemoveNeedById(),
 
-    watchFindAllTransactionByStaff()
+    watchFindAllTransactionByStaff(),
+
+    watchFindAllRole(),
+    watchSaveRole(),
+    watchRemoveRoleById(),
+    watchFindByIdRole()
   ])
 }

@@ -17,24 +17,14 @@ import {put, takeLatest} from "redux-saga/effects"
 import axios from "axios";
 import pagination from "./pagination";
 
-function* findAllNeedSaga(
-    // action
-) {
-    // let parameter = pagination(action)
-    //
-    // parameter = parameter.replace(/\s+/g, '+')
+function* findAllNeedSaga() {
 
-    // let result = yield axios.get(`/need?${parameter}`)
     let result = yield axios.get('/need')
         .then(data => {
             return ({
                 type: FIND_ALL_NEEDTYPE_SUCCESS,
                 data: data,
-                // pagination: {
-                //     size: data.size,
-                //     total: data.total,
-                //     page: data.page
-                // },
+
             })
             console.log("saga ni", data.size)
         })
