@@ -5,7 +5,7 @@ const pagination = (action) => {
     // console.log("page=0&size=5")
 
     if(action.pagination.page) {
-        parameter+= `page=${action.pagination.page - 1}`
+        parameter+= `page=${action.pagination.page}`
     }
 
     if (action.pagination.size) {

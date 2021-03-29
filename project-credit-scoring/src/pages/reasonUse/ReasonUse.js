@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Redirect, useHistory, useParams} from 'react-router-dom'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
-import {Container, Button, Form} from "reactstrap";
+import {ButtonGroup, Container, Button, Form} from "reactstrap";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import {findAllNeedAction, removeByIdNeedAction} from "../../actions/needAction";
@@ -14,6 +14,7 @@ import ReasonRow from "./ReasonRow";
 import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
 import swal from "sweetalert";
+import {PaginationButton} from "../../components/Buttons";
 
 
 const ReasonUse = ({
@@ -23,10 +24,20 @@ const ReasonUse = ({
                        isLoading,
                        removeByIdNeedAction,
                        isRemoved
+                       // ,size,
+                       // total,
+                       // currentPage
                    }) => {
 
+    // const [pageParam, setPageParam] = useState(0)
+    // const [sizeParam, setSizeParam] = useState(50)
+
+    const totalPage = Math.ceil(total/size)
+
     const onReload = () => {
-        findAllNeedAction();
+        findAllNeedAction(
+            // {page: pageParam, size: sizeParam},
+        );
     }
 
     const onDelete = (id) => {
@@ -48,8 +59,9 @@ const ReasonUse = ({
             });
     };
 
-
-    useEffect(onReload, [findAllNeedAction])
+    useEffect(onReload, [findAllNeedAction,
+        // pageParam, sizeParam
+    ])
 
     useEffect(() => {
         onReload()
@@ -96,6 +108,13 @@ const ReasonUse = ({
                                                             </a>
                                                         </div>
                                                     </div>
+                                                    {/*<h5>Limit</h5>*/}
+                                                    {/*<ButtonGroup size="sm">*/}
+                                                    {/*    <Button onClick={() => {setSizeParam(1)}}>1</Button>*/}
+                                                    {/*    <Button onClick={() => {setSizeParam(2)}}>2</Button>*/}
+                                                    {/*    <Button onClick={() => {setSizeParam(3)}}>3</Button>*/}
+                                                    {/*</ButtonGroup>*/}
+
                                                     <div className="card-body table-responsive p-0">
                                                         <table className="table table-striped table-valign-middle">
                                                             <thead style={{textAlign: "left"}}>
@@ -122,6 +141,13 @@ const ReasonUse = ({
                                                             }
                                                             </tbody>
                                                         </table>
+                                                        {/*<br></br>*/}
+                                                        {/*<PaginationButton*/}
+                                                        {/*    currentPage={currentPage}*/}
+                                                        {/*    setPage={setPageParam}*/}
+                                                        {/*    totalPage={totalPage}*/}
+                                                        {/*/>*/}
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,6 +176,9 @@ const mapStateToProps = (state) => {
         error: state.findAllNeedReducer.error || state.removeNeedTypeByIdReducer.error,
         isLoading: state.findAllNeedReducer.isLoading,
         isRemoved: state.removeNeedTypeByIdReducer
+        // ,size: state.findAllNeedReducer.pagination.size,
+        // total: state.findAllNeedReducer.pagination.total,
+        // currentPage: state.findAllNeedReducer.pagination.page
 
     }
 }

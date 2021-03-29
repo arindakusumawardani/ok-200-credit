@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {findAllCustomerAction} from '../../../actions/customerAction'
 import {connect} from "react-redux"
 import Containers from "../../../components/Containers/Container";
@@ -9,19 +9,47 @@ import Menu from "../../../components/dashboard/Menu";
 import TableScrollbar from 'react-table-scrollbar';
 import Error from "../../Error";
 import Footer from "../../../components/dashboard/Footer";
+import {PaginationButton} from "../../../components/Buttons";
+import {ButtonGroup, Button} from "reactstrap";
 
 function CustomerList({
                           error,
                           isLoading,
                           customers,
                           findAllCustomerAction
+    ,size, total, currentPage
                       }) {
 
+    const [customer, setCustomer] = useState([])
+
+    const [pageParam, setPageParam] = useState(0)
+    const [sizeParam, setSizeParam] = useState(10)
+
+    const totalPage = Math.ceil(total/size)
+
+    useEffect(() => {
+        onReload()
+    }, [pageParam, sizeParam])
+
+    useEffect(() => {
+        onReload()
+    }, [])
+
+    useEffect(() => {
+        if (customer) {
+            setCustomer(customers)
+        }
+    }, [customers])
+
+    console.log("ini customers", customer)
+
     const onReload = () => {
-        findAllCustomerAction();
+        findAllCustomerAction(
+            {page: pageParam, size: sizeParam}
+        );
     };
 
-    useEffect(onReload, [findAllCustomerAction])
+    useEffect(onReload, [findAllCustomerAction, pageParam, sizeParam])
 
     return (
 
@@ -60,8 +88,14 @@ function CustomerList({
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
-
+                                                        <h5>Limit</h5>
+                                                        <ButtonGroup size="sm">
+                                                            <Button onClick={() => {setSizeParam(1)}}>1</Button>
+                                                            <Button onClick={() => {setSizeParam(2)}}>2</Button>
+                                                            <Button onClick={() => {setSizeParam(3)}}>3</Button>
+                                                        </ButtonGroup>
                                                         <TableScrollbar rows={10}>
+
                                                         <table className="table table-striped table-valign-middle">
                                                             <thead style={{textAlign: "left", background:"#FCE051"}}>
                                                             <tr>
@@ -77,11 +111,12 @@ function CustomerList({
                                                             <tbody style={{textAlign: "left"}}>
                                                             {
                                                                 !isLoading ?
-                                                                    customers?.list?.map((e, i) => {
+                                                                    // customers?.list?.map((e, i) => {
+                                                                    customer.map((e, i) => {
 
                                                                         return (
                                                                             <RowCustomer key={i} data={e}
-                                                                                         number={(customers.page * customers.size) + 1 + i}/>
+                                                                                         number={(pageParam * sizeParam) + i + 1}/>
                                                                         )
                                                                     })
                                                                     :
@@ -89,9 +124,24 @@ function CustomerList({
                                                                         <td colSpan="3"> Loading..</td>
                                                                     </tr>
                                                             }
+                                                            {
+                                                                customer.map((e, i) => console.log("NOMOR", (pageParam * sizeParam) + i + 1))
+                                                            }
+                                                            {
+
+                                                                customer.map((e, i) => console.log("NOMOR PAGINATION", (pageParam)))
+                                                            }
                                                             </tbody>
                                                         </table>
                                                         </TableScrollbar>
+
+                                                        <br></br>
+                                                        <PaginationButton
+                                                            currentPage = {currentPage}
+                                                            setPage={setPageParam}
+                                                            totalPage={totalPage}
+                                                        />
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,7 +166,10 @@ const mapStateToProps = (state) => {
     return {
         error: state.findAllCustomerReducer.error,
         customers: state.findAllCustomerReducer.data || [],
-        isLoading: state.findAllCustomerReducer.isLoading
+        isLoading: state.findAllCustomerReducer.isLoading,
+        size: state.findAllCustomerReducer.pagination.size,
+        total: state.findAllCustomerReducer.pagination.total,
+        currentPage: state.findAllCustomerReducer.pagination.page
     }
 }
 

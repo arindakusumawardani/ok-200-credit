@@ -16,13 +16,23 @@ import {
 
 } from "../constants/actions"
 import axios from "../api"
+import pagination from "./pagination";
 
-function* findAllCustomerSaga() {
-  let result = yield axios.get("/customer")
+function* findAllCustomerSaga(action) {
+  let parameter = pagination(action)
+
+  parameter = parameter.replace(/\s+/g, '+')
+
+  let result = yield axios.get(`/customer?${parameter}`)
     .then(data => {
       return ({
         type: FIND_ALL_CUSTOMER_SUCCESS,
-        data: data
+        data: data.list,
+        pagination: {
+          size: data.size,
+          total: data.total,
+          page: data.page
+        },
       })
     })
     .catch(err => {

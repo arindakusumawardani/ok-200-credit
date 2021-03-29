@@ -5,9 +5,13 @@ import {
     UPDATE_CUSTOMER
 } from "../configs/constants/actions";
 
-export function findAllCustomerAction() {
+export function findAllCustomerAction(pagination) {
     return {
-        type: FIND_ALL_CUSTOMER
+        type: FIND_ALL_CUSTOMER,
+        pagination: {
+            page: pagination.page,
+            size: pagination.size,
+        }
     }
 }
 

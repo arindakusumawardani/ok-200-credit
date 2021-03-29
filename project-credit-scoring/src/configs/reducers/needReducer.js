@@ -16,21 +16,36 @@ import {act} from "@testing-library/react";
 
 const initialState = {
     data: null,
+    // pagination: {
+    //     size: null,
+    //     total: null,
+    //     page: null
+    // },
     isLoading: false,
     error: null
 }
 
 export const findAllNeedReducer = (state = initialState, action) => {
-    // console.log("ini action reducer", action.data)
+
     switch (action.type) {
         case FIND_ALL_NEEDTYPE:
             return {
                 ...state,
+                // pagination: {
+                //     size: null,
+                //     total: null,
+                //     page: null
+                // },
                 isLoading: true
             };
         case FIND_ALL_NEEDTYPE_SUCCESS:
             return {
                 data: action.data,
+                // pagination: {
+                //     size: action.pagination.size,
+                //     total: action.pagination.total,
+                //     page: action.pagination.page
+                // },
                 isLoading: false,
                 error: null
             };
@@ -47,6 +62,7 @@ export const findAllNeedReducer = (state = initialState, action) => {
                 error: null
             };
     }
+    console.log("ini action reducer", action.pagination.size)
 }
 
 export const saveNeedReducer = (state = {...initialState}, action) => {

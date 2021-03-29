@@ -6,10 +6,15 @@ import {
     REMOVE_NEEDTYPE_BY_ID
 } from "../configs/constants/actions";
 
-export function findAllNeedAction() {
+export function findAllNeedAction(
+    // pagination
+) {
     return {
-        type: FIND_ALL_NEEDTYPE,
-
+        type: FIND_ALL_NEEDTYPE
+        // ,pagination: {
+        //     page: pagination.page,
+        //     size: pagination.size,
+        // }
     }
 }
 

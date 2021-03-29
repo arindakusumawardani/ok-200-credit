@@ -9,6 +9,7 @@ import Footer from "../../components/dashboard/Footer";
 import swal from "sweetalert";
 import Error from "../Error";
 import {useParams} from 'react-router-dom';
+import {PaginationButton} from "../../components/Buttons";
 
 
 function AccountList({
@@ -18,12 +19,20 @@ function AccountList({
                          findAllAccountAction,
                          dispatchRemoveById,
                          isRemoved
+                         // total,
+                         // size,
+                         // currentPage
                      }) {
 
-
+    // const [pageParam, setPageParam] = useState(0)
+    // const [sizeParam, setSizeParam] = useState(50)
+    //
+    // const totalPage = Math.ceil(total/size)
 
     const onReload = () => {
-        findAllAccountAction();
+        findAllAccountAction(
+        // {page: pageParam, size: sizeParam}
+        )
     }
 
     const onDelete = (id) => {
@@ -45,7 +54,9 @@ function AccountList({
             });
     };
 
-    useEffect(onReload, [findAllAccountAction])
+    useEffect(onReload, [findAllAccountAction
+        // , pageParam, sizeParam
+    ])
 
     useEffect(() => {
         onReload()
@@ -122,6 +133,12 @@ function AccountList({
                     }
                     </tbody>
                                         </table>
+                                        {/*<br></br>*/}
+                                        {/*<PaginationButton*/}
+                                        {/*    currentPage = {currentPage}*/}
+                                        {/*    setPage={setPageParam}*/}
+                                        {/*    totalPage={totalPage}*/}
+                                        {/*/>*/}
                                     </div>
                                 </div>
                             </div>
@@ -148,6 +165,9 @@ const mapStateToProps = (state) => {
         isLoading: state.findAllAccountReducer.isLoading,
         error: state.findAllAccountReducer.error || state.removeAccountByIdReducer.error,
         isRemoved: state.removeAccountByIdReducer
+        // size: state.findAllAccountReducer.pagination.size,
+        // total: state.findAllAccountReducer.pagination.total,
+        // currentPage: state.findAllAccountReducer.pagination.page
     }
 }
 

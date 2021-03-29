@@ -225,6 +225,8 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                             <InputGroup>
                                                                                 <InputGroupText>Rp</InputGroupText>
                                                                                 <NumberFormat
+                                                                                    style={{width:"63vw", height:"calc(1.5em + .75rem + 2px)",
+                                                                                        borderRadius:"0.5vw", outlineColor:"#ced4da"}}
                                                                                     required
                                                                                     name="loan"
                                                                                     min="0"
@@ -277,7 +279,10 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                             <span style={{color: "red"}}> *</span>
                                                                         </Label>
                                                                         <Col sm={10}>
-                                                                            <select onChange={e => setData({
+                                                                            <select
+                                                                                style={{width:"69vw", height:"calc(1.5em + .75rem + 2px)",
+                                                                                    borderRadius:"0.5vw", outlineColor:"#ced4da"}}
+                                                                                onChange={e => setData({
                                                                                 ...data,
                                                                                 needType: e.target.value
                                                                             })}>

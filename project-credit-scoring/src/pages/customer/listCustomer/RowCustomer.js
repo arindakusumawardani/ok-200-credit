@@ -15,7 +15,6 @@ const CustomerRow = ({data, onUpdate, number}) => {
                 <a onClick={onUpdate} href={`/customer/${data.id}/edit`} className="text-muted">
                     <i className="fas fa-pencil-alt" />
                 </a>{' '}
-
                 <a onClick={data} href={`/transaction/form/${data.id}`} className="text-muted">
                     <i className="fas fa-wallet" />
                 </a>{' '}
