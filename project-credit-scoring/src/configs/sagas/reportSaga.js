@@ -11,15 +11,27 @@ import {
     FIND_TRANSACTION_BY_STAFF_FAILURE,
     FIND_TRANSACTION_BY_STAFF_SUCCESS
 } from "../constants/actions";
+import pagination from "./pagination";
 
 
 function* findAllReportSaga(data) {
 
-    let result = yield axios.get("/report")
+    let parameter = pagination(data)
+
+    // console.log("PARAMETER: ", action)
+
+    parameter = parameter.replace(/\s+/g, '+')
+
+    let result = yield axios.get(`/report?${parameter}`)
         .then (data => {
             return ({
                 type: FIND_ALL_REPORT_SUCCESS,
-                data : data
+                data : data.list,
+                pagination: {
+                    size: data.size,
+                    total: data.total,
+                    page: data.page
+                }
             })
         })
         .catch(err => {
@@ -32,11 +44,22 @@ function* findAllReportSaga(data) {
 }
 
 function* findReportByStaffSaga(action) {
-    let result = yield axios.get('/report/staff')
+    let parameter = pagination(action)
+
+    // console.log("PARAMETER: ", action)
+
+    parameter = parameter.replace(/\s+/g, '+')
+
+    let result = yield axios.get(`/report/staff?${parameter}`)
         .then(data => {
             return ({
                 type: FIND_REPORT_BY_STAFF_SUCCESS,
-                data: data
+                data: data.list,
+                pagination: {
+                    size: data.size,
+                    total: data.total,
+                    page: data.page
+                },
             })
         })
         .catch(e => {

@@ -18,9 +18,13 @@ export function findByIdApprovalAction(id) {
     }
 }
 
-export function findAllApprovalAction() {
+export function findAllApprovalAction(pagination) {
     return {
         type: FIND_ALL_APPROVAL,
+        pagination: {
+            page: pagination.page,
+            size: pagination.size
+        }
     }
 }
 

@@ -11,6 +11,7 @@ import {
     SAVE_APPROVAL_FAILURE,
     SAVE_APPROVAL_SUCCESS
 } from "../constants/actions";
+import pagination from "./pagination";
 
 function* saveApprovalSaga(action) {
     console.log("ACTION", action.model.id)
@@ -63,11 +64,22 @@ function* findApprovalByIdSaga(action) {
 
 function* findAllApprovalSaga(data) {
 
-    let result = yield axios.get("/approval/waiting")
+    let parameter = pagination(data)
+
+    // console.log("PARAMETER: ", action)
+
+    parameter = parameter.replace(/\s+/g, '+')
+
+    let result = yield axios.get(`/approval/waiting?${parameter}`)
         .then (data => {
             return ({
                 type : FIND_ALL_APPROVAL_SUCCESS,
-                data: data
+                data: data.list,
+                pagination: {
+                    size: data.size,
+                    total: data.total,
+                    page: data.page
+                }
             })
         })
         .catch(err => {

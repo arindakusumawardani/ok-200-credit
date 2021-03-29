@@ -1,5 +1,5 @@
 import Containers from '../../../components/Containers/Container'
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 
 import TableScrollbar from 'react-table-scrollbar';
@@ -9,17 +9,40 @@ import Row from "./Row";
 import Footer from "../../../components/dashboard/Footer";
 import {findAllReportAction} from "../../../actions/reportAction";
 import Error from "../../Error";
+import {Button, ButtonGroup, Spinner} from "reactstrap";
+import {PaginationButton} from "../../../components/Buttons";
 
 function ReportList({
-                        isLoading, reports, error, findAllReportAction
+                        isLoading, reports, error, findAllReportAction, size, total, currentPage
                     }) {
 
+    const [report, setReport] = useState([])
+
+    const [pageParam, setPageParam] = useState(0)
+    const [sizeParam, setSizeParam] = useState(10)
+
+    const totalPage = Math.ceil(total/size)
+
+    useEffect(() => {
+        onReload()
+    }, [pageParam, sizeParam])
+
+    useEffect(() => {
+        onReload()
+    }, [])
+
+    useEffect(() => {
+        if(report) {
+            setReport(reports)
+        }
+    }, [reports])
+
     const onReload = () => {
-        findAllReportAction();
+        findAllReportAction({page: pageParam, size: sizeParam});
         console.log("ini data", reports)
     }
 
-    useEffect(onReload, [findAllReportAction])
+    useEffect(onReload, [findAllReportAction, pageParam, sizeParam])
 
     return (
         <div>
@@ -53,6 +76,13 @@ function ReportList({
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
+                                                        <h5>Limit</h5>
+                                                        <ButtonGroup size="sm">
+                                                            <Button onClick={() => {setSizeParam(1)}}>1</Button>
+                                                            <Button onClick={() => {setSizeParam(2)}}>2</Button>
+                                                            <Button onClick={() => {setSizeParam(3)}}>3</Button>
+                                                        </ButtonGroup>
+
                                                         <TableScrollbar rows={10}>
                                                             <table className="table table-bordered table-valign-middle table-head-fixed">
                                                                 <thead style={{background:"#FCE051"}}>
@@ -86,14 +116,16 @@ function ReportList({
                                                                 <tbody>
                                                                 {
                                                                     ! isLoading ?
-                                                                        reports?.list?.map((e,i) => {
+                                                                        report.map((e,i) => {
                                                                             return (
                                                                                 <Row key={i} data={e}
-                                                                                           number={(reports.page * reports.size) + 1 + i}/>
+                                                                                           number={(pageParam * sizeParam) + 1 + i}/>
                                                                             )
                                                                         }) :
                                                                         <tr>
-                                                                            <td> Loading ...</td>
+                                                                            <div>
+                                                                                <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                            </div>
                                                                         </tr>
 
                                                                 }
@@ -101,6 +133,12 @@ function ReportList({
 
                                                             </table>
                                                         </TableScrollbar>
+                                                        <br></br>
+                                                        <PaginationButton
+                                                            currentPage = {currentPage}
+                                                            setPage={setPageParam}
+                                                            totalPage={totalPage}
+                                                        />
                                                     </div>
 
                                                 </div>
@@ -127,7 +165,10 @@ const mapStateToProps = (state) => {
     return {
         reports: state.findAllReportByStaff.data || [],
         error: state.findAllReportByStaff.error,
-        isLoading: state.findAllReportByStaff.isLoading
+        isLoading: state.findAllReportByStaff.isLoading,
+        size: state.findAllReportByStaff.pagination.size,
+        total: state.findAllReportByStaff.pagination.total,
+        currentPage: state.findAllReportByStaff.pagination.page
     }
 }
 

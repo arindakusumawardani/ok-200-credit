@@ -7,6 +7,11 @@ import {
 
 const initialState = {
     data: null,
+    pagination: {
+        size: null,
+        total: null,
+        page: null
+    },
     isLoading: false,
     error: null
 }
@@ -16,11 +21,21 @@ export const findAllReportReducer = (state = initialState, action) => {
         case FIND_ALL_REPORT:
             return {
                 ...state,
+                pagination: {
+                    size: null,
+                    total: null,
+                    page: null
+                },
                 isLoading: true
             };
         case FIND_ALL_REPORT_SUCCESS:
             return {
                 data: action.data,
+                pagination: {
+                    size: action.pagination.size,
+                    total: action.pagination.total,
+                    page: action.pagination.page
+                },
                 isLoading: false,
                 error: null
             };
@@ -45,11 +60,21 @@ export const findAllReportByStaff = (state = initialState, action) => {
         case FIND_REPORT_BY_STAFF:
             return {
                 ...state,
+                pagination: {
+                    size: null,
+                    total: null,
+                    page: null
+                },
                 isLoading: true
             };
         case FIND_REPORT_BY_STAFF_SUCCESS:
             return {
                 data: action.data,
+                pagination: {
+                    size: action.pagination.size,
+                    total: action.pagination.total,
+                    page: action.pagination.page
+                },
                 isLoading: false,
                 error: null
             };

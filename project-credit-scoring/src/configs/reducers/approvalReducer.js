@@ -8,6 +8,11 @@ import {
 
 const initialState = {
     data: null,
+    pagination: {
+        size: null,
+        total: null,
+        page: null
+    },
     isLoading: false,
     error: null
 }
@@ -18,12 +23,22 @@ export const saveApprovalReducer = (state = { ...initialState}, action) => {
         case SAVE_APPROVAL:
             return{
                 ...state,
+                pagination: {
+                    size: null,
+                    total: null,
+                    page: null
+                },
                 data: null,
                 isLoading: true
             };
         case SAVE_APPROVAL_SUCCESS:
             return {
                 data: action.data,
+                pagination: {
+                    size: action.pagination.size,
+                    total: action.pagination.total,
+                    page: action.pagination.page
+                },
                 isLoading: false,
                 error: null
             };
