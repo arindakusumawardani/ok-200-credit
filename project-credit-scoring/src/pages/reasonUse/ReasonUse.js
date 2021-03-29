@@ -16,7 +16,14 @@ import Error from "../Error";
 import swal from "sweetalert";
 
 
-const ReasonUse = ({findAllNeedAction, needs, error, isLoading, removeByIdNeedAction, isRemoved}) => {
+const ReasonUse = ({
+                       findAllNeedAction,
+                       needs,
+                       error,
+                       isLoading,
+                       removeByIdNeedAction,
+                       isRemoved
+                   }) => {
 
     const onReload = () => {
         findAllNeedAction();
@@ -49,7 +56,7 @@ const ReasonUse = ({findAllNeedAction, needs, error, isLoading, removeByIdNeedAc
     }, [findAllNeedAction])
 
     useEffect(() => {
-        if(isRemoved) {
+        if (isRemoved) {
             onReload()
         }
     }, [isRemoved])
@@ -59,72 +66,73 @@ const ReasonUse = ({findAllNeedAction, needs, error, isLoading, removeByIdNeedAc
             {
                 localStorage.getItem("roles") == "MASTER" ?
                     <>
-            <Containers error={error}>
-                <Header/>
-                <Menu/>
-                <div className="content-wrapper">
-                    <div className="content-header">
-                        <div className="container-fluid">
-                            <div className="row mb-2">
-                                <div className="col-sm-6">
-                                    <h1 className="m-0 text-dark">Loan Purpose</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="content">
-                        <div className="container-fluid">
-                            <div className="row">
-                                <div className="col-lg-12">
-
-                                    <div className="card">
-                                        <div className="card-header border-0">
-                                            {/*<h3 className="card-title">List Customer</h3>*/}
-                                            <div className="card-tools">
-                                                {/*<a href="#" className="btn btn-tool btn-sm">*/}
-                                                {/*    <i className="fas fa-download"/>*/}
-                                                {/*</a>*/}
-                                                <a href="/need/form" className="btn btn-tool btn-sm">
-                                                    <i className="fas fa-plus-circle"/>
-                                                </a>
+                        <Containers error={error}>
+                            <Header/>
+                            <Menu/>
+                            <div className="content-wrapper">
+                                <div className="content-header">
+                                    <div className="container-fluid">
+                                        <div className="row mb-2">
+                                            <div className="col-sm-6">
+                                                <h1 className="m-0 text-dark">Loan Purpose</h1>
                                             </div>
                                         </div>
-                                        <div className="card-body table-responsive p-0">
-                                            <table className="table table-striped table-valign-middle">
-                                                <thead style={{textAlign: "left"}}>
-                                                <tr>
-                                                    <th>No</th>
-                                                    {/*<th>Id</th>*/}
-                                                    <th>Type</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody style={{textAlign: "left"}}>
-                                                {
-                                                    !isLoading ?
-                                                        needs?.list?.map((e, i) => {
-                                                            return (
-                                                                <ReasonRow onDeleted={() => onDelete(e.id)} key={i} data={e}
-                                                                           number={(needs.page * needs.size) + 1 + i}/>
-                                                            )
-                                                        }) :
-                                                        <tr>
-                                                            <td colSpan="3"> Loading..</td>
-                                                        </tr>
-                                                }
-                                                </tbody>
-                                            </table>
+                                    </div>
+                                </div>
+                                <div className="content">
+                                    <div className="container-fluid">
+                                        <div className="row">
+                                            <div className="col-lg-12">
+
+                                                <div className="card">
+                                                    <div className="card-header border-0">
+                                                        {/*<h3 className="card-title">List Customer</h3>*/}
+                                                        <div className="card-tools">
+                                                            {/*<a href="#" className="btn btn-tool btn-sm">*/}
+                                                            {/*    <i className="fas fa-download"/>*/}
+                                                            {/*</a>*/}
+                                                            <a href="/need/form" className="btn btn-tool btn-sm">
+                                                                <i className="fas fa-plus-circle"/>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div className="card-body table-responsive p-0">
+                                                        <table className="table table-striped table-valign-middle">
+                                                            <thead style={{textAlign: "left"}}>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                {/*<th>Id</th>*/}
+                                                                <th>Type</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody style={{textAlign: "left"}}>
+                                                            {
+                                                                !isLoading ?
+                                                                    needs?.list?.map((e, i) => {
+                                                                        return (
+                                                                            <ReasonRow onDeleted={() => onDelete(e.id)}
+                                                                                       key={i} data={e}
+                                                                                       number={(needs.page * needs.size) + 1 + i}/>
+                                                                        )
+                                                                    }) :
+                                                                    <tr>
+                                                                        <td colSpan="3"> Loading..</td>
+                                                                    </tr>
+                                                            }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                {/*<Footer/>*/}
+                            {/*<Footer/>*/}
 
-            </Containers>
-            <Footer/>
+                        </Containers>
+                        <Footer/>
                     </>
                     :
                     <div>

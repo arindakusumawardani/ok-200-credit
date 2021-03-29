@@ -120,10 +120,8 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
         let name = e.target.name
         let value = e.target.value
         if(name = "idNumber") {
-
             if(value.length <= 16)
                 setData({...data, [name]: value})
-
         } else {
             setData({...data, [name]: value})
         }
@@ -143,13 +141,15 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(data?.idNumber.length == 16  ) {
-            saveCustomerAction(data)
-            swal("Save Success!", "", "success");
-
+        if(!customer){
+            if(data?.idNumber.length == 16  ) {
+                saveCustomerAction(data)
+                swal("Save Success!", "", "success");
+            } else {
+                swal("Sorry Id Number must be 16 digit!", "", "warning");
+            }
         } else {
-
-            swal("Sorry Id Number must be 16 digit!", "", "warning");
+            saveCustomerAction(data)
         }
         console.log("INI DATA",data)
     }
@@ -220,14 +220,27 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                 Number
                                                                                 <span style={{color:"red"}}> *</span></Label>
                                                                             <Col sm={9}>
-                                                                                <Input
-                                                                                    required
-                                                                                    onChange={handleNumber}
-                                                                                    value={data?.idNumber || ''}
-                                                                                    type="number"
-                                                                                    name="idNumber"
-                                                                                    minLength={16}
-                                                                                    placeholder="input ID number"/>
+                                                                                { customer ?
+                                                                                    <Input
+                                                                                        required
+                                                                                        onChange={handleNumber}
+                                                                                        value={data?.idNumber || ''}
+                                                                                        type="number"
+                                                                                        name="idNumber"
+                                                                                        disabled={true}
+                                                                                        minLength={16}
+                                                                                        placeholder="input ID number"/>
+                                                                                    :
+                                                                                    <Input
+                                                                                        required
+                                                                                        onChange={handleNumber}
+                                                                                        value={data?.idNumber || ''}
+                                                                                        type="number"
+                                                                                        name="idNumber"
+                                                                                        disabled={false}
+                                                                                        minLength={16}
+                                                                                        placeholder="input ID number"/>
+                                                                                }
                                                                             </Col>
                                                                         </FormGroup>
                                                                         <FormGroup row>

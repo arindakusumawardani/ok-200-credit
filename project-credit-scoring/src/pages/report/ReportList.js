@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import Footer from "../../components/dashboard/Footer";
-import SignIn from "../account/SignIn";
 import {findAllReportAction} from "../../actions/reportAction";
 import ReportRow from "./ReportRow";
 import TableScrollbar from 'react-table-scrollbar';

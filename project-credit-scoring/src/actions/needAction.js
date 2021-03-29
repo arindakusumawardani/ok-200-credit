@@ -8,7 +8,8 @@ import {
 
 export function findAllNeedAction() {
     return {
-        type: FIND_ALL_NEEDTYPE
+        type: FIND_ALL_NEEDTYPE,
+
     }
 }
 

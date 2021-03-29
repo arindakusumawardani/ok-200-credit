@@ -112,7 +112,8 @@ function AccountList({
                             accounts?.list?.map((e,i) => {
 
                                 return(
-                                    <AccountRow onDeleted={() => onDelete(e.id)} key={i} data={e} number={(accounts.page * accounts.size) + 1 + i}/>
+                                    <AccountRow onDeleted={() => onDelete(e.id)} key={i} data={e}
+                                                number={(accounts.page * accounts.size) + 1 + i}/>
                                 )
                             }) :
                             <tr>
