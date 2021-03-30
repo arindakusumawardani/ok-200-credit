@@ -44,7 +44,7 @@ function* saveApprovalSaga(action) {
 }
 
 function* findApprovalByIdSaga(action) {
-    let result = yield axios.get(`/approval/principal/${action.id}`)
+    let result = yield axios.get(`/approval/${action.id}`)
         .then(data => {
             console.log("ini saga", data)
             return ({

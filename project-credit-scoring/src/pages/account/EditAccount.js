@@ -108,24 +108,24 @@ const EditAccount = () => {
                                                                                         className="form-control bg-white border-left-0 border-md"/><br/>
                                                                                 </div>
 
-                                                                                {/*<div*/}
-                                                                                {/*    className="input-group col-lg-12 mb-4">*/}
-                                                                                {/*    <div*/}
-                                                                                {/*        className="input-group-prepend">*/}
-                                                                                {/*<span*/}
-                                                                                {/*    className="input-group-text bg-white px-4 border-md border-right-0">*/}
-                                                                                {/*    <FontAwesomeIcon icon={faKey}/>*/}
-                                                                                {/*</span>*/}
-                                                                                {/*    </div>*/}
-                                                                                {/*    <input*/}
-                                                                                {/*        required*/}
-                                                                                {/*        type="password"*/}
-                                                                                {/*        name="password"*/}
-                                                                                {/*        placeholder="Password"*/}
-                                                                                {/*        minLength={4}*/}
-                                                                                {/*        maxLength={10}*/}
-                                                                                {/*        className="form-control bg-white border-left-0 border-md"/><br/>*/}
-                                                                                {/*</div>*/}
+                                                                                <div
+                                                                                    className="input-group col-lg-12 mb-4">
+                                                                                    <div
+                                                                                        className="input-group-prepend">
+                                                                                <span
+                                                                                    className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                    <FontAwesomeIcon icon={faKey}/>
+                                                                                </span>
+                                                                                    </div>
+                                                                                    <input
+                                                                                        required
+                                                                                        type="password"
+                                                                                        name="password"
+                                                                                        placeholder="Password"
+                                                                                        minLength={4}
+                                                                                        maxLength={10}
+                                                                                        className="form-control bg-white border-left-0 border-md"/><br/>
+                                                                                </div>
 
                                                                                 <div
                                                                                     className="input-group col-lg-12 mb-4"

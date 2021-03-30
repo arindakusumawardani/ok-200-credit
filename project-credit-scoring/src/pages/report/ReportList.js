@@ -47,7 +47,7 @@ function ReportList({
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" || localStorage.getItem("roles") == "SUPERVISOR" ?
+                localStorage.getItem("readAllReport") == "true" ?
                     <>
                         <Containers error={error}>
                             <Header/>

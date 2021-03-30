@@ -11,7 +11,7 @@ import {PaginationButton} from "../../../components/Buttons";
 import Error from "../../Error";
 import Footer from "../../../components/dashboard/Footer";
 
-function TransactionList({
+function TransactionListByStaff({
                              isLoading,
                              transactions,
                              error,
@@ -164,4 +164,4 @@ const mapDispatchToProps = {
     findAllTransactionAction
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionListByStaff);

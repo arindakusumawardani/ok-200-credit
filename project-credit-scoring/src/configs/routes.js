@@ -2,12 +2,10 @@ import React from "react";
 import TransactionList from "../pages/transaction/transactionList";
 import CustomerForm from "../pages/customer/customerForm";
 import SignIn from "../pages/account/SignIn";
-import HomeMaster from "../pages/home/HomeMaster";
 import SignUp from "../pages/account/SignUp";
 import TransactionForm from "../pages/transaction/transactionForm";
 import Dashboard from "../components/dashboard";
 import ListCustomer from "../pages/customer/listCustomer";
-import DetailCustomer from "../pages/customer/DetailCustomer";
 import CustomerDetail from "../pages/customer/DetailCustomer";
 import AccountList from "../pages/account/AccountList";
 import TransactionDetail from "../pages/transaction/TransactionDetail";
@@ -107,7 +105,7 @@ const routes = [
         exact: true
     },
     {
-        path: '/approval/principal/:id',
+        path: '/approval/:id',
         component: <TransactionDetail />,
         exact: true
     },
@@ -127,9 +125,9 @@ const routes = [
         exact: true
     },
     {
-        path: '/approval/staff',
-        component: <ListTransactionByStaff/>,
-        exact: true
+      path: '/staff/transaction',
+      component: <ListTransactionByStaff/>,
+      exact: true
     },
     {
         path: '/report/staff',
@@ -159,6 +157,11 @@ const routes = [
     {
         path: '/role',
         component: <RoleList/>,
+        exact: true
+    },
+    {
+        path: '/role/:id',
+        component: <RoleMenu/>,
         exact: true
     }
 

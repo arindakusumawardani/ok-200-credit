@@ -25,6 +25,7 @@ export function saveTransactionAction(model) {
 }
 
 export function findByIdTransactionAction(id) {
+    console.log("masuk ke action")
     return{
         type: FIND_TRANSACTION_BY_ID,
         id

@@ -103,7 +103,7 @@ export default function Menu() {
               </li>}
                 {localStorage.getItem('inputTransaction') == "true" &&
                 <li className="nav-item has-treeview">
-                    <Link to="/approval/staff" className="nav-link">
+                    <Link to="/staff/transaction" className="nav-link">
                         <i className="nav-icon fas fa-wallet"/>
                         <p>
                             Transaction by Submitter

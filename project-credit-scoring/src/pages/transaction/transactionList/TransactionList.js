@@ -111,11 +111,9 @@ function TransactionList({
                                                                                             number={(pageParam * sizeParam) + 1 + i}/>
                                                                         )
                                                                     }) :
-                                                                    <tr>
-                                                                        <div>
-                                                                            <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
-                                                                        </div>
-                                                                    </tr>
+                                                                    <div style={{flex:1, alignItems:"center"}}>
+                                                                        <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                    </div>
                                                             }
                                                             </tbody>
                                                         </table>

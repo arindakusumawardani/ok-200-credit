@@ -46,7 +46,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
             }
         })
         console.log(approval)
-        // history.push('/report')
+        history.push('/report')
         swal("Approve!", "Transaction has been approved!", "success");
 
     }
@@ -91,6 +91,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
 
     useEffect(() => {
         if (id) {
+            console.log("ID",id)
             findByIdDispatch(id)
         }
     }, [id, findByIdDispatch])
@@ -102,7 +103,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
     return (
         <div>
             {
-                localStorage.getItem("inputTransaction") == "true" ?
+                localStorage.getItem("inputTransaction") == "true" || localStorage.getItem("readAllTransaction") == "true" ?
                     <>
                         <div>
                             <Header/>
@@ -128,14 +129,10 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                             {/*<a href="/transaction/form" className="btn btn-tool btn-sm">*/}
                                                             {/*    <i className="fas fa-pencil-alt"/>*/}
                                                             {/*</a>*/}
-                                                            {localStorage.getItem("roles") == "SUPERVISOR" &&
-                                                            <a href="/transaction" className="btn btn-tool btn-sm">
-                                                                <i className="fas fa-arrow-left"/>
-                                                            </a>}
-                                                            {localStorage.getItem("roles") == "STAFF" &&
+
                                                             <a href="/approval/staff" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-arrow-left"/>
-                                                            </a>}
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
@@ -220,8 +217,9 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                                   thousandSeparator={true}
                                                                                   prefix={'Rp '}/></td>
                                                             </tr>
-                                                            {localStorage.getItem("approveTransaction") &&
+                                                            {localStorage.getItem("approveTransaction") == "true" &&
                                                                 <>
+                                                                    {console.log("dataaa masuk", data?.transaction)}
                                                             <tr>
                                                                 <td>Credit ratio</td>
                                                                 <td>{data?.transaction?.creditRatio} %</td>
@@ -243,7 +241,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                 <td>Notes</td>
                                                                 <td>{data?.transaction?.notes}</td>
                                                             </tr>
-                                                            {localStorage.getItem("approveTransaction") &&
+                                                            {localStorage.getItem("approveTransaction") == "true" &&
                                                             <tr>
                                                                 <td>
                                                                     <Button style={{background: "#e42256"}}

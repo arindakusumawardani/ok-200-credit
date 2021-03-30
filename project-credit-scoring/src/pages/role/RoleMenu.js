@@ -13,7 +13,7 @@ import swal from "sweetalert";
 import {findRoleByIdAction, removeByIdRoleAction, saveRoleAction} from "../../actions/roleAction";
 
 
-const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByIdAction, update, updateRoleAction}) => {
+const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByIdAction, updateRoleAction}) => {
     const {id} = useParams()
     const [redirect] = useState(false)
 
@@ -138,6 +138,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                                                type="checkbox"
                                                                                name="inputCustomer"
                                                                                onChange={handleChecked}
+                                                                               checked={data.inputCustomer}
                                                                                value={data.inputCustomer}
                                                                                id="defaultCheck1"/>
                                                                         <label className="form-check-label"
@@ -151,6 +152,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                                                name="readAllCustomer"
                                                                                onChange={handleChecked}
                                                                                value={data?.readAllCustomer}
+                                                                               checked={data?.readAllCustomer}
                                                                                id="defaultCheck2"/>
                                                                         <label className="form-check-label"
                                                                                htmlFor="defaultCheck2">
@@ -172,6 +174,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                                                name="inputTransaction"
                                                                                onChange={handleChecked}
                                                                                value={data?.inputTransaction}
+                                                                               checked={data?.inputTransaction}
                                                                                id="defaultCheck2"/>
                                                                         <label className="form-check-label"
                                                                                htmlFor="defaultCheck2">
@@ -184,6 +187,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                                                name="readAllTransaction"
                                                                                onChange={handleChecked}
                                                                                value={data?.readAllTransaction}
+                                                                               checked={data?.readAllTransaction}
                                                                                id="defaultCheck2"/>
                                                                         <label className="form-check-label"
                                                                                htmlFor="defaultCheck2">
@@ -196,6 +200,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                                                name="approveTransaction"
                                                                                onChange={handleChecked}
                                                                                value={data?.approveTransaction}
+                                                                               checked={data?.approveTransaction}
                                                                                id="defaultCheck2"/>
                                                                         <label className="form-check-label"
                                                                                htmlFor="defaultCheck2">
@@ -217,6 +222,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                                                name="readAllReport"
                                                                                onChange={handleChecked}
                                                                                value={data?.readAllReport}
+                                                                               checked={data?.readAllReport}
                                                                                id="defaultCheck2"/>
                                                                         <label className="form-check-label"
                                                                                htmlFor="defaultCheck2">
@@ -230,6 +236,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                                                name="readAllReportByTransaction"
                                                                                onChange={handleChecked}
                                                                                value={data?.readAllReportByTransaction}
+                                                                               checked={data?.readAllReportByTransaction}
                                                                                id="defaultCheck2"/>
                                                                         <label className="form-check-label"
                                                                                htmlFor="defaultCheck2">

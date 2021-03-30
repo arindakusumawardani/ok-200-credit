@@ -25,9 +25,10 @@ const TransactionRow = ({data, onUpdate, number}) => {
                 {/*<a href={`/transaction/${data.id}/detail`} className="text-muted">*/}
                 {/*    <i className="fas fa-info-circle" />*/}
                 {/*</a>{' '}*/}
-                <Button href={`/approval/principal/${data.id}`} style={{background:"#e42256"}}>
+                {localStorage.getItem("approveTransaction") == "true" &&
+                <Button href={`/approval/${data.id}`} style={{background:"#e42256"}}>
                     <FontAwesomeIcon icon={faQuestionCircle}/>
-                </Button>
+                </Button>}
 
             </td>
         </tr>
