@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Redirect, useHistory, useParams} from 'react-router-dom'
 import undraw_Updated_resume_re_q1or from "../../assets/images/undraw_Updated_resume_re_q1or.svg"
 import {
-    faEnvelope,
+    faEnvelope, faKey,
     faUser,
     faUserCircle
 } from "@fortawesome/free-solid-svg-icons";
@@ -168,7 +168,7 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                                         <h1 style={{
                                                                             color: "#e42256",
                                                                             fontSize: "55px"
-                                                                        }}>Create Account</h1>
+                                                                        }}>Account</h1>
 
                                                                         {!isLoading ?
                                                                             <Form onSubmit={handleSubmit}>
@@ -216,9 +216,9 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                                                         className="input-group col-lg-12 mb-4">
                                                                                         <div
                                                                                             className="input-group-prepend">
-                                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                            <FontAwesomeIcon icon={faEnvelope}/>
-                                        </span>
+                                                                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                                <FontAwesomeIcon icon={faEnvelope}/>
+                                                                                            </span>
                                                                                         </div>
                                                                                         <input
                                                                                             required
@@ -229,13 +229,36 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                                                             placeholder="Email Address"
                                                                                             className="form-control bg-white border-left-0 border-md"/><br/>
                                                                                     </div>
+
+                                                                                    {
+                                                                                        window.location.pathname != "/register" ?
+                                                                                            <div
+                                                                                                className="input-group col-lg-12 mb-4">
+                                                                                                <div
+                                                                                                    className="input-group-prepend">
+                                                                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                                <FontAwesomeIcon icon={faKey}/>
+                                                                                            </span>
+                                                                                                </div>
+                                                                                                <input
+                                                                                                    required
+                                                                                                    onChange={handleChange}
+                                                                                                    value={data.password || ""}
+                                                                                                    type="password"
+                                                                                                    name="password"
+                                                                                                    placeholder="Input new password"
+                                                                                                    className="form-control bg-white border-left-0 border-md"/><br/>
+                                                                                            </div>
+: <> </>
+                                                                                    }
+
                                                                                     <div
                                                                                         className="input-group col-lg-12 mb-4">
 
                                                                                         <div>
                                                                                             <Col sm={15}>
                                                                                                 <select
-                                                                                                    style={{width:"36vw", height:"calc(1.5em + .75rem + 2px)",
+                                                                                                    style={{width:"35vw", height:"calc(1.5em + .75rem + 2px)",
                                                                                                         borderRadius:"0.5vw", outlineColor:"#ced4da"}}
                                                                                                     onChange={e => setData({
                                                                                                         ...data,
@@ -275,8 +298,8 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                                                         <Button
                                                                                             style={{background: "#e42256"}}
                                                                                             block>
-                                            <span className="font-weight-bold"
-                                                  style={{color: "#ffff"}}>CREATE ACCOUNT</span>
+                                                                                            <span className="font-weight-bold"
+                                                                                                  style={{color: "#ffff"}}>CREATE ACCOUNT</span>
                                                                                         </Button>
                                                                                     </div>
 

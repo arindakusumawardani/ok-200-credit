@@ -65,8 +65,11 @@ const SignIn = ({loginData, isLoading, error, dispatchLoginAction}) => {
             //     setValidation("*Sorry you are not allowed to sign here")
             // }
 
-            history.push('/dashboard')
-            swal("Login Success!", "", "success");
+            // history.push('/dashboard')
+            swal("Login Success!", "", "success").then((value) => {
+              window.location.href = "/dashboard"
+            });
+
         }
         // jika login error
         if (error) {

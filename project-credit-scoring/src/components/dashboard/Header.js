@@ -29,7 +29,6 @@ export default function Header() {
     localStorage.removeItem('readAllReport')
     localStorage.removeItem('readAllReportByTransaction')
     localStorage.removeItem('master')
-
     // history.push('/')
   }
 
