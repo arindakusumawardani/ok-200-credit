@@ -50,7 +50,7 @@ function* findReportByStaffSaga(action) {
 
     parameter = parameter.replace(/\s+/g, '+')
 
-    let result = yield axios.get(`/report/staff?${parameter}`)
+    let result = yield axios.get(`/report/principal?${parameter}`)
         .then(data => {
             return ({
                 type: FIND_REPORT_BY_STAFF_SUCCESS,

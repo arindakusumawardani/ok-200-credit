@@ -10,7 +10,7 @@ import TableScrollbar from 'react-table-scrollbar';
 import Error from "../../Error";
 import Footer from "../../../components/dashboard/Footer";
 import {PaginationButton} from "../../../components/Buttons";
-import {ButtonGroup, Button, Spinner} from "reactstrap";
+import {ButtonGroup, Button, Spinner, Container} from "reactstrap";
 
 function CustomerList({
                           error,
@@ -55,7 +55,7 @@ function CustomerList({
 
         <div>
             {
-                localStorage.getItem("roles") == "STAFF" ?
+                localStorage.getItem("readAllCustomer") == "true" ?
                     <>
                         <Containers error={error}>
                             <Header/>
@@ -79,12 +79,12 @@ function CustomerList({
                                                     <div className="card-header border-0">
                                                         {/*<h3 className="card-title">List Customer</h3>*/}
                                                         <div className="card-tools">
-                                                            {/*<a href="#" className="btn btn-tool btn-sm">*/}
-                                                            {/*    <i className="fas fa-download"/>*/}
-                                                            {/*</a>*/}
-                                                            <a href="/customer/form" className="btn btn-tool btn-sm">
-                                                                <i className="fas fa-plus-circle"/>
-                                                            </a>
+                                                            {
+                                                                localStorage.getItem("inputCustomer") &&
+                                                                <a href="/customer/form" className="btn btn-tool btn-sm">
+                                                                    <i className="fas fa-plus-circle"/>
+                                                                </a>
+                                                            }
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
@@ -120,11 +120,13 @@ function CustomerList({
                                                                         )
                                                                     })
                                                                     :
-                                                                    <tr>
-                                                                        <div>
-                                                                            <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
-                                                                        </div>
-                                                                    </tr>
+                                                                    // <tr>
+                                                                    //     <div>
+                                                                    <Container style={{display:"flex", justifyContent:"center", alignItems:"center", marginLeft: "300px", marginRight: "300px"}}>
+                                                                        <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256", display:"flex", justifyContent:"center", alignItems:"center"}} />
+                                                                    </Container>
+                                                                        // </div>
+                                                                    // </tr>
                                                             }
                                                             {
                                                                 customer.map((e, i) => console.log("NOMOR", (pageParam * sizeParam) + i + 1))

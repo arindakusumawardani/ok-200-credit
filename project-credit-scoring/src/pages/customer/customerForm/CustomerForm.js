@@ -13,6 +13,7 @@ import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
 import swal from "sweetalert";
 import Error from "../../Error";
+import Footer from "../../../components/dashboard/Footer";
 
 const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, customer, findCustomerByIdAction}) => {
     const {id} = useParams()
@@ -45,16 +46,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
 
     useEffect(() => {
         if (saveCustomer) {
-
-            if (localStorage.getItem("roles") == "MASTER") {
-                history.push('/customer')
-            } else if (localStorage.getItem("roles") == "STAFF") {
-                history.push('/customer/staff')
-            } else if (localStorage.getItem("roles") == "SUPERVISOR") {
-                history.push('/customer')
-            } else {
-                swal("*Sorry you are not allowed to sign here")
-            }
+            history.push('/staff/customer')
         }
     }, [saveCustomer, history])
 
@@ -161,7 +153,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" || localStorage.getItem("roles") == "STAFF" ?
+                localStorage.getItem("inputCustomer") == "true"  ?
                     <>
                         <div>
                             <Container error={error}/>
@@ -351,7 +343,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                     <FontAwesomeIcon icon={faSave}/>
                                                                                     Submit
                                                                                 </Button> {' '}
-                                                                                <Button href="/customer/staff"
+                                                                                <Button href="/customer"
                                                                                         style={{background: "#e42256"}}>
                                                                                     <FontAwesomeIcon
                                                                                         icon={faArrowLeft}/>
@@ -373,6 +365,8 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                     </div>
                                 </div>
                             </div>
+                            <Footer/>
+
                         </div>
                     // </>
                     :

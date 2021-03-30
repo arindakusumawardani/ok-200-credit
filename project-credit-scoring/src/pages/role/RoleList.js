@@ -6,24 +6,54 @@ import Containers from "../../components/Containers/Container";
 import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
 import RoleRow from "./RoleRow";
-import {findAllRoleAction} from "../../actions/roleAction";
+import {findAllRoleAction, removeByIdRoleAction} from "../../actions/roleAction";
 import ReasonRow from "../reasonUse/ReasonRow";
+import swal from "sweetalert";
 
 
 const ReasonUse = ({
                        roles,
                        findAllRoleAction,
                        error,
-                       isLoading
+                       isLoading,
+                       removeByIdRoleAction,
+    isRemoved
                    }) => {
 
     const onReload = () => {
         findAllRoleAction()
     }
 
+    const onDelete = (id) => {
+        swal({
+            title: "Are you sure to delete this data?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(willDelete => {
+                if (willDelete) {
+                    removeByIdRoleAction(id);
+                    swal("Successful deleted", {
+                        icon: "success"
+                    });
+                } else {
+                    swal("Failed to delete")
+                }
+            });
+    };
+
+    useEffect(onReload, [findAllRoleAction])
+
     useEffect(() => {
         onReload()
     }, [findAllRoleAction])
+
+    useEffect(() => {
+        if(isRemoved) {
+            onReload()
+        }
+    }, [isRemoved])
 
     return (
         <div>
@@ -36,8 +66,8 @@ const ReasonUse = ({
                             <div className="content-wrapper">
                                 <div className="content-header">
                                     <div className="container-fluid">
-                                        <div className="row mb-2">
-                                            <div className="col-sm-6">
+                                        <div className="row mb-2" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-sm-8">
                                                 <h1 className="m-0 text-dark">Management Role</h1>
                                             </div>
                                         </div>
@@ -45,8 +75,8 @@ const ReasonUse = ({
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row">
-                                            <div className="col-lg-12">
+                                        <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-lg-8" >
 
                                                 <div className="card">
                                                     <div className="card-header border-0">
@@ -76,7 +106,8 @@ const ReasonUse = ({
                                                                 !isLoading ?
                                                                     roles?.list?.map((e,i) => {
                                                                         return(
-                                                                            <RoleRow key={i} data={e}
+                                                                            <RoleRow onDeleted={() => onDelete(e.id)}
+                                                                                key={i} data={e}
                                                                                      number={(roles.page * roles.size) + 1 + i}/>
                                                                         )
                                                                     }) :
@@ -112,13 +143,15 @@ const ReasonUse = ({
 const mapStateToProps = (state) => {
     return {
         roles: state.findAllRoleReducer.data,
-        error: state.findAllRoleReducer.error,
-        isLoading: state.findAllRoleReducer.isLoading
+        error: state.findAllRoleReducer.error || state.removeRoleByIdReducer.error,
+        isLoading: state.findAllRoleReducer.isLoading,
+        isRemoved: state.removeRoleByIdReducer
     }
 }
 
 const mapDispatchToProps = {
-    findAllRoleAction
+    findAllRoleAction,
+    removeByIdRoleAction
 }
 
 

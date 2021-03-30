@@ -1,4 +1,10 @@
-import {FIND_ALL_ROLE, FIND_ROLE_BY_ID, REMOVE_ROLE_BY_ID, SAVE_ROLE} from "../configs/constants/actions";
+import {
+    FIND_ALL_ROLE,
+    FIND_ROLE_BY_ID,
+    REMOVE_ROLE_BY_ID,
+    SAVE_ROLE,
+    UPDATE_ROLE_BY_ID
+} from "../configs/constants/actions";
 
 
 export function findAllRoleAction() {
@@ -25,5 +31,13 @@ export function removeByIdRoleAction(id) {
     return {
         type: REMOVE_ROLE_BY_ID,
         id
+    }
+}
+
+export function updateRoleAction(id, payload) {
+    return {
+        type: UPDATE_ROLE_BY_ID,
+        id,
+        payload
     }
 }

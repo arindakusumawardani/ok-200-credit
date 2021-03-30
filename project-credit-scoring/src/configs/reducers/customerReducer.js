@@ -5,7 +5,9 @@ import {
 
     FIND_CUSTOMER_BY_ID,
     FIND_CUSTOMER_BY_ID_FAILURE,
-    FIND_CUSTOMER_BY_ID_SUCCESS, FIND_CUSTOMER_BY_SUBMITTER_FAILURE, FIND_CUSTOMER_BY_SUBMITTER_SUCCESS,
+    FIND_CUSTOMER_BY_ID_SUCCESS, FIND_CUSTOMER_BY_SUBMITTER,
+    FIND_CUSTOMER_BY_SUBMITTER_FAILURE,
+    FIND_CUSTOMER_BY_SUBMITTER_SUCCESS,
 
     SAVE_CUSTOMER,
     SAVE_CUSTOMER_FAILURE,
@@ -139,14 +141,24 @@ export const updateCustomerReducer = (state = {}, action) => {
 export const findAllCustomerBySubmitter = (state = initialState, action) => {
     // console.log("ini action", action)
     switch (action.type) {
-        case FIND_ALL_CUSTOMER:
+        case FIND_CUSTOMER_BY_SUBMITTER:
             return {
                 ...state,
+                pagination: {
+                    size: null,
+                    total: null,
+                    page: null
+                },
                 isLoading: true
             };
         case FIND_CUSTOMER_BY_SUBMITTER_SUCCESS:
             return {
                 data: action.data,
+                pagination: {
+                    size: action.pagination.size,
+                    total: action.pagination.total,
+                    page: action.pagination.page
+                },
                 isLoading: false,
                 error: null
             };

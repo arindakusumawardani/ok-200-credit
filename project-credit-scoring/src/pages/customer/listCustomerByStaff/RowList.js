@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Row = ({data, onUpdate, number}) => {
+const RowList = ({data, onUpdate, number}) => {
     return (
         <tr>
             <td>{number}</td>
@@ -12,10 +12,13 @@ const Row = ({data, onUpdate, number}) => {
                 <a onClick={data} href={`/customer/${data.id}/detail`} className="text-muted">
                     <i className="fas fa-info-circle" />
                 </a>{' '}
+                {localStorage.getItem('inputCustomer') == "true" &&
+                    <>
                 <a onClick={onUpdate} href={`/customer/${data.id}/edit`} className="text-muted">
-                    <i className="fas fa-pencil-alt" />
-                </a>{' '}
-                {localStorage.getItem("roles") == "MASTER" || "STAFF" &&
+                    <i className="fas fa-pencil-alt"/>
+                </a>{' '}</>
+                }
+                {localStorage.getItem("inputTransaction") == "true" &&
                 <>
                 <a onClick={data} href={`/transaction/form/${data.id}`} className="text-muted">
                     <i className="fas fa-wallet" />
@@ -26,4 +29,4 @@ const Row = ({data, onUpdate, number}) => {
     )
 }
 
-export default Row;
+export default RowList;

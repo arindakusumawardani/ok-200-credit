@@ -29,13 +29,13 @@ export default function Menu() {
             </div>
             <div className="info">
               <a href="#" className="d-block">
-                {localStorage.getItem('username')}
+                {localStorage.getItem('fullName')}
               </a>
             </div>
           </div>
           {/* Sidebar Menu */}
           <nav className="mt-2">
-            {localStorage.getItem("roles") == "MASTER" &&
+            {localStorage.getItem("master") == "true" &&
             <ul
                 className="nav nav-pills nav-sidebar flex-column"
                 data-widget="treeview"
@@ -44,13 +44,12 @@ export default function Menu() {
             >
                 <li className="nav-item has-treeview">
                     <Link to="/role" className="nav-link">
-                        <i className="nav-icon fas fa-users"/>
+                        <i className="nav-icon fas fa-cog"/>
                         <p>
                             Management Roles
                         </p>
                     </Link>
                 </li>
-
               <li className="nav-item has-treeview">
                 <Link to="/master" className="nav-link">
                   <i className="nav-icon fas fa-users"/>
@@ -59,108 +58,105 @@ export default function Menu() {
                   </p>
                 </Link>
               </li>
-              {/*<li className="nav-item has-treeview">*/}
-              {/*  <a href="/customer/form" className="nav-link">*/}
-              {/*    <i className="nav-icon fas fa-user-check"/>*/}
-              {/*    <p>*/}
-              {/*      Form Customer*/}
-              {/*    </p>*/}
-              {/*  </a>*/}
-              {/*</li>*/}
               <li className="nav-item has-treeview">
-                <a href="/need" className="nav-link">
+                <Link to="/need" className="nav-link">
                   <i className="nav-icon fas fa-list-alt"/>
                   <p>
                     Loan Purpose
                   </p>
-                </a>
+                </Link>
               </li>
-              {/*<li className="nav-item has-treeview">*/}
-              {/*  <a href="/transaction" className="nav-link">*/}
-              {/*    <i className="nav-icon fas fa-wallet"/>*/}
-              {/*    <p>*/}
-              {/*      Transaction*/}
-              {/*    </p>*/}
-              {/*  </a>*/}
-              {/*</li>*/}
-              {/*<li className="nav-item has-treeview">*/}
-              {/*  <a href="/report" className="nav-link">*/}
-              {/*    <i className="nav-icon fas fa-check-double"/>*/}
-              {/*    <p>*/}
-              {/*      Report*/}
-              {/*    </p>*/}
-              {/*  </a>*/}
-              {/*</li>*/}
             </ul>
             }
-            {localStorage.getItem("roles") == "STAFF" &&
             <ul
                 className="nav nav-pills nav-sidebar flex-column"
                 data-widget="treeview"
                 role="menu"
                 data-accordion="false"
             >
-              {/*<li className="nav-item has-treeview">*/}
-              {/*  <a href="/customer/form" className="nav-link">*/}
-              {/*    <i className="nav-icon fas fa-user-check"/>*/}
-              {/*    <p>*/}
-              {/*      Form Customer*/}
-              {/*    </p>*/}
-              {/*  </a>*/}
-              {/*</li>*/}
+                {localStorage.getItem('inputCustomer') == "true" &&
               <li className="nav-item has-treeview">
-                <a href="/customer/staff" className="nav-link">
+                <Link to="/staff/customer" className="nav-link">
                   <i className="nav-icon fas fa-list-alt"/>
                   <p>
-                    Customer
+                    Customer by Submitter
                   </p>
-                </a>
-              </li>
+                </Link>
+              </li>}
+                {localStorage.getItem('readAllCustomer') == "true" &&
+                <li className="nav-item has-treeview">
+                    <Link to="/customer" className="nav-link">
+                        <i className="nav-icon fas fa-list-alt"/>
+                        <p>
+                            Customer
+                        </p>
+                    </Link>
+                </li>}
+                {localStorage.getItem('readAllTransaction') == "true" &&
               <li className="nav-item has-treeview">
-                <a href="/approval/staff" className="nav-link">
+                <Link to="/transaction" className="nav-link">
                   <i className="nav-icon fas fa-wallet"/>
                   <p>
                     Transaction
                   </p>
-                </a>
-              </li>
+                </Link>
+              </li>}
+                {localStorage.getItem('inputTransaction') == "true" &&
+                <li className="nav-item has-treeview">
+                    <Link to="/approval/staff" className="nav-link">
+                        <i className="nav-icon fas fa-wallet"/>
+                        <p>
+                            Transaction by Submitter
+                        </p>
+                    </Link>
+                </li>}
+                {localStorage.getItem('readAllReportByTransaction') == "true" &&
               <li className="nav-item has-treeview">
-                <a href="/report/staff" className="nav-link">
+                <Link to="/report/staff" className="nav-link">
                   <i className="nav-icon fas fa-check-double"/>
                   <p>
-                    Report
+                    Report by Submitter
                   </p>
-                </a>
-              </li>
+                </Link>
+              </li>}
+                {localStorage.getItem('readAllReport') == "true" &&
+                <li className="nav-item has-treeview">
+                    <Link to="/report/" className="nav-link">
+                        <i className="nav-icon fas fa-check-double"/>
+                        <p>
+                            Report
+                        </p>
+                    </Link>
+                </li>}
             </ul>
-            }
 
-            {localStorage.getItem("roles") == "SUPERVISOR" &&
-            <ul
-                className="nav nav-pills nav-sidebar flex-column"
-                data-widget="treeview"
-                role="menu"
-                data-accordion="false"
-            >
 
-              <li className="nav-item has-treeview">
-                <a href="/transaction" className="nav-link">
-                  <i className="nav-icon fas fa-wallet"/>
-                  <p>
-                    Transaction
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item has-treeview">
-                <a href="/report" className="nav-link">
-                  <i className="nav-icon fas fa-check-double"/>
-                  <p>
-                    Report
-                  </p>
-                </a>
-              </li>
-            </ul>
-            }
+            {/*{localStorage.getItem("roles") == "SUPERVISOR" &&*/}
+            {/*<ul*/}
+            {/*    className="nav nav-pills nav-sidebar flex-column"*/}
+            {/*    data-widget="treeview"*/}
+            {/*    role="menu"*/}
+            {/*    data-accordion="false"*/}
+            {/*>*/}
+
+            {/*  <li className="nav-item has-treeview">*/}
+            {/*    <Link to="/transaction" className="nav-link">*/}
+            {/*      <i className="nav-icon fas fa-wallet"/>*/}
+            {/*      <p>*/}
+            {/*        Transaction*/}
+            {/*      </p>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*  <li className="nav-item has-treeview">*/}
+            {/*    <Link to="/report" className="nav-link">*/}
+            {/*      <i className="nav-icon fas fa-check-double"/>*/}
+            {/*      <p>*/}
+            {/*        Report*/}
+            {/*      </p>*/}
+            {/*    </Link>*/}
+            {/*  </li>*/}
+            {/*</ul>*/}
+
 
           </nav>
           {/* /.sidebar-menu */}

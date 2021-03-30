@@ -136,7 +136,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
     return (
         <div>
             {
-                localStorage.getItem("roles") == "STAFF" ?
+                localStorage.getItem("inputTransaction") == "true" ?
                     <>
                         <Container error={error}/>
                         <Header/>

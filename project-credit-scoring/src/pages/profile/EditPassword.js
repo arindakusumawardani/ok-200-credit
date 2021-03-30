@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Redirect, useHistory, useParams} from 'react-router-dom'
+import {Link, Redirect, useHistory, useParams} from 'react-router-dom'
 import gambar from "../../assets/images/undraw_authentication_fsn5.svg"
 import {
     faEnvelope,
@@ -9,18 +9,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../account/login.css"
-import {Input, Label, FormGroup, Button, Container, Form, Col} from "reactstrap";
+import {Input, Label, FormGroup, Button, Container, Form, Col, Spinner} from "reactstrap";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import swal from "sweetalert";
 import Error from "../Error";
+import Footer from "../../components/dashboard/Footer";
 
 const EditPassword = ({isLoading}) => {
 
     return (
         <div>
             {
-                localStorage.getItem("roles") == "STAFF" ?
+                localStorage.getItem("roles") == "STAFF" || localStorage.getItem("roles") == "SUPERVISOR" ?
                     <>
                         <div>
                             <Header/>
@@ -37,9 +38,9 @@ const EditPassword = ({isLoading}) => {
                                                     <div className="card-header border-0">
                                                         {/*<h3 className="card-title">Detail Customer</h3>*/}
                                                         <div className="card-tools">
-                                                            <a href="/dashboard" className="btn btn-tool btn-sm">
+                                                            <Link to="/dashboard" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-arrow-left"/>
-                                                            </a>
+                                                            </Link>
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
@@ -123,7 +124,9 @@ const EditPassword = ({isLoading}) => {
                                                                                 </div>
                                                                             </Form>
                                                                             :
-                                                                            <div>Loading...</div>
+                                                                            <div>
+                                                                                <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                            </div>
                                                                         }
 
                                                                     </div>
@@ -137,6 +140,8 @@ const EditPassword = ({isLoading}) => {
                                     </div>
                                 </div>
                             </div>
+                            <Footer/>
+
                         </div>
                     </>
                     :

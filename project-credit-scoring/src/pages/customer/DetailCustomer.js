@@ -6,6 +6,8 @@ import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHandshake, faIdCard, faMailBulk, faUser} from "@fortawesome/free-solid-svg-icons";
+import Footer from "../../components/dashboard/Footer";
+import Error from "../Error";
 
 function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
 
@@ -25,7 +27,7 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
     return (
         <div>
             {
-                localStorage.getItem("roles") == "STAFF" ?
+                localStorage.getItem("inputCustomer") == "true" ?
                     <>
                         <div>
                             <Header/>
@@ -111,10 +113,14 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                     </div>
                                 </div>
                             </div>
+                            <Footer/>
+
                         </div>
                     // </>
                     :
-                    <div> cannot access</div>
+                    <div>
+                        <Error/>
+                    </div>
             }
         </div>
 

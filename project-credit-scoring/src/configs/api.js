@@ -8,6 +8,7 @@ import axios from "axios"
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
 
 axios.interceptors.response.use(function (response) {
+  console.log(response)
   if (response.status !== 200) {
     throw new Error();
   }

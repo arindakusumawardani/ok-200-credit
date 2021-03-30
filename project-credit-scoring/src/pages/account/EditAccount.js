@@ -7,6 +7,7 @@ import {faEnvelope, faKey, faUser, faUserCircle} from "@fortawesome/free-solid-s
 import DropdownList from "../../components/DropdownList/DropdownList";
 import Error from "../Error";
 import React from "react";
+import Footer from "../../components/dashboard/Footer";
 
 
 const EditAccount = () => {
@@ -14,7 +15,7 @@ const EditAccount = () => {
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("master") == "true" ?
                     <>
                         <div>
                             <Header/>
@@ -186,6 +187,8 @@ const EditAccount = () => {
                                     </div>
                                 </div>
                             </div>
+                            <Footer/>
+
                         </div>
                     </>
                     :

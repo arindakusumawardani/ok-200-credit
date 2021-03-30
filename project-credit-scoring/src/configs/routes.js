@@ -19,8 +19,10 @@ import ListTransactionByStaff from "../pages/transaction/listTransactionByStaff/
 import ListReportByStaff from "../pages/report/reportByStaff/ListReportByStaff";
 import EditAccount from "../pages/account/EditAccount";
 import EditPassword from "../pages/profile/EditPassword";
+import EditProfile from "../pages/profile/EditProfile";
 import RoleMenu from "../pages/role/RoleMenu";
 import RoleList from "../pages/role/RoleList";
+import ListCustomerByStaff from "../pages/customer/listCustomerByStaff/ListCustomerByStaff";
 
 const routes = [
     {
@@ -59,11 +61,11 @@ const routes = [
         component: <Dashboard />,
         exact: true
     },
-    {
-        path: '/customer/staff',
-        component: <ListCustomer />,
-        exact: true
-    },
+    // {
+    //     path: '/customer/staff',
+    //     component: <ListCustomer />,
+    //     exact: true
+    // },
     {
         path: '/customer',
         component: <ListCustomer />,
@@ -105,7 +107,7 @@ const routes = [
         exact: true
     },
     {
-        path: '/transaction/:id',
+        path: '/approval/principal/:id',
         component: <TransactionDetail />,
         exact: true
     },
@@ -119,11 +121,11 @@ const routes = [
         component: <Error/>,
         exact: true
     },
-    // {
-    //     path: '/staff/customer',
-    //     component: <ListCustomer/>,
-    //     exact: true
-    // },
+    {
+        path: '/staff/customer',
+        component: <ListCustomerByStaff/>,
+        exact: true
+    },
     {
         path: '/approval/staff',
         component: <ListTransactionByStaff/>,
@@ -135,8 +137,13 @@ const routes = [
         exact: true
     },
     {
-        path: '/staff/password',
+        path: '/password',
         component: <EditPassword/>,
+        exact: true
+    },
+    {
+        path: '/profile',
+        component: <EditProfile/>,
         exact: true
     },
     {

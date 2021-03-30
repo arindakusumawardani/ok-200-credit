@@ -102,7 +102,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
     return (
         <div>
             {
-                localStorage.getItem("roles") == "STAFF" || localStorage.getItem("roles") == "SUPERVISOR" ?
+                localStorage.getItem("inputTransaction") == "true" ?
                     <>
                         <div>
                             <Header/>
@@ -220,7 +220,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                                   thousandSeparator={true}
                                                                                   prefix={'Rp '}/></td>
                                                             </tr>
-                                                            {localStorage.getItem("roles") == "SUPERVISOR" &&
+                                                            {localStorage.getItem("approveTransaction") &&
                                                                 <>
                                                             <tr>
                                                                 <td>Credit ratio</td>
@@ -243,7 +243,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                 <td>Notes</td>
                                                                 <td>{data?.transaction?.notes}</td>
                                                             </tr>
-                                                            {localStorage.getItem("roles") == "SUPERVISOR" &&
+                                                            {localStorage.getItem("approveTransaction") &&
                                                             <tr>
                                                                 <td>
                                                                     <Button style={{background: "#e42256"}}

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {useParams} from 'react-router-dom'
 import {Row, Col, Table} from "reactstrap";
+import Footer from "../../components/dashboard/Footer";
+import Error from "../Error";
 
 
 function ReportDetail() {
@@ -16,7 +18,7 @@ function ReportDetail() {
     return(
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("readAllReport") ?
                     <>
                         <div>
                             <div className="content-wrapper">
@@ -168,10 +170,14 @@ function ReportDetail() {
                                     </div>
                                 </div>
                             </div>
+                            <Footer/>
+
                         </div>
                     </>
                     :
-                    <div> cannot access</div>
+                    <div>
+                        <Error/>
+                    </div>
             }
         </div>
 

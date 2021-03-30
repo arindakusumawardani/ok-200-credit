@@ -20,6 +20,16 @@ export default function Header() {
     localStorage.removeItem('token')
     localStorage.removeItem('roles')
     localStorage.removeItem('username')
+    localStorage.removeItem('fullName')
+    localStorage.removeItem('inputCustomer')
+    localStorage.removeItem('readAllCustomer')
+    localStorage.removeItem('inputTransaction')
+    localStorage.removeItem('readAllTransaction')
+    localStorage.removeItem('approveTransaction')
+    localStorage.removeItem('readAllReport')
+    localStorage.removeItem('readAllReportByTransaction')
+    localStorage.removeItem('master')
+
     // history.push('/')
   }
 
@@ -28,12 +38,12 @@ export default function Header() {
       {/* Left navbar links */}
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a className="nav-link" data-widget="pushmenu" href="#" role="button">
+          <a className="nav-link" data-widget="pushmenu" href="#" role="button" style={{width:"2vw", fontSize:"1vw"}}>
             <i className="fas fa-bars" />
           </a>
         </li>
         <li className="nav-item d-none d-sm-inline-block">
-          <Link to="/dashboard" className="nav-link">
+          <Link to="/dashboard" className="nav-link" style={{width:"2vw", fontSize:"1vw"}}>
             <FontAwesomeIcon icon={faHome}/>
           </Link>
         </li>
@@ -55,36 +65,37 @@ export default function Header() {
         {/*      </li>*/}
         {/*</ul>*/}
         {/*}*/}
-        {localStorage.getItem("roles") == "STAFF" &&
+        {localStorage.getItem("roles") == "STAFF" || localStorage.getItem("roles") == "SUPERVISOR" &&
         <>
           <li className="nav-item dropdown">
-            <a className="nav-link" data-toggle="dropdown">
+            <a className="nav-link" data-toggle="dropdown" style={{width:"2vw", fontSize:"1vw"}}>
               {/*<i className="far fa-bell" />*/}
               <FontAwesomeIcon icon={faCogs}/>
             </a>
             <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <div className="dropdown-divider" />
-              <a href="#" className="dropdown-item">
+              <Link to="/profile" className="dropdown-item">
                 <FontAwesomeIcon icon={faUserCog}/> Setting Profile
                 <span className="float-right text-muted text-sm"></span>
-              </a>
+              </Link>
               <div className="dropdown-divider" />
-              <a href="/staff/password" className="dropdown-item">
+              <Link to="/password" className="dropdown-item">
                 <FontAwesomeIcon icon={faLock} /> Change Password
                 <span className="float-right text-muted text-sm"></span>
-              </a>
+              </Link>
             </div>
           </li>
         </>
         }
         <li className="nav-item">
-          <a
+          <Link
             className="nav-link"
             onClick={handleOnclick}
-            href="/"
+            to="/"
+            style={{width:"2vw", fontSize:"1vw"}}
           >
             <FontAwesomeIcon icon={faSignOutAlt}/>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

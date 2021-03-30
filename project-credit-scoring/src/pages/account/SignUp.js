@@ -17,6 +17,7 @@ import Menu from "../../components/dashboard/Menu";
 import swal from "sweetalert";
 import Error from "../Error";
 import {findAllRoleAction} from "../../actions/roleAction";
+import Footer from "../../components/dashboard/Footer";
 
 const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccountByIdAction, roles, findAllRoleAction}) => {
     const {id} = useParams()
@@ -130,7 +131,7 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("master") == "true" ?
                     <>
                         <div>
                             <Header/>
@@ -298,6 +299,8 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                     </div>
                                 </div>
                             </div>
+                            <Footer/>
+
                         </div>
                     </>
                     :

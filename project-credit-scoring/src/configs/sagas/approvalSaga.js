@@ -44,7 +44,7 @@ function* saveApprovalSaga(action) {
 }
 
 function* findApprovalByIdSaga(action) {
-    let result = yield axios.get(`/approval/${action.id}`)
+    let result = yield axios.get(`/approval/principal/${action.id}`)
         .then(data => {
             console.log("ini saga", data)
             return ({
@@ -65,8 +65,6 @@ function* findApprovalByIdSaga(action) {
 function* findAllApprovalSaga(data) {
 
     let parameter = pagination(data)
-
-    // console.log("PARAMETER: ", action)
 
     parameter = parameter.replace(/\s+/g, '+')
 

@@ -20,7 +20,7 @@ const Row = ({data, number}) => {
             <td>{data.transaction.tenor} month</td>
             <td>{data.transaction.interestRate} %</td>
             <td>
-                <Button href={`/transaction/${data.id}`} style={{background:"#e42256"}}>
+                <Button href={`/approval/principal/${data.id}`} style={{background:"#e42256"}}>
                     <FontAwesomeIcon icon={faQuestionCircle}/>
                 </Button>
             </td>

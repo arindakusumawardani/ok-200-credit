@@ -69,7 +69,7 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("master") == "true" ?
                     <>
                         <div>
                             <Header/>

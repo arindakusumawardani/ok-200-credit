@@ -41,21 +41,32 @@ const SignIn = ({loginData, isLoading, error, dispatchLoginAction}) => {
             localStorage.setItem('token', loginData.token)
             localStorage.setItem('roles', loginData.roles)
             localStorage.setItem('username', loginData.username)
-            console.log("sukses login", loginData)
+            localStorage.setItem('fullName', loginData.fullName)
+            localStorage.setItem('inputCustomer', loginData.inputCustomer)
+            localStorage.setItem('readAllCustomer', loginData.readAllCustomer)
+            localStorage.setItem('inputTransaction', loginData.inputTransaction)
+            localStorage.setItem('readAllTransaction', loginData.readAllTransaction)
+            localStorage.setItem('approveTransaction', loginData.approveTransaction)
+            localStorage.setItem('readAllReport', loginData.readAllReport)
+            localStorage.setItem('readAllReportByTransaction', loginData.readAllReportByTransaction)
+            localStorage.setItem('master', loginData.master)
+
+            console.log("sukses login", localStorage)
 
             //pilih role
-            if (loginData.roles === "MASTER") {
-                history.push('/dashboard')
-            } else if (loginData.roles === "STAFF") {
-                history.push('/dashboard')
-            } else if (loginData.roles === "SUPERVISOR") {
-                history.push('/dashboard')
-            } else {
-                setValidation("*Sorry you are not allowed to sign here")
-            }
+            // if (loginData.roles === "MASTER") {
+            //     history.push('/dashboard')
+            //     // window.location.href = "/login"
+            // } else if (loginData.roles === "STAFF") {
+            //     history.push('/dashboard')
+            // } else if (loginData.roles === "SUPERVISOR") {
+            //     history.push('/dashboard')
+            // } else {
+            //     setValidation("*Sorry you are not allowed to sign here")
+            // }
 
+            history.push('/dashboard')
             swal("Login Success!", "", "success");
-            // history.push('/master/home')
         }
         // jika login error
         if (error) {

@@ -1,13 +1,13 @@
 import {combineReducers} from "redux";
 import {
-  findAllCustomerByIdReducer, findAllCustomerBySubmitter,
+  findAllCustomerBySubmitter,
   findAllCustomerReducer,
   findCustomerByIdReducer,
   saveCustomerReducer,
   updateCustomerReducer
 } from "./customerReducer";
 import {
-  finAllTransactionReducer, findAllTransactionByStaff, findAllTransactionReducer,
+  findAllTransactionByStaff, findAllTransactionReducer,
   findTransactionByIdReducer,
   saveTransactionReducer,
   updateTransactionReducer
@@ -32,9 +32,9 @@ import {
 import {
   findAllRoleReducer,
   findRoleByIdReducer,
-  findRoleTypeByIdReducer,
-  removeRoleTypeByIdReducer,
-  saveRoleReducer
+  removeRoleByIdReducer,
+  saveRoleReducer,
+    updateRoleReducer
 } from "./roleReducer";
 
 
@@ -83,8 +83,9 @@ const rootReducer = combineReducers({
   //ROLE
   findAllRoleReducer,
   saveRoleReducer,
-  removeRoleTypeByIdReducer,
-  findRoleByIdReducer
+  removeRoleByIdReducer,
+  findRoleByIdReducer,
+  updateRoleReducer
 
 })
 

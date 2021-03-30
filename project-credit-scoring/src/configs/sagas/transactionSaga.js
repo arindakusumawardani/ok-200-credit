@@ -70,7 +70,7 @@ function* saveTransactionSaga(action) {
 }
 
 function* findTransactionByIdSaga(action) {
-    let result = yield axios.get(`/transaction/${action.id}`)
+    let result = yield axios.get(`/approval/principal/${action.id}`)
         .then(data => {
             console.log("ini saga", data)
             return ({
@@ -112,7 +112,7 @@ function* findTransactionByStaffSaga(action) {
     // console.log("PARAMETER: ", action)
 
     parameter = parameter.replace(/\s+/g, '+')
-    let result = yield axios.get(`/approval/staff?${parameter}`)
+    let result = yield axios.get(`/approval/principal?${parameter}`)
         .then(data => {
             return ({
                 type: FIND_TRANSACTION_BY_STAFF_SUCCESS,

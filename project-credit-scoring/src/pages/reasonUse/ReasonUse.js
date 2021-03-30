@@ -8,6 +8,7 @@ import ReasonRow from "./ReasonRow";
 import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
 import swal from "sweetalert";
+import {Link} from "react-router-dom";
 
 
 const ReasonUse = ({
@@ -61,7 +62,7 @@ const ReasonUse = ({
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("master") == "true" ?
                     <>
                         <Containers error={error}>
                             <Header/>
@@ -88,9 +89,9 @@ const ReasonUse = ({
                                                             {/*<a href="#" className="btn btn-tool btn-sm">*/}
                                                             {/*    <i className="fas fa-download"/>*/}
                                                             {/*</a>*/}
-                                                            <a href="/need/form" className="btn btn-tool btn-sm">
+                                                            <Link to="/need/form" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-plus-circle"/>
-                                                            </a>
+                                                            </Link>
                                                         </div>
                                                     </div>
 

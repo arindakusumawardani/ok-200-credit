@@ -1,33 +1,57 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {findAllCustomerAction} from '../../../actions/customerAction'
 import {connect} from "react-redux"
 import Containers from "../../../components/Containers/Container";
 import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
 import TableScrollbar from 'react-table-scrollbar';
-import Row from "./Row";
+import RowList from "./RowList";
 import Error from "../../Error";
 import Footer from "../../../components/dashboard/Footer";
-import {Spinner} from "reactstrap";
+import {Row, Col, Button, ButtonGroup, Spinner} from "reactstrap";
+import {PaginationButton} from "../../../components/Buttons";
 
 function CustomerListBySubmitter({
                           error,
                           isLoading,
                           customers,
-                          findAllCustomerAction
+                          findAllCustomerAction,
+                                     size, total, currentPage
                       }) {
 
+    const [customer, setCustomer] = useState([])
+    const [pageParam, setPageParam] = useState(0)
+    const [sizeParam, setSizeParam] = useState(50)
+
+    const totalPage = Math.ceil(total/size)
+
+    useEffect(() => {
+        onReload()
+    }, [pageParam, sizeParam])
+
+    console.log("SIZE", sizeParam)
+
+    useEffect(() => {
+        onReload()
+    }, [])
+
+    useEffect(() => {
+        if(customer) {
+            setCustomer(customers)
+        }
+    }, [customers])
+
     const onReload = () => {
-        findAllCustomerAction();
+        findAllCustomerAction({page: pageParam, size: sizeParam});
     };
 
-    useEffect(onReload, [findAllCustomerAction])
+    useEffect(onReload, [findAllCustomerAction, pageParam, sizeParam])
 
     return (
 
         <div>
             {
-                localStorage.getItem("roles") == "STAFF" ?
+                localStorage.getItem("inputCustomer") == "true" ?
                     <>
                 <Containers error={error}>
                     <Header/>
@@ -37,7 +61,7 @@ function CustomerListBySubmitter({
                             <div className="container-fluid">
                                 <div className="row mb-2">
                                     <div className="col-sm-6">
-                                        <h1 className="m-0 text-dark">List Customer</h1>
+                                        {/*<h1 className="m-0 text-dark">List Customer</h1>*/}
                                     </div>
                                 </div>
                             </div>
@@ -49,17 +73,25 @@ function CustomerListBySubmitter({
 
                                         <div className="card">
                                             <div className="card-header border-0">
-                                                {/*<h3 className="card-title">List Customer</h3>*/}
+                                                <h1 className="card-title" style={{fontSize:"2vw"}}>List Customer</h1>
                                                 <div className="card-tools">
                                                     {/*<a href="#" className="btn btn-tool btn-sm">*/}
                                                     {/*    <i className="fas fa-download"/>*/}
                                                     {/*</a>*/}
+                                                    {localStorage.getItem('inputCustomer') == "true" &&
                                                     <a href="/customer/form" className="btn btn-tool btn-sm">
                                                         <i className="fas fa-plus-circle"/>
-                                                    </a>
+                                                    </a>}
                                                 </div>
                                             </div>
                                             <div className="card-body table-responsive p-0">
+
+                                                <h5>Limit</h5>
+                                                <ButtonGroup size="sm">
+                                                    <Button onClick={() => {setSizeParam(1)}}>1</Button>
+                                                    <Button onClick={() => {setSizeParam(2)}}>2</Button>
+                                                    <Button onClick={() => {setSizeParam(3)}}>3</Button>
+                                                </ButtonGroup>
 
                                                 <TableScrollbar rows={10}>
                                                     <table className="table table-striped table-valign-middle">
@@ -76,11 +108,11 @@ function CustomerListBySubmitter({
                                                         <tbody style={{textAlign: "left"}}>
                                                         {
                                                             !isLoading ?
-                                                                customers?.list?.map((e, i) => {
+                                                                customer.map((e, i) => {
 
                                                                     return (
-                                                                        <Row key={i} data={e}
-                                                                                     number={(customers.page * customers.size) + 1 + i}/>
+                                                                        <RowList key={i} data={e}
+                                                                                     number={(pageParam * sizeParam) + 1 + i}/>
                                                                     )
                                                                 })
                                                                 :
@@ -93,6 +125,29 @@ function CustomerListBySubmitter({
                                                         </tbody>
                                                     </table>
                                                 </TableScrollbar>
+
+                                                {/*<div>*/}
+                                                {/*    <div className="row">*/}
+                                                        {/*<div className="col-lg-6">*/}
+                                                        {/*    <h5>Limit</h5>*/}
+                                                        {/*    <ButtonGroup size="sm">*/}
+                                                        {/*        <Button onClick={() => {setSizeParam(1)}}>1</Button>*/}
+                                                        {/*        <Button onClick={() => {setSizeParam(2)}}>2</Button>*/}
+                                                        {/*        <Button onClick={() => {setSizeParam(3)}}>3</Button>*/}
+                                                        {/*    </ButtonGroup>*/}
+                                                        {/*</div>*/}
+                                                        {/*<div className="col-lg-6">*/}
+                                                            <br></br>
+                                                            <PaginationButton
+                                                                currentPage = {currentPage}
+                                                                setPage={setPageParam}
+                                                                totalPage={totalPage}
+                                                            />
+                                                        {/*</div>*/}
+                                                {/*    </div>*/}
+                                                {/*</div>*/}
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -117,7 +172,10 @@ const mapStateToProps = (state) => {
     return {
         error: state.findAllCustomerBySubmitter.error,
         customers: state.findAllCustomerBySubmitter.data || [],
-        isLoading: state.findAllCustomerBySubmitter.isLoading
+        isLoading: state.findAllCustomerBySubmitter.isLoading,
+        size: state.findAllCustomerBySubmitter.pagination.size,
+        total: state.findAllCustomerBySubmitter.pagination.total,
+        currentPage: state.findAllCustomerBySubmitter.pagination.page
     }
 }
 

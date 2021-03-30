@@ -13,8 +13,8 @@ import swal from "sweetalert";
 import {findRoleByIdAction, removeByIdRoleAction, saveRoleAction} from "../../actions/roleAction";
 
 
-const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role,}) => {
-    // const {id} = useParams()
+const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByIdAction, update, updateRoleAction}) => {
+    const {id} = useParams()
     const [redirect] = useState(false)
 
     const [data, setData] = useState({
@@ -29,27 +29,27 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role,}) => {
     })
     const history = useHistory()
 
-    // useEffect(() => {
-    //     if (id) {
-    //         findRoleByIdAction(id)
-    //     }
-    // }, [id, findRoleByIdAction])
-    //
-    // useEffect(() => {
-    //     if (id && role) {
-    //         setData({...role})
-    //     }
-    // }, role)
+    useEffect(() => {
+        if (id) {
+            findRoleByIdAction(id)
+        }
+    }, [id, findRoleByIdAction])
+
+    useEffect(() => {
+        if (id && role) {
+            setData({...role})
+        }
+    }, role)
 
     useEffect(() => {
         if (saveRole) {
             swal("Add Loan Purpose Success", "", "success")
-            history.push('/need')
+            history.push('/role')
         }
         if (error) {
             swal("Sorry data already exist", '', "error")
         }
-    })
+    }, [saveRole, history, error])
 
     const handleChange = (e) => {
         let name = e.target.name
@@ -67,7 +67,11 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role,}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        saveRoleAction(data)
+        if (id) {
+            updateRoleAction(id, data)
+        } else {
+            saveRoleAction(data)
+        }
         swal("Save Success!", "", "success");
         console.log("handlesubmit", data)
         history.push('/role')

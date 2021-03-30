@@ -8,6 +8,8 @@ import Menu from "../../../components/dashboard/Menu";
 import TableScrollbar from 'react-table-scrollbar';
 import Row from "../../transaction/listTransactionByStaff/Row";
 import {PaginationButton} from "../../../components/Buttons";
+import Error from "../../Error";
+import Footer from "../../../components/dashboard/Footer";
 
 function TransactionList({
                              isLoading,
@@ -53,7 +55,7 @@ function TransactionList({
     return (
         <div>
             {
-                localStorage.getItem("roles") == "STAFF" ?
+                localStorage.getItem("inputTransaction")  == "true" ?
                     <>
                         <Containers error={error}>
                             <Header/>
@@ -132,14 +134,14 @@ function TransactionList({
                                     </div>
                                 </div>
                             </div>
-                            {/*<Footer/>*/}
+                            <Footer/>
 
                         </Containers>
                     </>
                     :
-                    <p>
-                        cannot access
-                    </p>
+                    <div>
+                        <Error/>
+                    </div>
             }
         </div>
 

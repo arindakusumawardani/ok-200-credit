@@ -12,12 +12,20 @@ const CustomerRow = ({data, onUpdate, number}) => {
                 <a onClick={data} href={`/customer/${data.id}/detail`} className="text-muted">
                     <i className="fas fa-info-circle" />
                 </a>{' '}
+                {localStorage.getItem("inputCustomer") &&
+                    <>
                 <a onClick={onUpdate} href={`/customer/${data.id}/edit`} className="text-muted">
-                    <i className="fas fa-pencil-alt" />
+                    <i className="fas fa-pencil-alt"/>
                 </a>{' '}
+                </>
+                }
+                {
+                    localStorage.getItem("inputTransaction") &&
+                <>
                 <a onClick={data} href={`/transaction/form/${data.id}`} className="text-muted">
                     <i className="fas fa-wallet" />
                 </a>{' '}
+                </>}
             </td>
         </tr>
     )

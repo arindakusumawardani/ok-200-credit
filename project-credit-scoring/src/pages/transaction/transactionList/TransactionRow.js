@@ -25,9 +25,10 @@ const TransactionRow = ({data, onUpdate, number}) => {
                 {/*<a href={`/transaction/${data.id}/detail`} className="text-muted">*/}
                 {/*    <i className="fas fa-info-circle" />*/}
                 {/*</a>{' '}*/}
-                <Button href={`/transaction/${data.id}`} style={{background:"#e42256"}}>
+                <Button href={`/approval/principal/${data.id}`} style={{background:"#e42256"}}>
                     <FontAwesomeIcon icon={faQuestionCircle}/>
                 </Button>
+
             </td>
         </tr>
     )

@@ -47,7 +47,7 @@ function ReportList({
     return (
         <div>
             {
-                localStorage.getItem("roles") == "STAFF" ?
+                localStorage.getItem("readAllReportByTransaction") ?
                     <>
                         <Containers error={error}>
                             <Header/>

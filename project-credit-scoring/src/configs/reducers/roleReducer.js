@@ -2,12 +2,17 @@ import {
     FIND_ALL_ROLE,
     FIND_ALL_ROLE_FAILURE,
     FIND_ALL_ROLE_SUCCESS,
-    FIND_ROLE_BY_ID, FIND_ROLE_BY_ID_FAILURE, FIND_ROLE_BY_ID_SUCCESS,
+    FIND_ROLE_BY_ID,
+    FIND_ROLE_BY_ID_FAILURE,
+    FIND_ROLE_BY_ID_SUCCESS,
     REMOVE_ROLE_BY_ID,
     REMOVE_ROLE_BY_ID_SUCCESS,
     SAVE_ROLE,
     SAVE_ROLE_FAILURE,
-    SAVE_ROLE_SUCCESS
+    SAVE_ROLE_SUCCESS,
+    UPDATE_ROLE_BY_ID,
+    UPDATE_ROLE_BY_ID_FAILURE,
+    UPDATE_ROLE_BY_ID_SUCCESS
 } from "../constants/actions";
 
 
@@ -77,7 +82,7 @@ export const saveRoleReducer = (state = {...initialState}, action) => {
     }
 }
 
-export const removeRoleTypeByIdReducer = (state = {...initialState, data: false}, action) => {
+export const removeRoleByIdReducer = (state = {...initialState, data: false}, action) => {
 
     switch (action.type) {
         case REMOVE_ROLE_BY_ID:
@@ -124,6 +129,36 @@ export const findRoleByIdReducer =(state = initialState, action) => {
                 data: null,
                 isLoading: false,
                 error: null,
+            };
+    }
+}
+
+export const updateRoleReducer = (state = {...initialState}, action) => {
+    switch (action.type){
+        case UPDATE_ROLE_BY_ID:
+            return {
+                ...state,
+                data: null,
+                isLoading: true
+            }
+        case UPDATE_ROLE_BY_ID_SUCCESS:
+            return {
+                data: action.data,
+                isLoading: false,
+                error: null
+            };
+        case UPDATE_ROLE_BY_ID_FAILURE:
+            return {
+                data: null,
+                isLoading: false,
+                error: action.error
+            };
+        default:
+            return {
+                ...state,
+                data: null,
+                isLoading: false,
+                error: null
             };
     }
 }

@@ -51,7 +51,7 @@ function TransactionList({
     return (
         <div>
             {
-               localStorage.getItem("roles") == "SUPERVISOR" ?
+               localStorage.getItem("readAllTransaction") == "true" ?
                     <>
                         <Containers error={error}>
                             <Header/>

@@ -1,6 +1,6 @@
 import { all } from "redux-saga/effects";
 import {
-  watchFindAllCustomer,
+  watchFindAllCustomer, watchFindAllCustomerByStaffSaga,
   watchFindAllCustomerBySubmitter,
   watchFindCustomerById,
   watchSaveCustomer,
@@ -23,7 +23,7 @@ import {
 import {watchFindAllReport, watchFindReportByStaff} from "./reportSaga";
 import {watchFindAllApproval, watchFindApprovalById, watchSaveApproval} from "./approvalSaga";
 import {watchFindAllNeed, watchFindByIdNeed, watchRemoveNeedById, watchSaveNeed, watchUpdateNeedById} from "./needSaga";
-import {watchFindAllRole, watchFindByIdRole, watchRemoveRoleById, watchSaveRole} from "./roleSaga";
+import {watchFindAllRole, watchFindByIdRole, watchRemoveRoleById, watchSaveRole, watchUpdateRoleById} from "./roleSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -52,7 +52,7 @@ export default function* rootSaga() {
     watchFindAllApproval(),
     watchFindApprovalById(),
 
-    watchFindAllCustomerBySubmitter(),
+    watchFindAllCustomerByStaffSaga(),
 
     watchSaveNeed(),
     watchFindAllNeed(),
@@ -65,6 +65,7 @@ export default function* rootSaga() {
     watchFindAllRole(),
     watchSaveRole(),
     watchRemoveRoleById(),
-    watchFindByIdRole()
+    watchFindByIdRole(),
+    watchUpdateRoleById()
   ])
 }

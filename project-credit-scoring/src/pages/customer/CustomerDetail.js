@@ -27,7 +27,7 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("inputCustomer") == "true" ?
                     <>
                         <Container>
                             <div>

@@ -4,7 +4,7 @@ import {
     FIND_ALL_ROLE,
     FIND_ALL_ROLE_FAILURE,
     FIND_ALL_ROLE_SUCCESS,
-    FIND_NEEDTYPE_BY_ID, FIND_ROLE_BY_ID,
+    FIND_NEEDTYPE_BY_ID, FIND_NEEDTYPE_BY_ID_FAILURE, FIND_ROLE_BY_ID,
     FIND_ROLE_BY_ID_FAILURE,
     FIND_ROLE_BY_ID_SUCCESS,
     REMOVE_NEEDTYPE_BY_ID,
@@ -14,7 +14,7 @@ import {
     REMOVE_ROLE_BY_ID_SUCCESS,
     SAVE_ROLE,
     SAVE_ROLE_FAILURE,
-    SAVE_ROLE_SUCCESS
+    SAVE_ROLE_SUCCESS, UPDATE_NEEDTYPE, UPDATE_NEEDTYPE_SUCCESS, UPDATE_ROLE_BY_ID, UPDATE_ROLE_BY_ID_SUCCESS
 } from "../constants/actions";
 
 
@@ -98,6 +98,31 @@ function* removeRoleById(action) {
     yield put(result)
 }
 
+function* updateRoleSaga(action) {
+    const url = `/role/${action.id}`
+    const method = 'PUT'
+    const model = action.payload
+
+    let result = yield axios({
+        url: url,
+        method: method,
+        data: model
+    })
+        .then(data => {
+            return ({
+                type: UPDATE_ROLE_BY_ID_SUCCESS,
+                data: result
+            })
+        })
+        .catch(err => {
+            return ({
+                type: FIND_ROLE_BY_ID_FAILURE,
+                error: err
+            })
+        })
+    yield put(result)
+}
+
 export function* watchFindAllRole() {
     yield takeLatest(FIND_ALL_ROLE, findAllRoleSaga)
 }
@@ -112,4 +137,8 @@ export function* watchFindByIdRole() {
 
 export function* watchRemoveRoleById() {
     yield takeLatest(REMOVE_ROLE_BY_ID, removeRoleById)
+}
+
+export function* watchUpdateRoleById() {
+    yield takeLatest(UPDATE_ROLE_BY_ID, updateRoleSaga)
 }

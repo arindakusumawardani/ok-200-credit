@@ -62,7 +62,7 @@ function AccountList({
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("master") == "true" ?
                     <>
             <Containers error={error} >
             <Header/>
@@ -119,7 +119,7 @@ function AccountList({
                                 )
                             }) :
                             <tr>
-                                <td colSpan="3"> Loading..</td>
+                                <td colSpan="8"> Loading..</td>
                             </tr>
                     }
                     </tbody>
