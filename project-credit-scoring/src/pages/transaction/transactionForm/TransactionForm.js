@@ -57,16 +57,17 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
     useEffect(() => {
         if (savedTransaction) {
 
-            if (localStorage.getItem("roles") == "MASTER") {
-                swal("Success!", "Add transaction success!", "success");
-                history.push('/transaction')
-            } else if (localStorage.getItem("roles") == "STAFF") {
-                swal("Success!", "Add transaction success!", "success");
-                history.push('/approval/staff')
-            } else {
-                swal("*Sorry you are not allowed to sign here")
-            }
-            // history.push('/transaction')
+            // if (localStorage.getItem("roles") == "MASTER") {
+            //     swal("Success!", "Add transaction success!", "success");
+            //     history.push('/transaction')
+            // } else if (localStorage.getItem("roles") == "STAFF") {
+            //     swal("Success!", "Add transaction success!", "success");
+            //     history.push('/approval/staff')
+            // } else {
+            //     swal("*Sorry you are not allowed to sign here")
+            // }
+            history.push('/staff/transaction')
+            swal("Success!", "Add transaction success!", "success")
         }
     }, [savedTransaction, history])
 

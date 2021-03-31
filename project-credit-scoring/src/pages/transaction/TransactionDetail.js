@@ -141,10 +141,13 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                             {/*<a href="/transaction/form" className="btn btn-tool btn-sm">*/}
                                                             {/*    <i className="fas fa-pencil-alt"/>*/}
                                                             {/*</a>*/}
-
+                                                            {localStorage.getItem("inputTransaction") == "true" ?
                                                             <a href="/staff/transaction" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-arrow-left"/>
-                                                            </a>
+                                                            </a>:
+                                                                <a href="/transaction" className="btn btn-tool btn-sm">
+                                                                    <i className="fas fa-arrow-left"/>
+                                                                </a>}
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">

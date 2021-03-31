@@ -20,8 +20,8 @@ const EditPassword = ({isLoading}) => {
 
     return (
         <div>
-            {
-                localStorage.getItem("roles") == "STAFF" || localStorage.getItem("roles") == "SUPERVISOR" ?
+            {/*{*/}
+            {/*    localStorage.getItem("roles") == "STAFF" || localStorage.getItem("roles") == "SUPERVISOR" ?*/}
                     <>
                         <div>
                             <Header/>
@@ -144,11 +144,11 @@ const EditPassword = ({isLoading}) => {
 
                         </div>
                     </>
-                    :
-                    <div>
-                        <Error/>
-                    </div>
-            }
+            {/*        :*/}
+            {/*        <div>*/}
+            {/*            <Error/>*/}
+            {/*        </div>*/}
+            {/*}*/}
         </div>
 
     );

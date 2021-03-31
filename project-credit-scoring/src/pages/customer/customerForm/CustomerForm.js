@@ -343,7 +343,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                     <FontAwesomeIcon icon={faSave}/>
                                                                                     Submit
                                                                                 </Button> {' '}
-                                                                                <Button href="/customer"
+                                                                                <Button href="/staff/customer"
                                                                                         style={{background: "#e42256"}}>
                                                                                     <FontAwesomeIcon
                                                                                         icon={faArrowLeft}/>
