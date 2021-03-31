@@ -2,21 +2,28 @@ import React, {useEffect, useState} from 'react';
 import {Link, Redirect, useHistory, useParams} from 'react-router-dom'
 import gambar from "../../assets/images/undraw_authentication_fsn5.svg"
 import {
-    faEnvelope,
-    faKey, faLock, faLockOpen, faServer,
-    faUser,
-    faUserCircle
+    faKey, faLock, faLockOpen,
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../account/login.css"
-import {Input, Label, FormGroup, Button, Container, Form, Col, Spinner} from "reactstrap";
+import {Button,Form,  Spinner} from "reactstrap";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
-import swal from "sweetalert";
-import Error from "../Error";
 import Footer from "../../components/dashboard/Footer";
+import {connect} from "react-redux";
+import {changePasswordAction} from "../../actions/userAction";
 
-const EditPassword = ({isLoading}) => {
+const EditPassword = ({isLoading, changePasswordAction, changePassword, error}) => {
+
+    const [oldPassword, setOldPassword] = useState('')
+    const [newPassword, setNewPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
+    const [oldPasswordError, setOldPasswordError] = useState('')
+    const [newPasswordError, setNewPasswordError] = useState('')
+    const [confirmPasswordError, setConfirmPasswordError] = useState('')
+
+
 
     return (
         <div>
@@ -66,9 +73,9 @@ const EditPassword = ({isLoading}) => {
                                                                                         className="input-group col-lg-12 mb-4">
                                                                                         <div
                                                                                             className="input-group-prepend">
-                                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                            <FontAwesomeIcon icon={faLock}/>
-                                        </span>
+                                                                                                <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                                    <FontAwesomeIcon icon={faLock}/>
+                                                                                                </span>
                                                                                         </div>
                                                                                         <input
                                                                                             required
@@ -83,14 +90,15 @@ const EditPassword = ({isLoading}) => {
                                                                                         className="input-group col-lg-12 mb-4">
                                                                                         <div
                                                                                             className="input-group-prepend">
-                                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                            <FontAwesomeIcon icon={faKey}/>
-                                        </span>
+                                                                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                                <FontAwesomeIcon icon={faKey}/>
+                                                                                            </span>
                                                                                         </div>
                                                                                         <input
                                                                                             required
                                                                                             type="password"
                                                                                             name="newPassword"
+                                                                                            // value={}
                                                                                             placeholder="new password"
                                                                                             className="form-control bg-white border-left-0 border-md"/>
                                                                                     </div>
@@ -98,9 +106,9 @@ const EditPassword = ({isLoading}) => {
                                                                                         className="input-group col-lg-12 mb-4">
                                                                                         <div
                                                                                             className="input-group-prepend">
-                                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                            <FontAwesomeIcon icon={faLockOpen}/>
-                                        </span>
+                                                                                                <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                                    <FontAwesomeIcon icon={faLockOpen}/>
+                                                                                                </span>
                                                                                         </div>
                                                                                         <input
                                                                                             required
@@ -116,8 +124,8 @@ const EditPassword = ({isLoading}) => {
                                                                                         <Button
                                                                                             style={{background: "#e42256"}}
                                                                                             block>
-                                            <span className="font-weight-bold"
-                                                  style={{color: "#ffff"}}>CHANGE PASSWORD</span>
+                                                                                                <span className="font-weight-bold"
+                                                                                                      style={{color: "#ffff"}}>CHANGE PASSWORD</span>
                                                                                         </Button>
                                                                                     </div>
 
@@ -154,4 +162,17 @@ const EditPassword = ({isLoading}) => {
     );
 
 }
-export default EditPassword;
+
+const mapStateToProps = (state) => {
+    return {
+        changePassword: state.changePasswordReducer.data,
+        isLoading: state.changePasswordReducer.isLoading,
+        error: state.changePasswordReducer.error
+    }
+}
+
+const mapDispatchToProps = {
+    changePasswordAction
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (EditPassword);

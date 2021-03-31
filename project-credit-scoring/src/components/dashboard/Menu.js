@@ -54,7 +54,7 @@ export default function Menu() {
                 <Link to="/master" className="nav-link">
                   <i className="nav-icon fas fa-users"/>
                   <p>
-                    Account User
+                    Management User
                   </p>
                 </Link>
               </li>
@@ -79,7 +79,7 @@ export default function Menu() {
                 <Link to="/staff/customer" className="nav-link">
                   <i className="nav-icon fas fa-list-alt"/>
                   <p>
-                    Customer by Submitter
+                    Customer
                   </p>
                 </Link>
               </li>}
@@ -88,7 +88,7 @@ export default function Menu() {
                     <Link to="/customer" className="nav-link">
                         <i className="nav-icon fas fa-list-alt"/>
                         <p>
-                            Customer
+                            All Customer
                         </p>
                     </Link>
                 </li>}
@@ -106,7 +106,7 @@ export default function Menu() {
                     <Link to="/staff/transaction" className="nav-link">
                         <i className="nav-icon fas fa-wallet"/>
                         <p>
-                            Transaction by Submitter
+                            All Transaction
                         </p>
                     </Link>
                 </li>}
@@ -115,7 +115,7 @@ export default function Menu() {
                 <Link to="/report/staff" className="nav-link">
                   <i className="nav-icon fas fa-check-double"/>
                   <p>
-                    Report by Submitter
+                    Report
                   </p>
                 </Link>
               </li>}
@@ -124,7 +124,7 @@ export default function Menu() {
                     <Link to="/report/" className="nav-link">
                         <i className="nav-icon fas fa-check-double"/>
                         <p>
-                            Report
+                            All Report
                         </p>
                     </Link>
                 </li>}

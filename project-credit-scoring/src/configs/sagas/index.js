@@ -29,6 +29,7 @@ import {
 } from "./approvalSaga";
 import {watchFindAllNeed, watchFindByIdNeed, watchRemoveNeedById, watchSaveNeed, watchUpdateNeedById} from "./needSaga";
 import {watchFindAllRole, watchFindByIdRole, watchRemoveRoleById, watchSaveRole, watchUpdateRoleById} from "./roleSaga";
+import {watchChangePassword} from "./userSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -72,6 +73,8 @@ export default function* rootSaga() {
     watchSaveRole(),
     watchRemoveRoleById(),
     watchFindByIdRole(),
-    watchUpdateRoleById()
+    watchUpdateRoleById(),
+
+    watchChangePassword()
   ])
 }

@@ -41,6 +41,7 @@ import {
   saveRoleReducer,
     updateRoleReducer
 } from "./roleReducer";
+import {changePasswordReducer} from "./userReducer";
 
 
 const rootReducer = combineReducers({
@@ -91,7 +92,10 @@ const rootReducer = combineReducers({
   saveRoleReducer,
   removeRoleByIdReducer,
   findRoleByIdReducer,
-  updateRoleReducer
+  updateRoleReducer,
+
+  //USER
+  changePasswordReducer
 
 })
 
