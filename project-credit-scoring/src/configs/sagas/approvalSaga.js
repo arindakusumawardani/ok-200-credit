@@ -7,6 +7,9 @@ import {
     FIND_APPROVAL_BY_ID,
     FIND_APPROVAL_BY_ID_FAILURE,
     FIND_APPROVAL_BY_ID_SUCCESS,
+    FIND_APPROVAL_SUBMITTER_BY_ID,
+    FIND_APPROVAL_SUBMITTER_BY_ID_FAILURE,
+    FIND_APPROVAL_SUBMITTER_BY_ID_SUCCESS,
     SAVE_APPROVAL,
     SAVE_APPROVAL_FAILURE,
     SAVE_APPROVAL_SUCCESS
@@ -42,11 +45,11 @@ function* saveApprovalSaga(action) {
         })
     yield put(result)
 }
-
+//benerin yg ini
 function* findApprovalByIdSaga(action) {
     let result = yield axios.get(`/approval/${action.id}`)
         .then(data => {
-            console.log("ini saga", data)
+            console.log("ini find by id saga", data)
             return ({
                 type: FIND_APPROVAL_BY_ID_SUCCESS,
                 data: data
@@ -56,6 +59,25 @@ function* findApprovalByIdSaga(action) {
         .catch(err => {
             return ({
                 type: FIND_APPROVAL_BY_ID_FAILURE,
+                error: err
+            })
+        })
+    yield put (result)
+}
+
+function* findApprovalSubmitterByIdSaga(action) {
+    let result = yield axios.get(`/approval/principal/${action.id}`)
+        .then(data => {
+            console.log("ini find by id saga", data)
+            return ({
+                type: FIND_APPROVAL_SUBMITTER_BY_ID_SUCCESS,
+                data: data
+
+            })
+        })
+        .catch(err => {
+            return ({
+                type: FIND_APPROVAL_SUBMITTER_BY_ID_FAILURE,
                 error: err
             })
         })
@@ -99,4 +121,8 @@ export function* watchFindAllApproval() {
 
 export function* watchFindApprovalById() {
     yield takeLatest (FIND_APPROVAL_BY_ID, findApprovalByIdSaga)
+}
+
+export function* watchFindApprovalSubmitterByIdSaga() {
+    yield takeLatest (FIND_APPROVAL_SUBMITTER_BY_ID, findApprovalSubmitterByIdSaga)
 }

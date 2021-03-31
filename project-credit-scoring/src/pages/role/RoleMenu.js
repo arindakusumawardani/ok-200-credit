@@ -10,7 +10,7 @@ import {Row, Col, FormGroup, Input, Label, Button} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faSave} from "@fortawesome/free-solid-svg-icons";
 import swal from "sweetalert";
-import {findRoleByIdAction, removeByIdRoleAction, saveRoleAction} from "../../actions/roleAction";
+import {findRoleByIdAction, removeByIdRoleAction, saveRoleAction, updateRoleAction} from "../../actions/roleAction";
 
 
 const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByIdAction, updateRoleAction}) => {
@@ -84,7 +84,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("master") == "true" ?
                     <>
                         <Containers>
                             <Header/>
@@ -300,7 +300,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     saveRoleAction,
     findRoleByIdAction,
-    removeByIdRoleAction
+    removeByIdRoleAction,
+    updateRoleAction
 }
 
 

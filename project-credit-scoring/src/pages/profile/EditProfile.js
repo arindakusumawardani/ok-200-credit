@@ -9,22 +9,17 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../account/login.css"
 import {Spinner, Input, Label, FormGroup, Button, Container, Form, Col} from "reactstrap";
-import {findAccountByIdAction, saveAccountAction} from "../../actions/signupAction";
-import {connect} from "react-redux";
-import DropdownList from "../../components/DropdownList/DropdownList";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
-import swal from "sweetalert";
 import Error from "../Error";
-import {findAllRoleAction} from "../../actions/roleAction";
 import Footer from "../../components/dashboard/Footer";
 
-const EditProfile = (isLoading) => {
+const EditProfile = () => {
 
     return (
         <div>
             {
-                localStorage.getItem("roles") == "STAFF" || localStorage.getItem("roles") == "SUPERVISOR" ?
+                localStorage.getItem("master") == "false" ?
                     <>
                         <div>
                             <Header/>
@@ -56,9 +51,9 @@ const EditProfile = (isLoading) => {
                                                                         <h1 style={{
                                                                             color: "#e42256",
                                                                             fontSize: "55px"
-                                                                        }}>Create Account</h1>
+                                                                        }}>Edit Account</h1>
 
-                                                                        {!isLoading ?
+                                                                        {/*{!isLoading ?*/}
                                                                             <Form>
                                                                                 <div className="row">
                                                                                     <div
@@ -100,9 +95,9 @@ const EditProfile = (isLoading) => {
                                                                                         className="input-group col-lg-12 mb-4">
                                                                                         <div
                                                                                             className="input-group-prepend">
-                                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                            <FontAwesomeIcon icon={faEnvelope}/>
-                                        </span>
+                                                                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                                <FontAwesomeIcon icon={faEnvelope}/>
+                                                                                            </span>
                                                                                         </div>
                                                                                         <input
                                                                                             required
@@ -133,18 +128,13 @@ const EditProfile = (isLoading) => {
                                                                                         <Button
                                                                                             style={{background: "#e42256"}}
                                                                                             block>
-                                            <span className="font-weight-bold"
-                                                  style={{color: "#ffff"}}>CREATE ACCOUNT</span>
+                                                                                            <span className="font-weight-bold"
+                                                                                                  style={{color: "#ffff"}}>CREATE ACCOUNT</span>
                                                                                         </Button>
                                                                                     </div>
 
                                                                                 </div>
                                                                             </Form>
-                                                                            :
-                                                                            <div>
-                                                                                <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
-                                                                            </div>
-                                                                        }
 
                                                                     </div>
                                                                 </div>

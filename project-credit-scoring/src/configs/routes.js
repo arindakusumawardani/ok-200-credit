@@ -140,7 +140,7 @@ const routes = [
         exact: true
     },
     {
-        path: '/profile',
+        path: '/users',
         component: <EditProfile/>,
         exact: true
     },

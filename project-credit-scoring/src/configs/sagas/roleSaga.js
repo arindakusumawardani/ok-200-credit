@@ -62,7 +62,7 @@ function* saveRoleSaga(action) {
 }
 
 function* findRoleByIdSaga(action) {
-    // console.log("SAGA ID", action)
+    console.log("SAGA ID", action)
     let result = yield axios.get(`/role/${action.id}`)
         .then(data => {
             // console.log("DATA", data)
@@ -100,6 +100,7 @@ function* removeRoleById(action) {
 
 function* updateRoleSaga(action) {
     const url = `/role/${action.id}`
+    console.log("saga update", action.id)
     const method = 'PUT'
     const model = action.payload
 

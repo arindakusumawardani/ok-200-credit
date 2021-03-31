@@ -64,7 +64,7 @@ export default function Header() {
         {/*      </li>*/}
         {/*</ul>*/}
         {/*}*/}
-        {localStorage.getItem("roles") == "STAFF" || localStorage.getItem("roles") == "SUPERVISOR" &&
+        {localStorage.getItem("master") == "false" &&
         <>
           <li className="nav-item dropdown">
             <a className="nav-link" data-toggle="dropdown" style={{width:"2vw", fontSize:"1vw"}}>
@@ -73,7 +73,7 @@ export default function Header() {
             </a>
             <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <div className="dropdown-divider" />
-              <Link to="/profile" className="dropdown-item">
+              <Link to="/users" className="dropdown-item">
                 <FontAwesomeIcon icon={faUserCog}/> Setting Profile
                 <span className="float-right text-muted text-sm"></span>
               </Link>

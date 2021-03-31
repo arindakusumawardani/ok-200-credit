@@ -114,6 +114,8 @@ function* findTransactionByStaffSaga(action) {
     parameter = parameter.replace(/\s+/g, '+')
     let result = yield axios.get(`/approval/principal?${parameter}`)
         .then(data => {
+            // console.log("saga data", data)
+
             return ({
                 type: FIND_TRANSACTION_BY_STAFF_SUCCESS,
                 data: data.list,

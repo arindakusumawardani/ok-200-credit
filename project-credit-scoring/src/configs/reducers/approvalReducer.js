@@ -1,6 +1,12 @@
 import {
-    FIND_ALL_APPROVAL, FIND_ALL_APPROVAL_FAILURE, FIND_ALL_APPROVAL_SUCCESS,
-    FIND_APPROVAL_BY_ID, FIND_APPROVAL_BY_ID_FAILURE, FIND_APPROVAL_BY_ID_SUCCESS,
+    FIND_ALL_APPROVAL,
+    FIND_ALL_APPROVAL_FAILURE,
+    FIND_ALL_APPROVAL_SUCCESS,
+    FIND_APPROVAL_BY_ID,
+    FIND_APPROVAL_BY_ID_FAILURE,
+    FIND_APPROVAL_BY_ID_SUCCESS,
+    FIND_APPROVAL_SUBMITTER_BY_ID, FIND_APPROVAL_SUBMITTER_BY_ID_FAILURE,
+    FIND_APPROVAL_SUBMITTER_BY_ID_SUCCESS,
     SAVE_APPROVAL,
     SAVE_APPROVAL_FAILURE,
     SAVE_APPROVAL_SUCCESS
@@ -67,7 +73,7 @@ export const findApprovalByIdReducer = (state = {initialState, data: false}, act
 
             };
         case FIND_APPROVAL_BY_ID_SUCCESS:
-            console.log("ini reducer", action.data)
+            console.log("ini find by id reducer", action.data)
             return {
                 data: action.data,
                 isLoading: false,
@@ -87,6 +93,37 @@ export const findApprovalByIdReducer = (state = {initialState, data: false}, act
             };
     }
 }
+
+export const findApprovalSubmitterByIdReducer = (state = {initialState, data: false}, action) => {
+    switch (action.type) {
+        case FIND_APPROVAL_SUBMITTER_BY_ID:
+            return {
+                ...state,
+                isLoading: true
+
+            };
+        case FIND_APPROVAL_SUBMITTER_BY_ID_SUCCESS:
+            console.log("ini find by id reducer", action.data)
+            return {
+                data: action.data,
+                isLoading: false,
+                error: null
+            };
+        case FIND_APPROVAL_SUBMITTER_BY_ID_FAILURE:
+            return {
+                data: false,
+                isLoading: false,
+                error: action.error
+            };
+        default:
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
+            };
+    }
+}
+
 
 export const findAllApprovalReducer = (state = initialState, action) => {
     switch (action.type) {

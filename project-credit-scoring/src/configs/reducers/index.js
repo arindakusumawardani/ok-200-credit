@@ -21,7 +21,12 @@ import {
   updateAccountReducer
 } from "./signupReducer";
 import {findAllReportByStaff, findAllReportReducer} from "./reportReducer";
-import {saveApprovalReducer, findAllApprovalReducer, findApprovalByIdReducer} from "./approvalReducer";
+import {
+  saveApprovalReducer,
+  findAllApprovalReducer,
+  findApprovalByIdReducer,
+  findApprovalSubmitterByIdReducer
+} from "./approvalReducer";
 import {
   findAllNeedReducer,
   findNeedTypeByIdReducer,
@@ -72,6 +77,7 @@ const rootReducer = combineReducers({
   saveApprovalReducer,
   findAllApprovalReducer,
   findApprovalByIdReducer,
+  findApprovalSubmitterByIdReducer,
 
   //NEEDTYPE
   findAllNeedReducer,

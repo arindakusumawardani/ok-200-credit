@@ -35,6 +35,7 @@ export function removeByIdRoleAction(id) {
 }
 
 export function updateRoleAction(id, payload) {
+    console.log("action id", id)
     return {
         type: UPDATE_ROLE_BY_ID,
         id,

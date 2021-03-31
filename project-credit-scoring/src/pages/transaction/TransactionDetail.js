@@ -7,12 +7,16 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faCheckCircle, faCross, faSave, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 import NumberFormat from "react-number-format"
 import {Button} from "reactstrap";
-import {findByIdApprovalAction, saveApprovalAction} from "../../actions/approvalAction";
+import {
+    findByIdApprovalAction,
+    findByIdApprovalSubmitterAction,
+    saveApprovalAction
+} from "../../actions/approvalAction";
 import Error from "../Error";
 import swal from "sweetalert";
 
 
-function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprovalAction, savedApprove}) {
+function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprovalAction, savedApprove, findByIdApprovalSubmitterAction, transactionSubmitter, error }) {
 
     const {id} = useParams()
     const [redirect] = useState(false)
@@ -64,6 +68,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
             }
         })
         console.log(approval)
+        history.push('/report')
         swal("Reject!", "Transaction has been rejected!", "success");
     }
     //
@@ -83,18 +88,25 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
 
     useEffect(() => {
         if (id && transaction) {
-
+            console.log("ini data detail", transaction)
             setData({...transaction})
+        } else if (id && transactionSubmitter) {
+            console.log("ini data detail submiter", transactionSubmitter)
+            setData({...transactionSubmitter})
         }
-        console.log("ini data", transaction)
-    }, [transaction])
+    }, [transaction, transactionSubmitter])
 
     useEffect(() => {
         if (id) {
-            console.log("ID",id)
-            findByIdDispatch(id)
+            if (localStorage.getItem('readAllTransaction') == "true") {
+                findByIdDispatch(id)
+                console.log("readALL", findByIdDispatch)
+            } else if (localStorage.getItem('inputTransaction') == "true"){
+                findByIdApprovalSubmitterAction(id)
+                console.log("inputTransaction", findByIdApprovalSubmitterAction)
+            }
         }
-    }, [id, findByIdDispatch])
+    }, [id, findByIdDispatch, findByIdApprovalSubmitterAction])
 
     if (redirect === true) {
         return <Redirect to="/report"/>
@@ -130,7 +142,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                             {/*    <i className="fas fa-pencil-alt"/>*/}
                                                             {/*</a>*/}
 
-                                                            <a href="/approval/staff" className="btn btn-tool btn-sm">
+                                                            <a href="/staff/transaction" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-arrow-left"/>
                                                             </a>
                                                         </div>
@@ -142,53 +154,53 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
 
                                                             <tr>
                                                                 <td>Name</td>
-                                                                <td>{data?.transaction?.customer?.name}</td>
+                                                                    <td>{data?.transaction?.customer?.name}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Employee Type</td>
-                                                                <td>{data?.transaction?.customer?.employeeType}</td>
+                                                                    <td>{data?.transaction?.customer?.employeeType}</td>
                                                             </tr>
                                                             {data?.transaction?.customer?.employeeType == "CONTRACT"
                                                             &&
                                                             <>
                                                                 <tr>
                                                                     <td>Contract Start</td>
-                                                                    <td>{data?.transaction?.customer?.contractStart}</td>
+                                                                        <td>{data?.transaction?.customer?.contractStart}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Contract Length</td>
-                                                                    <td>{data?.transaction?.customer?.contractLength}</td>
-                                                                </tr>
+                                                                        <td>{data?.transaction?.customer?.contractLength}</td>
+                                                                        </tr>
                                                             </>}
                                                             <tr>
                                                                 <td>Income</td>
-                                                                <td><NumberFormat value={data?.transaction?.income}
+                                                                    <td><NumberFormat value={data?.transaction?.income}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
                                                                                   prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Outcome</td>
-                                                                <td><NumberFormat value={data?.transaction?.outcome}
+                                                                    <td><NumberFormat value={data?.transaction?.outcome}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
                                                                                   prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Loan</td>
-                                                                <td><NumberFormat value={data?.transaction?.loan}
+                                                                    <td><NumberFormat value={data?.transaction?.loan}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
                                                                                   prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Tenor</td>
-                                                                <td>{data?.transaction?.tenor} month</td>
-                                                            </tr>
+                                                                    <td>{data?.transaction?.tenor} month</td>
+                                                                    </tr>
                                                             <tr>
                                                                 <td>Interest Rate</td>
-                                                                <td>{data?.transaction?.interestRate} %</td>
-                                                            </tr>
+                                                                    <td>{data?.transaction?.interestRate} %</td>
+                                                                    </tr>
                                                             <tr>
                                                                 <td>Main Loan</td>
                                                                 <td><NumberFormat value={data?.transaction?.mainLoan}
@@ -282,14 +294,16 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
 
 const mapStateToProps = (state) => {
     return {
-        isLoading: state.findApprovalByIdReducer || state.saveApprovalReducer.loading,
+        isLoading: state.findApprovalByIdReducer.isLoading || state.saveApprovalReducer.isLoading || state.findApprovalSubmitterByIdReducer.isLoading,
         transaction: state.findApprovalByIdReducer.data,
-        savedApprove: state.saveApprovalReducer.data
+        savedApprove: state.saveApprovalReducer.data,
+        transactionSubmitter: state.findApprovalSubmitterByIdReducer.data,
+        error: state.findApprovalByIdReducer.error || state.saveApprovalReducer.error || state.findApprovalSubmitterByIdReducer.error,
     }
 }
 
 const mapDispatchToProps = {
-    findByIdDispatch: findByIdApprovalAction,
+    findByIdDispatch: findByIdApprovalAction, findByIdApprovalSubmitterAction,
     saveApprovalAction
 }
 
