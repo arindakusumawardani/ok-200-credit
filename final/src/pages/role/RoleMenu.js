@@ -92,7 +92,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                             <div className="content-wrapper">
                                 <div className="content-header">
                                     <div className="container-fluid">
-                                        <div className="row mb-2">
+                                        <div className="row mb-2" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
                                             <div className="col-sm-6">
                                                 <h1 className="m-0 text-dark">Management Role</h1>
                                             </div>
@@ -101,7 +101,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row">
+                                        <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
                                             <div className="col-lg-8" style={{alignContent: "center"}}>
 
                                                 <div className="card">

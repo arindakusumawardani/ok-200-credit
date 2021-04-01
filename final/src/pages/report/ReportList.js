@@ -89,32 +89,32 @@ function ReportList({
                                             <div className="col-lg-12">
 
                                                 <div className="card">
-                                                    <div className="card-header border-0" style={{display:"flex", justifyContent:"flex-start"}}>
-                                                        <div className="card-tools" style={{width: '100%', display: 'flex', justifyContent: "space-between"}}>
-                                                            <ButtonGroup>
-                                                                <Button onClick={handleApproved}>Rejected</Button>
-                                                                <Button onClick={handleAll}>All</Button>
-                                                                <Button onClick={handleRejected}>Approved</Button>
-                                                            </ButtonGroup>
-                                                            <a href="/report/download" className="btn btn-tool btn-sm" style={{display: 'flex', alignItems: 'center'}}>
+                                                    <div className="card-header border-0" >
+                                                        <div className="card-tools" >
+                                                            {/*<ButtonGroup>*/}
+                                                            {/*    <Button onClick={handleApproved}>Rejected</Button>*/}
+                                                            {/*    <Button onClick={handleAll}>All</Button>*/}
+                                                            {/*    <Button onClick={handleRejected}>Approved</Button>*/}
+                                                            {/*</ButtonGroup>*/}
+                                                            <a href="/report/download" className="btn btn-tool btn-sm" >
                                                                 <i className="fas fa-download"/>
                                                             </a>
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
-                                                        <TableScrollbar rows={9}>
+                                                        <TableScrollbar rows={11}>
                                                         <table className="table table-striped table-bordered table-align-middle table-head-fixed text-nowrap">
                                                             <thead style={{background:"#FCE051"}}>
                                                             <tr >
-                                                                <th colSpan="5" style={{textAlign: "center"}}> Customer Data</th>
-                                                                <th colSpan="10" style={{textAlign: "center"}}>Transaction</th>
-                                                                <th colSpan="6" style={{textAlign: "center"}}>Approved</th>
+                                                                <th colSpan="6" style={{textAlign: "center", backgroundColor:"#F6FDFE"}}> Customer Data</th>
+                                                                <th colSpan="9" style={{textAlign: "center", backgroundColor:"#FFFFFF"}}>Transaction</th>
+                                                                <th colSpan="6" style={{textAlign: "center", backgroundColor:"#F6FDFE"}}>Approved</th>
                                                             </tr>
                                                             <tr style={{textAlign: "center"}}>
                                                                 <th>No</th>
-                                                                <th>Name</th>
+                                                                <th>Full Name</th>
                                                                 <th>Email</th>
-                                                                <th>Id Number</th>
+                                                                <th>Number Identity</th>
                                                                 <th>Address</th>
                                                                 <th>Employee Type</th>
                                                                 <th>Income</th>
@@ -125,7 +125,7 @@ function ReportList({
                                                                 <th>Principal</th>
                                                                 <th>Interest</th>
                                                                 <th>Installment</th>
-                                                                <th>Installment Total</th>
+                                                                <th>Total Installment</th>
                                                                 <th>Credit Ratio</th>
                                                                 <th>Finance Criteria</th>
                                                                 <th>Employee Criteria</th>

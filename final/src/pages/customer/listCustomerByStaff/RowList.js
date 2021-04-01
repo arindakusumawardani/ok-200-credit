@@ -8,7 +8,7 @@ const RowList = ({data, onUpdate, number}) => {
             <td>{data.idNumber} </td>
             <td>{data.employeeType}</td>
             <td>{data.submitter}</td>
-            <td>
+            <td style={{textAlign: "left"}}>
                 <a onClick={data} href={`/customer/${data.id}/detail`} className="text-muted">
                     <i className="fas fa-info-circle" />
                 </a>{' '}

@@ -66,7 +66,7 @@ function TransactionList({
                                     <div className="container-fluid">
                                         <div className="row mb-2">
                                             <div className="col-sm-6">
-                                                <h1 className="m-0 text-dark">List Transaction</h1>
+                                                <h1 className="m-0 text-dark">List All Transaction</h1>
                                             </div>
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@ function TransactionList({
 
                                                     <div className="card-body table-responsive p-0">
 
-                                                        <TableScrollbar rows={11}>
+                                                        <TableScrollbar rows={13}>
                                                         <table className="table table-striped table-valign-middle">
                                                             <thead style={{textAlign: "left", background:"#FCE051"}}>
                                                             <tr>

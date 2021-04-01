@@ -53,12 +53,12 @@ export default function Header() {
       {/* Left navbar links */}
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a className="nav-link" data-widget="pushmenu" href="#" role="button" style={{width:"2vw", fontSize:"1vw"}}>
+          <a className="nav-link" data-widget="pushmenu" href="#" role="button" >
             <i className="fas fa-bars" />
           </a>
         </li>
         <li className="nav-item d-none d-sm-inline-block">
-          <Link to="/dashboard" className="nav-link" style={{width:"2vw", fontSize:"1vw"}}>
+          <Link to="/dashboard" className="nav-link">
             <FontAwesomeIcon icon={faHome}/>
           </Link>
         </li>
@@ -105,7 +105,7 @@ export default function Header() {
           <Link
           className="nav-link"
           to="/password"
-          style={{width:"2vw", fontSize:"1vw"}}
+          // style={{width:"2vw", fontSize:"1vw"}}
           >
           <FontAwesomeIcon icon={faCogs}/>
           </Link>
@@ -116,7 +116,7 @@ export default function Header() {
             className="nav-link"
             onClick={handleOnclick}
             // to="/"
-            style={{width:"2vw", fontSize:"1vw"}}
+            // style={{width:"2vw", fontSize:"1vw"}}
           >
             <FontAwesomeIcon icon={faSignOutAlt}/>
           </Link>

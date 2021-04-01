@@ -60,7 +60,7 @@ const ReasonUse = ({
     return (
         <div>
             {
-                localStorage.getItem("roles") == "MASTER" ?
+                localStorage.getItem("master") == "true" ?
                     <>
                         <Containers error={error}>
                             <Header/>

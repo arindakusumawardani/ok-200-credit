@@ -18,7 +18,7 @@ function ReportDetail() {
     return(
         <div>
             {
-                localStorage.getItem("readAllReport") ?
+                localStorage.getItem("readAllReport") == "true" ?
                     <>
                         <div>
                             <div className="content-wrapper">

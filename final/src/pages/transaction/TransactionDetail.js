@@ -14,6 +14,8 @@ import {
 } from "../../actions/approvalAction";
 import Error from "../Error";
 import swal from "sweetalert";
+import Footer from "../../components/dashboard/Footer";
+import TableScrollbar from "react-table-scrollbar";
 
 
 function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprovalAction, savedApprove, findByIdApprovalSubmitterAction, transactionSubmitter, error }) {
@@ -151,59 +153,81 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
+
+                                                        <TableScrollbar rows={15}>
                                                         <table className="table table-striped table-valign-middle">
 
                                                             <tbody style={{textAlign: "left"}}>
 
                                                             <tr>
-                                                                <td>Name</td>
-                                                                    <td>{data?.transaction?.customer?.name}</td>
+                                                                <td>Full Name</td>
+                                                                <td>{data?.transaction?.customer?.name}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Number Identity</td>
+                                                                <td>{data?.transaction?.customer?.idNumber}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Email</td>
+                                                                <td>{data?.transaction?.customer?.email}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Address</td>
+                                                                <td>{data?.transaction?.customer?.address}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Submitter</td>
+                                                                <td>{data?.transaction?.customer?.submitter}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Employee Type</td>
-                                                                    <td>{data?.transaction?.customer?.employeeType}</td>
+                                                                <td>{data?.transaction?.customer?.employeeType}</td>
                                                             </tr>
                                                             {data?.transaction?.customer?.employeeType == "CONTRACT"
                                                             &&
                                                             <>
                                                                 <tr>
-                                                                    <td>Contract Start</td>
-                                                                        <td>{data?.transaction?.customer?.contractStart}</td>
+                                                                    <td>Contract Duration</td>
+                                                                    <td>{data?.transaction?.customer?.contractLength}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Contract Length</td>
-                                                                        <td>{data?.transaction?.customer?.contractLength}</td>
-                                                                        </tr>
+                                                                    <td>Contract Start</td>
+                                                                    <td>{data?.transaction?.customer?.contractStart}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Contract End</td>
+                                                                    <td>{data?.transaction?.customer?.contractEnd}</td>
+                                                                </tr>
                                                             </>}
                                                             <tr>
                                                                 <td>Income</td>
-                                                                    <td><NumberFormat value={data?.transaction?.income}
+                                                                <td><NumberFormat value={data?.transaction?.income}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
                                                                                   prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Outcome</td>
-                                                                    <td><NumberFormat value={data?.transaction?.outcome}
+                                                                <td><NumberFormat value={data?.transaction?.outcome}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
                                                                                   prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Loan</td>
-                                                                    <td><NumberFormat value={data?.transaction?.loan}
+                                                                <td><NumberFormat value={data?.transaction?.loan}
                                                                                   displayType={'text'}
                                                                                   thousandSeparator={true}
                                                                                   prefix={'Rp '}/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Tenor</td>
-                                                                    <td>{data?.transaction?.tenor} month</td>
-                                                                    </tr>
+                                                                <td>{data?.transaction?.tenor} month</td>
+                                                            </tr>
                                                             <tr>
                                                                 <td>Interest Rate</td>
-                                                                    <td>{data?.transaction?.interestRate} %</td>
-                                                                    </tr>
+                                                                <td>{data?.transaction?.interestRate} %</td>
+                                                            </tr>
                                                             <tr>
                                                                 <td>Principal</td>
                                                                 <td><NumberFormat value={data?.transaction?.mainLoan}
@@ -232,25 +256,30 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                                   thousandSeparator={true}
                                                                                   prefix={'Rp '}/></td>
                                                             </tr>
+                                                            <tr>
+                                                                <td>Loan Purpose</td>
+                                                                <td>{data?.transaction?.needType.type}</td>
+                                                            </tr>
+
                                                             {localStorage.getItem("approveTransaction") == "true" &&
-                                                                <>
-                                                                    {console.log("dataaa masuk", data?.transaction)}
-                                                            <tr>
-                                                                <td>Credit ratio</td>
-                                                                <td>{data?.transaction?.creditRatio} %</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Finance Criteria</td>
-                                                                <td>{data?.transaction?.financeCriteria ?
-                                                                    "PASS" : "NOT PASS"
-                                                                }</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Employee Criteria</td>
-                                                                <td>{data?.transaction?.employeeCriteria ?
-                                                                    "PASS" : "NOT PASS"
-                                                                }</td>
-                                                            </tr>
+                                                            <>
+                                                                {console.log("dataaa masuk", data?.transaction)}
+                                                                <tr>
+                                                                    <td>Credit Ratio</td>
+                                                                    <td>{data?.transaction?.creditRatio} %</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Finance Criteria</td>
+                                                                    <td>{data?.transaction?.financeCriteria ?
+                                                                        "PASS" : "NOT PASS"
+                                                                    }</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Employee Criteria</td>
+                                                                    <td>{data?.transaction?.employeeCriteria ?
+                                                                        "PASS" : "NOT PASS"
+                                                                    }</td>
+                                                                </tr>
                                                             </>}
                                                             <tr>
                                                                 <td>Notes</td>
@@ -276,6 +305,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
 
                                                             </tbody>
                                                         </table>
+                                                        </TableScrollbar>
                                                     </div>
                                                 </div>
                                             </div>
@@ -283,7 +313,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                     </div>
                                 </div>
                             </div>
-                            {/*<Footer/>*/}
+                            <Footer/>
                         </div>
                     </>
                     :

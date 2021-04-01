@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useHistory, useParams} from 'react-router-dom'
 import {Redirect} from "react-router-dom"
 import {connect} from "react-redux"
-import {Button, Form, FormGroup, Input, Label, Col} from "reactstrap";
+import {Button, Form, FormGroup, Input, Label, Col, Spinner} from "reactstrap";
 import {findNeedByIdAction, saveNeedAction, updateNeedAction} from "../../actions/needAction";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
@@ -124,7 +124,9 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
                                                                         </FormGroup>
 
                                                                     </Form> :
-                                                                    <div>Loading...</div>
+                                                                    <div className="spinner">
+                                                                        <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                    </div>
                                                                 }
                                                             </div>
                                                         </div>

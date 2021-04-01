@@ -8,7 +8,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faSave} from "@fortawesome/free-solid-svg-icons";
 import Container from "../../../components/Containers/Container";
 import DropdownList from "../../../components/DropdownList/DropdownList";
-import SignIn from "../../account/SignIn";
 import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
 import swal from "sweetalert";
@@ -179,8 +178,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                 {!isLoading ?
                                                                     <Form onSubmit={handleSubmit}>
                                                                         <FormGroup row>
-                                                                            <Label htmlFor="name" sm={3} style={{textAlign:"left"}}>Customer's
-                                                                                Name
+                                                                            <Label htmlFor="name" sm={3} style={{textAlign:"left"}}>Full Name
                                                                                 <span style={{color:"red"}}> *</span>
                                                                             </Label>
                                                                             <Col sm={9}>
@@ -207,8 +205,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             </Col>
                                                                         </FormGroup>
                                                                         <FormGroup row>
-                                                                            <Label htmlFor="idNumber" sm={3} style={{textAlign:"left"}}>ID
-                                                                                Number
+                                                                            <Label htmlFor="idNumber" sm={3} style={{textAlign:"left"}}>Number Identity
                                                                                 <span style={{color:"red"}}> *</span></Label>
                                                                             <Col sm={9}>
 
@@ -238,15 +235,14 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             </Col>
                                                                         </FormGroup>
                                                                         <FormGroup row>
-                                                                            <Label htmlFor="select" sm={3} style={{textAlign:"left"}}>Type of
-                                                                                customer
+                                                                            <Label htmlFor="select" sm={3} style={{textAlign:"left"}}>Employee Type
                                                                                 <span style={{color:"red"}}> *</span></Label>
                                                                             <Col sm={9}>
                                                                                 <DropdownList
                                                                                     data={[
-                                                                                        {value: "NON", label: "NON EMPLOYEE"},
+                                                                                        // {value: "NON", label: "NON EMPLOYEE"},
                                                                                         {
-                                                                                            value: "REGULAR",
+                                                                                            value: "EMPLOYEE",
                                                                                             label: "EMPLOYEE"
                                                                                         },
                                                                                         {
@@ -280,7 +276,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             </FormGroup>
                                                                             <FormGroup row>
                                                                                 <Label for="contractLength" sm={3} style={{textAlign:"left"}}>Contract
-                                                                                    Length
+                                                                                    Duration
                                                                                     <span style={{color:"red"}}> *</span></Label>
                                                                                 <Col sm={9}>
                                                                                     <Input
@@ -337,7 +333,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             </Col>
                                                                         </FormGroup>
                                                                     </Form> :
-                                                                    <div>
+                                                                    <div className="spinner">
                                                                         <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
                                                                     </div>
                                                                 }

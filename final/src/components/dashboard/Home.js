@@ -20,9 +20,9 @@ function Content({
         onReload()
     }, [])
 
-    useEffect( () => {
+    useEffect(() => {
 
-            setData(dashboard)
+        setData(dashboard)
 
         console.log("ini data", data)
     }, [dashboard])
@@ -53,6 +53,8 @@ function Content({
 
                                     <div className="card-body">
 
+                                        {localStorage.getItem("master") == "false" &&
+                                            <>
                                         <div
                                             className="d-flex justify-content-between align-items-center border-bottom mb-3">
                                             <p className="text-success text-xl">
@@ -80,7 +82,8 @@ function Content({
                                             </p>
                                         </div>
                                         {/* /.d-flex */}
-                                        <div className="d-flex justify-content-between align-items-center border-bottom mb-3">
+                                        <div
+                                            className="d-flex justify-content-between align-items-center border-bottom mb-3">
                                             <p className="text-danger text-xl">
                                                 <i className="ion ion-ios-list-outline"/>
                                             </p>
@@ -106,7 +109,9 @@ function Content({
                                                 <span className="text-muted">Rejected</span>
                                             </p>
                                         </div>
-
+                                        </>
+                                        }
+                                        {localStorage.getItem("master") == "true" &&
                                         <div
                                             className="d-flex justify-content-between align-items-center border-bottom mb-3">
                                             <p className="text-success text-xl">
@@ -119,9 +124,9 @@ function Content({
                                                   </span>
                                                 <span className="text-muted">Total User</span>
                                             </p>
+
                                         </div>
-
-
+                                        }
                                     </div>
                                 </div>
                             </div>

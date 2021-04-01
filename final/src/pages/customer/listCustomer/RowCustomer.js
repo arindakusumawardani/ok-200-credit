@@ -8,11 +8,11 @@ const CustomerRow = ({data, onUpdate, number}) => {
             <td>{data.idNumber} </td>
             <td>{data.employeeType}</td>
             <td>{data.submitter}</td>
-            <td>
+            <td style={{textAlign: "left"}}>
                 <a onClick={data} href={`/customer/${data.id}/detail`} className="text-muted">
                     <i className="fas fa-info-circle" />
                 </a>{' '}
-                {localStorage.getItem("inputCustomer") &&
+                {localStorage.getItem("inputCustomer") == "true" &&
                     <>
                 <a onClick={onUpdate} href={`/customer/${data.id}/edit`} className="text-muted">
                     <i className="fas fa-pencil-alt"/>
@@ -20,7 +20,7 @@ const CustomerRow = ({data, onUpdate, number}) => {
                 </>
                 }
                 {
-                    localStorage.getItem("inputTransaction") &&
+                    localStorage.getItem("inputTransaction") == "true" &&
                 <>
                 <a onClick={data} href={`/transaction/form/${data.id}`} className="text-muted">
                     <i className="fas fa-wallet" />

@@ -320,12 +320,8 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                         </Col>
                                                                     </FormGroup>
                                                                 </Form> :
-                                                                <div>
-                                                                    <Spinner style={{
-                                                                        width: '5rem',
-                                                                        height: '5rem',
-                                                                        color: "#e42256"
-                                                                    }}/>{' '}
+                                                                <div className="spinner">
+                                                                    <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
                                                                 </div>
                                                             }
                                                         </div>

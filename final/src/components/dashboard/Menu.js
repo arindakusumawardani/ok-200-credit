@@ -92,24 +92,24 @@ export default function Menu() {
                         </p>
                     </Link>
                 </li>}
-                {localStorage.getItem('readAllTransaction') == "true" &&
-              <li className="nav-item has-treeview">
-                <Link to="/transaction" className="nav-link">
-                  <i className="nav-icon fas fa-wallet"/>
-                  <p>
-                    Transaction
-                  </p>
-                </Link>
-              </li>}
                 {localStorage.getItem('inputTransaction') == "true" &&
                 <li className="nav-item has-treeview">
                     <Link to="/staff/transaction" className="nav-link">
                         <i className="nav-icon fas fa-wallet"/>
                         <p>
-                            All Transaction
+                            Transaction
                         </p>
                     </Link>
                 </li>}
+                {localStorage.getItem('readAllTransaction') == "true" &&
+              <li className="nav-item has-treeview">
+                <Link to="/transaction" className="nav-link">
+                  <i className="nav-icon fas fa-wallet"/>
+                  <p>
+                    All Transaction
+                  </p>
+                </Link>
+              </li>}
                 {localStorage.getItem('readAllReportByTransaction') == "true" &&
               <li className="nav-item has-treeview">
                 <Link to="/report/staff" className="nav-link">

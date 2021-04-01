@@ -13,6 +13,7 @@ import Footer from "../../components/dashboard/Footer";
 import {connect} from "react-redux";
 import {changePasswordAction} from "../../actions/userAction";
 import swal from "sweetalert";
+import Error from "../Error";
 
 const EditPassword = ({isLoading, changePasswordAction, changePassword, error}) => {
 
@@ -77,8 +78,8 @@ const EditPassword = ({isLoading, changePasswordAction, changePassword, error}) 
 
     return (
         <div>
-            {/*{*/}
-            {/*    localStorage.getItem("roles") == "STAFF" || localStorage.getItem("roles") == "SUPERVISOR" ?*/}
+            {
+                localStorage.getItem("master") == "false" ?
                     <>
                         <div>
                             <Header/>
@@ -193,7 +194,10 @@ const EditPassword = ({isLoading, changePasswordAction, changePassword, error}) 
                                                                                 </div>
                                                                             </Form>
                                                                             :
-                                                                            <div>
+                                                                            // <div>
+                                                                            //     <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                            // </div>
+                                                                            <div className="spinner">
                                                                                 <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
                                                                             </div>
                                                                         }
@@ -213,11 +217,11 @@ const EditPassword = ({isLoading, changePasswordAction, changePassword, error}) 
 
                         </div>
                     </>
-            {/*        :*/}
-            {/*        <div>*/}
-            {/*            <Error/>*/}
-            {/*        </div>*/}
-            {/*}*/}
+                    :
+                    <div>
+                        <Error/>
+                    </div>
+            }
         </div>
 
     );

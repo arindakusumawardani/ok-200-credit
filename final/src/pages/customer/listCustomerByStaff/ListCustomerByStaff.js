@@ -89,16 +89,16 @@ function CustomerListBySubmitter({
                                             </div>
                                             <div className="card-body table-responsive p-0">
 
-                                                <TableScrollbar rows={10}>
+                                                <TableScrollbar rows={13}>
                                                     <table className="table table-striped table-bordered table-align-middle table-head-fixed">
                                                         <thead style={{textAlign: "left", background:"#FCE051"}}>
-                                                        <tr>
-                                                            <th>Number</th>
-                                                            <th>Customer Name</th>
-                                                            <th>ID Card</th>
-                                                            <th>Employee Type</th>
-                                                            <th>Submitter</th>
-                                                            <th>Action</th>
+                                                        <tr style={{textAlign: "left", background:"#FCE051"}}>
+                                                            <th style={{background:"#FCE051"}}>Number</th>
+                                                            <th style={{background:"#FCE051"}}>Full Name</th>
+                                                            <th style={{background:"#FCE051"}}>Number Identity</th>
+                                                            <th style={{background:"#FCE051"}}>Employee Type</th>
+                                                            <th style={{background:"#FCE051"}}>Submitter</th>
+                                                            <th style={{background:"#FCE051"}}>Action</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody style={{textAlign: "left"}}>
@@ -112,11 +112,9 @@ function CustomerListBySubmitter({
                                                                     )
                                                                 })
                                                                 :
-                                                                <tr>
-                                                                    <div className="spinner">
-                                                                        <Spinner  style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
-                                                                    </div>
-                                                                </tr>
+                                                                <div className="spinner">
+                                                                    <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                </div>
                                                         }
                                                         </tbody>
                                                     </table>

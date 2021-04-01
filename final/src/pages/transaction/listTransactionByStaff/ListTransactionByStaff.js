@@ -86,7 +86,7 @@ function TransactionListByStaff({
                                                     </div>
 
                                                     <div className="card-body table-responsive p-0">
-                                                        <TableScrollbar rows={10}>
+                                                        <TableScrollbar rows={13}>
                                                             <table className="table table-striped table-bordered table-align-middle">
                                                                 <thead
                                                                     style={{textAlign: "left", background: "#FCE051"}}>

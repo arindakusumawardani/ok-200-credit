@@ -27,7 +27,7 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
     return (
         <div>
             {
-                localStorage.getItem("inputCustomer") == "true" ?
+                localStorage.getItem("inputCustomer") == "true" || localStorage.getItem("readAllCustomer") == "true" ?
                     <>
                         <div>
                             <Header/>
@@ -53,16 +53,24 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                                                 {/*<a href="/customer/form" className="btn btn-tool btn-sm">*/}
                                                                 {/*    <i className="fas fa-pencil-alt" />*/}
                                                                 {/*</a>*/}
-                                                                <a href="/staff/customer" className="btn btn-tool btn-sm">
-                                                                    <i className="fas fa-arrow-left" />
-                                                                </a>
+                                                                {localStorage.getItem("readAllCustomer") == "true" ?
+                                                                    <a href="/customer"
+                                                                       className="btn btn-tool btn-sm">
+                                                                        <i className="fas fa-arrow-left"/>
+                                                                    </a>
+                                                                    :
+                                                                    <a href="/staff/customer"
+                                                                       className="btn btn-tool btn-sm">
+                                                                        <i className="fas fa-arrow-left"/>
+                                                                    </a>
+                                                                }
                                                             </div>
                                                         </div>
                                                         <div className="card-body table-responsive p-0">
                                                             <table className="table table-borderless table-valign-middle">
                                                                 <tbody style={{textAlign: "left"}}>
                                                                 <tr>
-                                                                    <td>Name</td>
+                                                                    <td>Full Name</td>
                                                                     <td>{customer.name}</td>
                                                                 </tr>
                                                                 <tr>
@@ -74,7 +82,7 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                                                     <td>{customer.email}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>ID Card</td>
+                                                                    <td>Number Identity</td>
                                                                     <td>{customer.idNumber}</td>
                                                                 </tr>
                                                                 <tr>
@@ -85,7 +93,7 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                                                 &&
                                                                     <>
                                                                         <tr>
-                                                                            <td>Contract Length</td>
+                                                                            <td>Contract Duration</td>
                                                                             <td>{customer.contractLength}</td>
                                                                         </tr>
                                                                         <tr>

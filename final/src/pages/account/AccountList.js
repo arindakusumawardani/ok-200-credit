@@ -74,7 +74,7 @@ function AccountList({
                                     <div className="container-fluid">
                                         <div className="row mb-2">
                                             <div className="col-sm-6">
-                                                <h1 className="m-0 text-dark">List Account</h1>
+                                                <h1 className="m-0 text-dark">List Users</h1>
                                             </div>
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@ function AccountList({
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
                                                         <TableScrollbar rows={13}>
-                                                            <table className="table table-striped table-valign-middle table-bordered">
+                                                            <table className="table table-striped table-valign-middle table-bordered text-nowrap">
 
                                                                 <thead
                                                                     style={{textAlign: "left", background: "#FCE051"}}>

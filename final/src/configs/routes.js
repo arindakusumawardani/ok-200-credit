@@ -15,12 +15,12 @@ import Error from "../pages/Error";
 import ReasonForm from "../pages/reasonUse/ReasonForm";
 import ListTransactionByStaff from "../pages/transaction/listTransactionByStaff/ListTransactionByStaff";
 import ListReportByStaff from "../pages/report/reportByStaff/ListReportByStaff";
-import EditAccount from "../pages/account/EditAccount";
 import EditPassword from "../pages/profile/EditPassword";
 import EditProfile from "../pages/profile/EditProfile";
 import RoleMenu from "../pages/role/RoleMenu";
 import RoleList from "../pages/role/RoleList";
 import ListCustomerByStaff from "../pages/customer/listCustomerByStaff/ListCustomerByStaff";
+import VerificationPage from "../pages/verification/VerificationPage";
 
 const routes = [
     {
@@ -37,7 +37,6 @@ const routes = [
         path: '/master/:id',
         component: <SignUp/>,
         exact: true
-
     },
     {
         path: '/need',
@@ -59,11 +58,11 @@ const routes = [
         component: <Dashboard />,
         exact: true
     },
-    // {
-    //     path: '/customer/staff',
-    //     component: <ListCustomer />,
-    //     exact: true
-    // },
+    {
+        path: '/verification',
+        component: <VerificationPage />,
+        exact: true
+    },
     {
         path: '/customer',
         component: <ListCustomer />,
@@ -142,11 +141,6 @@ const routes = [
     {
         path: '/users',
         component: <EditProfile/>,
-        exact: true
-    },
-    {
-        path: '/edit/id',
-        component: <EditAccount/>,
         exact: true
     },
     {

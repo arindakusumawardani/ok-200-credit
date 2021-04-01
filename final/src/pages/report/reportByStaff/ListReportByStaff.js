@@ -9,7 +9,7 @@ import Row from "./Row";
 import Footer from "../../../components/dashboard/Footer";
 import {findAllReportAction} from "../../../actions/reportAction";
 import Error from "../../Error";
-import {Button, ButtonGroup, Spinner} from "reactstrap";
+import {Table, Button, ButtonGroup, Spinner} from "reactstrap";
 import {PaginationButton} from "../../../components/Buttons";
 
 function ReportList({
@@ -52,7 +52,7 @@ function ReportList({
     return (
         <div>
             {
-                localStorage.getItem("readAllReportByTransaction") ?
+                localStorage.getItem("readAllReportByTransaction") == "true" ?
                     <>
                         <Containers error={error}>
                             <Header/>
@@ -82,13 +82,13 @@ function ReportList({
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
 
-                                                        <TableScrollbar rows={10}>
-                                                            <table className="table table-striped table-bordered table-align-middle table-head-fixed">
+                                                        <TableScrollbar rows={12}>
+                                                            <Table className="table table-striped table-bordered table-align-middle table-head-fixed text-nowrap">
                                                                 <thead style={{background:"#FCE051"}}>
                                                                 <tr >
-                                                                    <th colSpan="5"> Customer Data</th>
-                                                                    <th colSpan="11">Transaction</th>
-                                                                    <th colSpan="5">Approved</th>
+                                                                    <th colSpan="6" style={{textAlign: "center"}}> Customer Data</th>
+                                                                    <th colSpan="11" style={{textAlign: "center"}}>Transaction</th>
+                                                                    <th colSpan="4" style={{textAlign: "center"}}>Approved</th>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>No</th>
@@ -105,7 +105,9 @@ function ReportList({
                                                                     <th>Principal</th>
                                                                     <th>Interest</th>
                                                                     <th>Installment</th>
-                                                                    <th>Installment Total</th>
+                                                                    <th>Total Installment</th>
+                                                                    <th>Loan Purpose</th>
+                                                                    <th>Submitter</th>
                                                                     <th>Status</th>
                                                                     <th>Submitted Date</th>
                                                                     <th>Approved Date</th>
@@ -121,16 +123,14 @@ function ReportList({
                                                                                            number={(pageParam * sizeParam) + 1 + i}/>
                                                                             )
                                                                         }) :
-                                                                        <tr>
-                                                                            <div>
-                                                                                <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
-                                                                            </div>
-                                                                        </tr>
+                                                                        <div className="spinner">
+                                                                            <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                        </div>
 
                                                                 }
                                                                 </tbody>
 
-                                                            </table>
+                                                            </Table>
                                                         </TableScrollbar>
 
                                                     </div>

@@ -8,10 +8,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "./login.css"
-import {Spinner, Input, Label, FormGroup, Button, Container, Form, Col} from "reactstrap";
+import {Spinner, Button, Form, Col} from "reactstrap";
 import {findAccountByIdAction, saveAccountAction} from "../../actions/signupAction";
 import {connect} from "react-redux";
-import DropdownList from "../../components/DropdownList/DropdownList";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import swal from "sweetalert";
@@ -58,17 +57,6 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
         }
     }, [account])
     console.log("ini id", id)
-
-    // console.log("this account", model)
-    // useEffect(() => {
-    //     if (id !== data.id) {
-    //         findAccountByIdAction(id);
-    //         setData(account)
-    //     }
-    //     console.log("AKUN", account)
-    //     console.log("DATA", data.id)
-    //     console.log(data)
-    // }, [account])
 
     useEffect(() => {
         if (saveAccount) {
@@ -146,7 +134,6 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                             <div className="col-lg-12">
                                                 <div className="card">
                                                     <div className="card-header border-0">
-                                                        {/*<h3 className="card-title">Detail Customer</h3>*/}
                                                         <div className="card-tools">
                                                             <a href="/master" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-arrow-left"/>

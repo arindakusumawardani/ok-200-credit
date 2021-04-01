@@ -15,7 +15,7 @@ export const PaginationButton = (props) => {
         <Alert color="primary" style={{display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap'}}>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
                 <p style={{alignSelf: 'flex-end'}}>Show</p>
-                <ButtonDropdown style={{margin: '0px 10px', height: '80%'}} isOpen={dropdownOpen} toggle={() => {setDropdownOpen(!dropdownOpen)}}>
+                <ButtonDropdown style={{margin: '0px 10px', height: '70%'}} isOpen={dropdownOpen} toggle={() => {setDropdownOpen(!dropdownOpen)}}>
                     <DropdownToggle caret>{props.size}</DropdownToggle>
                     <DropdownMenu>
                         <DropdownItem onClick={() => {props.handleLimit(5)}}>5</DropdownItem>
@@ -26,7 +26,7 @@ export const PaginationButton = (props) => {
                 </ButtonDropdown>
                 <p style={{alignSelf: 'flex-end'}}>item per Page</p>
             </div>
-            <Pagination size="lg" aria-label="page navigation example">
+            <Pagination size="md" aria-label="page navigation example">
                 <PaginationItem>
                     {props.currentPage !== 0 ? <PaginationLink first onClick={() => {
                         props.setPage(0)

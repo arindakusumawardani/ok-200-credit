@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import {findAllCustomerAction} from '../../../actions/customerAction'
 import {connect} from "react-redux"
 import Containers from "../../../components/Containers/Container";
-import SignIn from "../../account/SignIn";
 import RowCustomer from "./RowCustomer";
 import Header from "../../../components/dashboard/Header";
 import Menu from "../../../components/dashboard/Menu";
@@ -10,7 +9,7 @@ import TableScrollbar from 'react-table-scrollbar';
 import Error from "../../Error";
 import Footer from "../../../components/dashboard/Footer";
 import {PaginationButton} from "../../../components/Buttons";
-import {ButtonGroup, Button, Spinner, Container} from "reactstrap";
+import {Spinner} from "reactstrap";
 
 function CustomerList({
                           error,
@@ -85,7 +84,7 @@ function CustomerList({
                                                         {/*<h3 className="card-title">List Customer</h3>*/}
                                                         <div className="card-tools">
                                                             {
-                                                                localStorage.getItem("inputCustomer") &&
+                                                                localStorage.getItem("inputCustomer") == "true" &&
                                                                 <a href="/customer/form" className="btn btn-tool btn-sm">
                                                                     <i className="fas fa-plus-circle"/>
                                                                 </a>
@@ -93,14 +92,13 @@ function CustomerList({
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
-                                                        <TableScrollbar rows={10}>
-                                                        {/*<table className="table text-nowrap table-bordered table-head-fixed">*/}
+                                                        <TableScrollbar rows={12}>
                                                         <table className="table table-striped table-bordered table-align-middle table-head-fixed text-nowrap">
                                                             <thead >
-                                                            <tr style={{textAlign: "center", background:"#FCE051"}}>
+                                                            <tr style={{textAlign: "left", background:"#FCE051"}}>
                                                                 <th style={{background:"#FCE051"}} >Number</th>
-                                                                <th style={{background:"#FCE051"}}>Customer Name</th>
-                                                                <th style={{background:"#FCE051"}}>ID Card</th>
+                                                                <th style={{background:"#FCE051"}}>Full Name</th>
+                                                                <th style={{background:"#FCE051"}}>Number Identity</th>
                                                                 <th style={{background:"#FCE051"}}>Employee Type</th>
                                                                 <th style={{background:"#FCE051"}}>Submitter</th>
                                                                 <th style={{background:"#FCE051"}}>Action</th>
@@ -118,20 +116,9 @@ function CustomerList({
                                                                         )
                                                                     })
                                                                     :
-                                                                    // <tr>
-                                                                    //     <div>
                                                                     <div className="spinner">
                                                                         <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
                                                                     </div>
-                                                                        // </div>
-                                                                    // </tr>
-                                                            }
-                                                            {
-                                                                customer.map((e, i) => console.log("NOMOR", (pageParam * sizeParam) + i + 1))
-                                                            }
-                                                            {
-
-                                                                customer.map((e, i) => console.log("NOMOR PAGINATION", (pageParam)))
                                                             }
                                                             </tbody>
                                                         </table>
