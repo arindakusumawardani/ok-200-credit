@@ -8,6 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHandshake, faIdCard, faMailBulk, faUser} from "@fortawesome/free-solid-svg-icons";
 import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
+import TableScrollbar from "react-table-scrollbar";
 
 function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
 
@@ -44,8 +45,8 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row">
-                                            <div className="col-lg-12">
+                                        <div className="row" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-lg-8">
                                                     <div className="card">
                                                         <div className="card-header border-0">
                                                             {/*<h3 className="card-title">Detail Customer</h3>*/}
@@ -66,56 +67,59 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                                                 }
                                                             </div>
                                                         </div>
-                                                        <div className="card-body table-responsive p-0">
+                                                        <div className="card-body table-responsive p-md-5">
+                                                            <TableScrollbar rows={10}>
+
                                                             <table className="table table-borderless table-valign-middle">
                                                                 <tbody style={{textAlign: "left"}}>
                                                                 <tr>
-                                                                    <td>Full Name</td>
+                                                                    <td style={{fontWeight:"bold"}}>Full Name</td>
                                                                     <td>{customer.name}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Address</td>
+                                                                    <td style={{fontWeight:"bold"}}>Address</td>
                                                                     <td>{customer.address}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Email</td>
+                                                                    <td style={{fontWeight:"bold"}}>Email</td>
                                                                     <td>{customer.email}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Number Identity</td>
+                                                                    <td style={{fontWeight:"bold"}}>Number Identity</td>
                                                                     <td>{customer.idNumber}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Employee Type</td>
+                                                                    <td style={{fontWeight:"bold"}}>Employee Type</td>
                                                                     <td>{customer.employeeType}</td>
                                                                 </tr>
                                                                 {customer.employeeType == "CONTRACT"
                                                                 &&
                                                                     <>
                                                                         <tr>
-                                                                            <td>Contract Duration</td>
+                                                                            <td style={{fontWeight:"bold"}}>Contract Duration</td>
                                                                             <td>{customer.contractLength}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>Contract Start</td>
+                                                                            <td style={{fontWeight:"bold"}}>Contract Start</td>
                                                                             <td>{customer.contractStart}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>Contract End</td>
+                                                                            <td style={{fontWeight:"bold"}}>Contract End</td>
                                                                             <td>{customer.contractEnd}</td>
                                                                         </tr>
                                                                     </>
                                                                 }
                                                                         <tr>
-                                                                            <td>ID Card Photo</td>
+                                                                            <td style={{fontWeight:"bold"}}>ID Card Photo</td>
                                                                             <td><img src={customer.idPhoto} width={100}/></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>Profile Photo</td>
+                                                                            <td style={{fontWeight:"bold"}}>Profile Photo</td>
                                                                             <td><img src={customer.profilePhoto} width={100}/></td>
                                                                         </tr>
                                                                 </tbody>
                                                             </table>
+                                                            </TableScrollbar>
                                                         </div>
                                                     </div>
                                                 </div>

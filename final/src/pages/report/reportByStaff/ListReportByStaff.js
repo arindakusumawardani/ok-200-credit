@@ -75,14 +75,14 @@ function ReportList({
                                                 <div className="card">
                                                     <div className="card-header border-0">
                                                         <div className="card-tools">
-                                                            <a href="#" className="btn btn-tool btn-sm">
-                                                                <i className="fas fa-download"/>
-                                                            </a>
+                                                            {/*<a href="#" className="btn btn-tool btn-sm">*/}
+                                                            {/*    <i className="fas fa-download"/>*/}
+                                                            {/*</a>*/}
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
 
-                                                        <TableScrollbar rows={12}>
+                                                        <TableScrollbar rows={10}>
                                                             <Table className="table table-striped table-bordered table-align-middle table-head-fixed text-nowrap">
                                                                 <thead style={{background:"#FCE051"}}>
                                                                 <tr >

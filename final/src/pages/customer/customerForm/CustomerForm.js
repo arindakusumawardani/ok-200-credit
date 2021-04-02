@@ -39,7 +39,6 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
         if (id !== data.id) {
             findCustomerByIdAction(id);
             setData(customer)
-            console.log("ini useffect", customer)
         }
     }, [customer])
 
@@ -124,7 +123,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
         let value = e.target.value
         if(data.idNumber.length >= 1){
             if(data.idNumber.length != 16){
-                swal("Sorry Id Number must be 16 digit!", "", "warning");
+                swal("Sorry Number Identity must be 16 digit!", "", "warning");
             }
         }
         setData({...data, [name]: value})
@@ -140,7 +139,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
             saveCustomerAction(data)
             swal("Save Success!", "", "success");
         } else {
-            swal("Sorry Id Number must be 16 digit!", "", "warning");
+            swal("Sorry Number Identity must be 16 digit!", "", "warning");
         }
     }
 
@@ -172,7 +171,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                         <div className="row">
                                             <div className="col-lg-12">
                                                 <div className="card">
-                                                    <div className="card-body table-responsive p-0">
+                                                    <div className="card-body table-responsive p-md-5">
                                                         <div className="col-md-12">
                                                             <div className="form form-container">
                                                                 {!isLoading ?
@@ -208,7 +207,6 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             <Label htmlFor="idNumber" sm={3} style={{textAlign:"left"}}>Number Identity
                                                                                 <span style={{color:"red"}}> *</span></Label>
                                                                             <Col sm={9}>
-
                                                                                 <Input
                                                                                     required
                                                                                     onChange={handleNumber}

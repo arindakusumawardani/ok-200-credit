@@ -77,7 +77,12 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
                             <div className="content-wrapper">
                                 <div className="content-header">
                                     <div className="container-fluid">
-                                        <div className="row mb-2">
+                                        <div className="row mb-2" style={{
+                                            marginTop: '30px',
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center"
+                                        }}>
                                             <div className="col-sm-6">
                                                 <h1 className="m-0 text-dark">Need Type</h1>
                                             </div>
@@ -86,10 +91,11 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row">
-                                            <div className="col-lg-12">
+                                        <div className="row"
+                                             style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                            <div className="col-lg-8" style={{alignContent: "center"}}>
                                                 <div className="card">
-                                                    <div className="card-body table-responsive p-0">
+                                                    <div className="card-body table-responsive p-md-5">
                                                         <div className="col-md-12">
                                                             <div className="form form-container">
                                                                 {!isLoading ?
@@ -108,8 +114,9 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
                                                                                     placeholder="input need type"/>
                                                                             </Col>
                                                                         </FormGroup>
-                                                                        <FormGroup check row>
-                                                                            <Col sm={{size: 10, offset: 2}}>
+                                                                        <FormGroup check >
+                                                                            {/*<Col sm={{size: 10, offset: 2}}>*/}
+                                                                            <div className="buttonForm">
                                                                                 <Button style={{background: "#e42256"}}>
                                                                                     <FontAwesomeIcon icon={faSave}/>
                                                                                     Submit
@@ -120,12 +127,17 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
                                                                                         icon={faArrowLeft}/>
                                                                                     Cancel
                                                                                 </Button>
-                                                                            </Col>
+                                                                            </div>
+                                                                            {/*</Col>*/}
                                                                         </FormGroup>
 
                                                                     </Form> :
                                                                     <div className="spinner">
-                                                                        <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
+                                                                        <Spinner style={{
+                                                                            width: '5rem',
+                                                                            height: '5rem',
+                                                                            color: "#e42256"
+                                                                        }}/>{' '}
                                                                     </div>
                                                                 }
                                                             </div>

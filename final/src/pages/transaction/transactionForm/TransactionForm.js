@@ -157,7 +157,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <div className="card">
-                                                <div className="card-body table-responsive p-0">
+                                                <div className="card-body table-responsive p-md-5">
                                                     <div className="col-md-12">
                                                         <div className="form form-container">
                                                             {!isLoading ? needs &&
@@ -172,15 +172,17 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                                 <InputGroupText>Rp</InputGroupText>
                                                                                 {/*<Input >*/}
                                                                                 <NumberFormat
+                                                                                    style={{width:"96%", height:"calc(1.5em + .75rem + 8px)",
+                                                                                        borderRadius:"0.2vw", border: "1px solid #ced4da"}}
                                                                                     required
                                                                                     name="income"
                                                                                     min="0"
                                                                                     id="tanpa-rupiah"
                                                                                     onChange={handleCurrencyIncome}
-                                                                                    placeholder="input nominal"
+                                                                                    placeholder="  input nominal"
                                                                                     thousandSeparator={true}/>
                                                                                 {/*</Input>*/}
-                                                                                <InputGroupText>.00</InputGroupText>
+                                                                                {/*<InputGroupText>.00</InputGroupText>*/}
                                                                             </InputGroup>
                                                                         </Col>
                                                                     </FormGroup>
@@ -193,14 +195,16 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                             <InputGroup>
                                                                                 <InputGroupText>Rp</InputGroupText>
                                                                                 <NumberFormat
+                                                                                    style={{width:"96%", height:"calc(1.5em + .75rem + 8px)",
+                                                                                        borderRadius:"0.2vw", border: "1px solid #ced4da"}}
                                                                                     required
                                                                                     name="outcome"
                                                                                     min="0"
                                                                                     id="tanpa-rupiah"
                                                                                     onChange={handleCurrency}
-                                                                                    placeholder="input nominal"
+                                                                                    placeholder="  input nominal"
                                                                                     thousandSeparator={true}/>
-                                                                                <InputGroupText>.00</InputGroupText>
+                                                                                {/*<InputGroupText>.00</InputGroupText>*/}
                                                                             </InputGroup>
                                                                         </Col>
                                                                     </FormGroup>
@@ -213,16 +217,16 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                             <InputGroup>
                                                                                 <InputGroupText>Rp</InputGroupText>
                                                                                 <NumberFormat
-                                                                                    style={{width:"63vw", height:"calc(1.5em + .75rem + 2px)",
-                                                                                        borderRadius:"0.5vw", outlineColor:"#ced4da"}}
+                                                                                    style={{width:"96%", height:"calc(1.5em + .75rem + 8px)",
+                                                                                        borderRadius:"0.2vw", border: "1px solid #ced4da"}}
                                                                                     required
                                                                                     name="loan"
                                                                                     min="0"
                                                                                     id="tanpa-rupiah"
                                                                                     onChange={handleCurrencyLoan}
-                                                                                    placeholder="input nominal"
+                                                                                    placeholder="  input nominal"
                                                                                     thousandSeparator={true}/>
-                                                                                <InputGroupText>.00</InputGroupText>
+                                                                                {/*<InputGroupText>.00</InputGroupText>*/}
                                                                             </InputGroup>
                                                                         </Col>
                                                                     </FormGroup>
@@ -268,8 +272,8 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                         </Label>
                                                                         <Col sm={10}>
                                                                             <select
-                                                                                style={{width:"69vw", height:"calc(1.5em + .75rem + 2px)",
-                                                                                    borderRadius:"0.5vw", outlineColor:"#ced4da"}}
+                                                                                style={{width:"100%", height:"calc(1.5em + .75rem + 10px)",
+                                                                                    borderRadius:"0.2vw", outlineColor:"#ced4da", border: "1px solid #ced4da"}}
                                                                                 onChange={e => setData({
                                                                                 ...data,
                                                                                 needType: e.target.value

@@ -89,7 +89,7 @@ function CustomerListBySubmitter({
                                             </div>
                                             <div className="card-body table-responsive p-0">
 
-                                                <TableScrollbar rows={13}>
+                                                <TableScrollbar rows={11}>
                                                     <table className="table table-striped table-bordered table-align-middle table-head-fixed">
                                                         <thead style={{textAlign: "left", background:"#FCE051"}}>
                                                         <tr style={{textAlign: "left", background:"#FCE051"}}>

@@ -109,7 +109,8 @@ const SignIn = ({loginData, isLoading, error, dispatchLoginAction}) => {
                     <div>
                         <img src={logoku} alt=""
                              className="img-fluid d-none d-md-block"/>
-                        <p style={{color: "#e42256", fontSize: "30px"}}>OK200 - Credit Risk Scoring</p><br/>
+                        <p style={{color: "#e42256", fontSize: "30px"}}>OK200</p>
+                        <p style={{color: "#e42256", fontSize: "30px"}}>Credit Risk Scoring</p>
                     </div>
 
                 </div>

@@ -85,7 +85,7 @@ function ReportList({
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row">
+                                        <div className="row" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
                                             <div className="col-lg-12">
 
                                                 <div className="card">
@@ -96,13 +96,13 @@ function ReportList({
                                                             {/*    <Button onClick={handleAll}>All</Button>*/}
                                                             {/*    <Button onClick={handleRejected}>Approved</Button>*/}
                                                             {/*</ButtonGroup>*/}
-                                                            <a href="/report/download" className="btn btn-tool btn-sm" >
+                                                            <a href="http://10.10.14.250:8085/report/download" className="btn btn-tool btn-sm" >
                                                                 <i className="fas fa-download"/>
                                                             </a>
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
-                                                        <TableScrollbar rows={11}>
+                                                        <TableScrollbar rows={9}>
                                                         <table className="table table-striped table-bordered table-align-middle table-head-fixed text-nowrap">
                                                             <thead style={{background:"#FCE051"}}>
                                                             <tr >

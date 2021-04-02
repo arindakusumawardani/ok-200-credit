@@ -73,7 +73,7 @@ function TransactionList({
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row">
+                                        <div className="row" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
                                             <div className="col-lg-12">
 
                                                 <div className="card">
@@ -86,7 +86,7 @@ function TransactionList({
 
                                                     <div className="card-body table-responsive p-0">
 
-                                                        <TableScrollbar rows={13}>
+                                                        <TableScrollbar rows={10}>
                                                         <table className="table table-striped table-valign-middle">
                                                             <thead style={{textAlign: "left", background:"#FCE051"}}>
                                                             <tr>

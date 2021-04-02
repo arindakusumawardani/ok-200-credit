@@ -6,7 +6,7 @@ import Menu from "../../components/dashboard/Menu";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faCheckCircle, faCross, faSave, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 import NumberFormat from "react-number-format"
-import {Button} from "reactstrap";
+import {Row, Col, Button} from "reactstrap";
 import {
     findByIdApprovalAction,
     findByIdApprovalSubmitterAction,
@@ -152,141 +152,158 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                 </a>}
                                                         </div>
                                                     </div>
-                                                    <div className="card-body table-responsive p-0">
+                                                    <div className="card-body table-responsive p-md-5">
 
-                                                        <TableScrollbar rows={15}>
-                                                        <table className="table table-striped table-valign-middle">
+                                                        <TableScrollbar rows={10}>
+                                                        <table className="table table-borderless table-valign-middle">
 
-                                                            <tbody style={{textAlign: "left"}}>
+                                                            <tbody>
+                                                            <Row style={{width:"100%"}}>
+                                                                <Col style={{width:"20%"}}>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold", width:"50%"}}>Full Name</td>
+                                                                        <td>{data?.transaction?.customer?.name}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Number Identity</td>
+                                                                        <td>{data?.transaction?.customer?.idNumber}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Email</td>
+                                                                        <td>{data?.transaction?.customer?.email}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Address</td>
+                                                                        <td>{data?.transaction?.customer?.address}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Submitter</td>
+                                                                        <td>{data?.transaction?.customer?.submitter}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Employee Type</td>
+                                                                        <td>{data?.transaction?.customer?.employeeType}</td>
+                                                                    </tr>
+                                                                    {data?.transaction?.customer?.employeeType == "CONTRACT"
+                                                                    &&
+                                                                    <>
+                                                                        <tr>
+                                                                            <td style={{fontWeight:"bold"}}>Contract Duration</td>
+                                                                            <td>{data?.transaction?.customer?.contractLength}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style={{fontWeight:"bold"}}>Contract Start</td>
+                                                                            <td>{data?.transaction?.customer?.contractStart}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style={{fontWeight:"bold"}}>Contract End</td>
+                                                                            <td>{data?.transaction?.customer?.contractEnd}</td>
+                                                                        </tr>
+                                                                    </>}
+                                                                </Col>
+                                                                <Col>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold", width:"50%"}}>Income</td>
+                                                                        <td><NumberFormat value={data?.transaction?.income}
+                                                                            displayType={'text'}
+                                                                            thousandSeparator={true}
+                                                                            prefix={'Rp '}/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Income</td>
+                                                                        <td><NumberFormat value={data?.transaction?.income}
+                                                                                          displayType={'text'}
+                                                                                          thousandSeparator={true}
+                                                                                          prefix={'Rp '}/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Outcome</td>
+                                                                        <td><NumberFormat value={data?.transaction?.outcome}
+                                                                                          displayType={'text'}
+                                                                                          thousandSeparator={true}
+                                                                                          prefix={'Rp '}/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Loan Amount</td>
+                                                                        <td><NumberFormat value={data?.transaction?.loan}
+                                                                                          displayType={'text'}
+                                                                                          thousandSeparator={true}
+                                                                                          prefix={'Rp '}/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Tenor</td>
+                                                                        <td>{data?.transaction?.tenor} month</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Interest Rate</td>
+                                                                        <td>{data?.transaction?.interestRate} %</td>
+                                                                    </tr>
+                                                                </Col>
+                                                                <Col>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold", width:"50%"}}>Principal</td>
+                                                                        <td><NumberFormat value={data?.transaction?.mainLoan}
+                                                                                          displayType={'text'}
+                                                                                          thousandSeparator={true}
+                                                                                          prefix={'Rp '}/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Interest</td>
+                                                                        <td><NumberFormat value={data?.transaction?.interest}
+                                                                                          displayType={'text'}
+                                                                                          thousandSeparator={true}
+                                                                                          prefix={'Rp '}/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Installment</td>
+                                                                        <td><NumberFormat value={data?.transaction?.installment}
+                                                                                          displayType={'text'}
+                                                                                          thousandSeparator={true}
+                                                                                          prefix={'Rp '}/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Total Installment</td>
+                                                                        <td><NumberFormat value={data?.transaction?.installmentTotal}
+                                                                                          displayType={'text'}
+                                                                                          thousandSeparator={true}
+                                                                                          prefix={'Rp '}/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Loan Purpose</td>
+                                                                        <td>{data?.transaction?.needType.type}</td>
+                                                                    </tr>
 
-                                                            <tr>
-                                                                <td>Full Name</td>
-                                                                <td>{data?.transaction?.customer?.name}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Number Identity</td>
-                                                                <td>{data?.transaction?.customer?.idNumber}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Email</td>
-                                                                <td>{data?.transaction?.customer?.email}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Address</td>
-                                                                <td>{data?.transaction?.customer?.address}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Submitter</td>
-                                                                <td>{data?.transaction?.customer?.submitter}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Employee Type</td>
-                                                                <td>{data?.transaction?.customer?.employeeType}</td>
-                                                            </tr>
-                                                            {data?.transaction?.customer?.employeeType == "CONTRACT"
-                                                            &&
-                                                            <>
-                                                                <tr>
-                                                                    <td>Contract Duration</td>
-                                                                    <td>{data?.transaction?.customer?.contractLength}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Contract Start</td>
-                                                                    <td>{data?.transaction?.customer?.contractStart}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Contract End</td>
-                                                                    <td>{data?.transaction?.customer?.contractEnd}</td>
-                                                                </tr>
-                                                            </>}
-                                                            <tr>
-                                                                <td>Income</td>
-                                                                <td><NumberFormat value={data?.transaction?.income}
-                                                                                  displayType={'text'}
-                                                                                  thousandSeparator={true}
-                                                                                  prefix={'Rp '}/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Outcome</td>
-                                                                <td><NumberFormat value={data?.transaction?.outcome}
-                                                                                  displayType={'text'}
-                                                                                  thousandSeparator={true}
-                                                                                  prefix={'Rp '}/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Loan</td>
-                                                                <td><NumberFormat value={data?.transaction?.loan}
-                                                                                  displayType={'text'}
-                                                                                  thousandSeparator={true}
-                                                                                  prefix={'Rp '}/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Tenor</td>
-                                                                <td>{data?.transaction?.tenor} month</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Interest Rate</td>
-                                                                <td>{data?.transaction?.interestRate} %</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Principal</td>
-                                                                <td><NumberFormat value={data?.transaction?.mainLoan}
-                                                                                  displayType={'text'}
-                                                                                  thousandSeparator={true}
-                                                                                  prefix={'Rp '}/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Interest</td>
-                                                                <td><NumberFormat value={data?.transaction?.interest}
-                                                                                  displayType={'text'}
-                                                                                  thousandSeparator={true}
-                                                                                  prefix={'Rp '}/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Installment</td>
-                                                                <td><NumberFormat value={data?.transaction?.installment}
-                                                                                  displayType={'text'}
-                                                                                  thousandSeparator={true}
-                                                                                  prefix={'Rp '}/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Installment Total</td>
-                                                                <td><NumberFormat value={data?.transaction?.installmentTotal}
-                                                                                  displayType={'text'}
-                                                                                  thousandSeparator={true}
-                                                                                  prefix={'Rp '}/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Loan Purpose</td>
-                                                                <td>{data?.transaction?.needType.type}</td>
-                                                            </tr>
+                                                                    {localStorage.getItem("approveTransaction") == "true" &&
+                                                                    <>
+                                                                        <tr>
+                                                                            <td style={{fontWeight:"bold"}}>Credit Ratio</td>
+                                                                            <td>{data?.transaction?.creditRatio} %</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style={{fontWeight:"bold"}}>Finance Criteria</td>
+                                                                            <td>{data?.transaction?.financeCriteria ?
+                                                                                "PASS" : "NOT PASS"
+                                                                            }</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style={{fontWeight:"bold"}}>Employee Criteria</td>
+                                                                            <td>{data?.transaction?.employeeCriteria ?
+                                                                                "PASS" : "NOT PASS"
+                                                                            }</td>
+                                                                        </tr>
+                                                                    </>}
+                                                                    <tr>
+                                                                        <td style={{fontWeight:"bold"}}>Notes</td>
+                                                                        <td>{data?.transaction?.notes}</td>
+                                                                    </tr>
+
+                                                                </Col>
+
+                                                            </Row>
 
                                                             {localStorage.getItem("approveTransaction") == "true" &&
-                                                            <>
-                                                                {console.log("dataaa masuk", data?.transaction)}
-                                                                <tr>
-                                                                    <td>Credit Ratio</td>
-                                                                    <td>{data?.transaction?.creditRatio} %</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Finance Criteria</td>
-                                                                    <td>{data?.transaction?.financeCriteria ?
-                                                                        "PASS" : "NOT PASS"
-                                                                    }</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Employee Criteria</td>
-                                                                    <td>{data?.transaction?.employeeCriteria ?
-                                                                        "PASS" : "NOT PASS"
-                                                                    }</td>
-                                                                </tr>
-                                                            </>}
                                                             <tr>
-                                                                <td>Notes</td>
-                                                                <td>{data?.transaction?.notes}</td>
-                                                            </tr>
-                                                            {localStorage.getItem("approveTransaction") == "true" &&
-                                                            <tr>
+                                                                <div className="buttonForm">
                                                                 <td>
                                                                     <Button style={{background: "#e42256"}}
                                                                             onClick={handleApproval}>
@@ -301,6 +318,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                         Reject
                                                                     </Button>
                                                                 </td>
+                                                                </div>
                                                             </tr>}
 
                                                             </tbody>

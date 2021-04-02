@@ -140,7 +140,7 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                             </a>
                                                         </div>
                                                     </div>
-                                                    <div className="card-body table-responsive p-0">
+                                                    <div className="card-body table-responsive p-md-5">
                                                         <div className="col-md-12">
                                                             <div className="form form-container">
                                                                 <div className="row align-items-center">
@@ -240,19 +240,18 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                                                     }
 
                                                                                     <div
-                                                                                        className="input-group col-lg-12 mb-4">
+                                                                                        className="col-lg-12 mb-4">
 
                                                                                         <div>
                                                                                             <Col sm={15}>
                                                                                                 <select
-                                                                                                    style={{width:"35vw", height:"calc(1.5em + .75rem + 2px)",
-                                                                                                        borderRadius:"0.5vw", outlineColor:"#ced4da"}}
+                                                                                                    style={{width:"100%", height:"calc(1.5em + .75rem + 10px)",
+                                                                                                        borderRadius:"0.2vw", outlineColor:"#ced4da"}}
                                                                                                     onChange={e => setData({
                                                                                                         ...data,
                                                                                                         role: e.target.value
                                                                                                     })}>
-                                                                                                    <option selected disabled hidden>Choose
-                                                                                                        here
+                                                                                                    <option selected disabled hidden>Choose here
                                                                                                     </option>
                                                                                                     {roles?.list?.map((e, i) => (
                                                                                                         <option key={i} value={e.name}

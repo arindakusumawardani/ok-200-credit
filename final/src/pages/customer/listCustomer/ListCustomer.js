@@ -92,7 +92,7 @@ function CustomerList({
                                                         </div>
                                                     </div>
                                                     <div className="card-body table-responsive p-0">
-                                                        <TableScrollbar rows={12}>
+                                                        <TableScrollbar rows={10}>
                                                         <table className="table table-striped table-bordered table-align-middle table-head-fixed text-nowrap">
                                                             <thead >
                                                             <tr style={{textAlign: "left", background:"#FCE051"}}>
