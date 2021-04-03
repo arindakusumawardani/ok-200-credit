@@ -52,8 +52,13 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
             }
         })
         console.log(approval)
-        history.push('/report')
-        swal("Approve!", "Transaction has been approved!", "success");
+        // history.push('/report')
+        // swal("Approve!", "Transaction has been approved!", "success");
+        swal("Approve!", "Transaction has been approved!", "success").then(() => {
+            return (
+                window.location.href = "/report"
+            )
+        })
 
     }
 
@@ -70,8 +75,13 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
             }
         })
         console.log(approval)
-        history.push('/report')
-        swal("Reject!", "Transaction has been rejected!", "success");
+        // history.push('/report')
+        // swal("Reject!", "Transaction has been rejected!", "success");
+        swal("Reject!", "Transaction has been rejected!", "success").then(() => {
+            return (
+                window.location.href = "/report"
+            )
+        })
     }
     //
     // const handleSubmit = (e) => {
