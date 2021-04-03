@@ -189,7 +189,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                     <>
                                                                         <tr>
                                                                             <td style={{fontWeight:"bold"}}>Contract Duration</td>
-                                                                            <td>{data?.transaction?.customer?.contractLength}</td>
+                                                                            <td>{data?.transaction?.customer?.contractLength} month</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td style={{fontWeight:"bold"}}>Contract Start</td>
@@ -209,13 +209,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                             thousandSeparator={true}
                                                                             prefix={'Rp '}/></td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td style={{fontWeight:"bold"}}>Income</td>
-                                                                        <td><NumberFormat value={data?.transaction?.income}
-                                                                                          displayType={'text'}
-                                                                                          thousandSeparator={true}
-                                                                                          prefix={'Rp '}/></td>
-                                                                    </tr>
+
                                                                     <tr>
                                                                         <td style={{fontWeight:"bold"}}>Outcome</td>
                                                                         <td><NumberFormat value={data?.transaction?.outcome}
@@ -259,7 +253,7 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                                         <td><NumberFormat value={data?.transaction?.installment}
                                                                                           displayType={'text'}
                                                                                           thousandSeparator={true}
-                                                                                          prefix={'Rp '}/></td>
+                                                                                          prefix={'Rp '}/> /month</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style={{fontWeight:"bold"}}>Total Installment</td>

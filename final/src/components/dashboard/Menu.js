@@ -28,7 +28,7 @@ export default function Menu() {
               {/*/>*/}
             </div>
             <div className="info">
-              <a href="#" className="d-block">
+              <a className="d-block">
                 {localStorage.getItem('fullName')}
               </a>
             </div>

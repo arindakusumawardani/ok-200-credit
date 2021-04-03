@@ -96,7 +96,7 @@ function ReportList({
                                                             {/*    <Button onClick={handleAll}>All</Button>*/}
                                                             {/*    <Button onClick={handleRejected}>Approved</Button>*/}
                                                             {/*</ButtonGroup>*/}
-                                                            <a href="http://10.10.14.250:8085/report/download" className="btn btn-tool btn-sm" >
+                                                            <a href="http://localhost:8085/report/download" className="btn btn-tool btn-sm" >
                                                                 <i className="fas fa-download"/>
                                                             </a>
                                                         </div>

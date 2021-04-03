@@ -23,10 +23,13 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
     })
     const [currency, setCurrency] = useState({})
     const [checkLoan, setCheckLoan] = useState({
-        maxLoan: 0,
+        income: 0,
+        outcome: 0,
         loan: 0
     })
-
+    console.log("checkloan",checkLoan.loan)
+    console.log("checkloan",checkLoan.outcome)
+    console.log("checkloan",checkLoan.income)
     const history = useHistory()
 
     const onReload = () => {
@@ -80,13 +83,13 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
     const handleCurrencyIncome = (e) => {
         let name = e.target.name
         let value = e.target.value
-        setCheckLoan({...checkLoan, maxLoan: parseInt(value.split(",").join(""))})
+        setCheckLoan({...checkLoan, income: parseInt(value.split(",").join(""))})
 
         if (parseInt(value) > 0) {
             setCurrency({...currency, [name]: value})
             setData({...data, [name]: value.split(",").join("")})
         } else {
-            swal("must be positive vibes!", "", "error");
+            swal("number must be positive!", "", "error");
         }
     }
     const handleCurrencyLoan = (e) => {
@@ -98,32 +101,36 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
             setCurrency({...currency, [name]: value})
             setData({...data, [name]: value.split(",").join("")})
         } else {
-            swal("must be positive vibes!", "", "error");
+            swal("number must be positive!", "", "error");
         }
     }
-    console.log("INCOME", checkLoan.maxLoan)
-    console.log("LOAN", checkLoan.loan)
-    const handleCurrency = (e) => {
+    const handleCurrencyOutcome = (e) => {
         let name = e.target.name
         let value = e.target.value
+        setCheckLoan({...checkLoan, outcome: parseInt(value.split(",").join(""))})
 
         if (parseInt(value) > 0) {
             setCurrency({...currency, [name]: value})
             setData({...data, [name]: value.split(",").join("")})
         } else {
-            swal("must be positive vibes!", "", "error");
+            swal("number must be positive!", "", "error");
         }
     }
 
+    if (error){
+        swal("Error", "", "error");
+    }
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("EMPLOYEE", customer?.employeeType)
-        if (customer?.employeeType == "NON"){
-            if (checkLoan.maxLoan / 2 > checkLoan.loan) {
-                saveTransactionAction(data)
-            } else {
-                swal("Sorry, Your loan is over");
-            }
+        console.log("Checkloan", checkLoan.loan)
+        if (checkLoan.loan < 1) {
+            swal("Error Loan", "", "error")
+        } else if (checkLoan.income < 1) {
+            swal("Error Income", "", "error")
+        } else if (checkLoan.outcome < 1) {
+            swal("Error Outcome", "", "error")
         } else {
             saveTransactionAction(data)
         }
@@ -201,7 +208,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                                     name="outcome"
                                                                                     min="0"
                                                                                     id="tanpa-rupiah"
-                                                                                    onChange={handleCurrency}
+                                                                                    onChange={handleCurrencyOutcome}
                                                                                     placeholder="  input nominal"
                                                                                     thousandSeparator={true}/>
                                                                                 {/*<InputGroupText>.00</InputGroupText>*/}
@@ -244,7 +251,7 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                                    onChange={handleChange}
                                                                                    type="number" min="1" max={6}
                                                                                    name="tenor"
-                                                                                   placeholder="tenor"/>
+                                                                                   placeholder="month"/>
                                                                         </Col>
                                                                     </FormGroup>
                                                                     <FormGroup row>

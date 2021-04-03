@@ -275,7 +275,8 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             <FormGroup row>
                                                                                 <Label for="contractLength" sm={3} style={{textAlign:"left"}}>Contract
                                                                                     Duration
-                                                                                    <span style={{color:"red"}}> *</span></Label>
+                                                                                    <span style={{color:"red"}}> *</span>
+                                                                                    <p style={{fontSize:"0.7vw", color:"grey"}}>Month</p></Label>
                                                                                 <Col sm={9}>
                                                                                     <Input
                                                                                         onChange={handleChange}
@@ -283,7 +284,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                         type="number" min="1"
                                                                                         name="contractLength"
                                                                                         id="contractLength"
-                                                                                        placeholder="contract length"/>
+                                                                                        placeholder="contract duration"/>
                                                                                 </Col>
                                                                             </FormGroup>
                                                                         </div>
