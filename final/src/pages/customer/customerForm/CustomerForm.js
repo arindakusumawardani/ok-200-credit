@@ -159,8 +159,13 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                             <div className="content-wrapper">
                                 <div className="content-header">
                                     <div className="container-fluid">
-                                        <div className="row mb-2">
-                                            <div className="col-sm-6">
+                                        <div className="row mb-2" style={{
+                                            marginTop: '30px',
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center"
+                                        }}>
+                                            <div className="col-sm-11">
                                                 <h1 className="m-0 text-dark">Form Customer</h1>
                                             </div>
                                         </div>
@@ -168,8 +173,8 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row">
-                                            <div className="col-lg-12">
+                                        <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-lg-11">
                                                 <div className="card">
                                                     <div className="card-body table-responsive p-md-5">
                                                         <div className="col-md-12">
@@ -180,7 +185,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             <Label htmlFor="name" sm={3} style={{textAlign:"left"}}>Full Name
                                                                                 <span style={{color:"red"}}> *</span>
                                                                             </Label>
-                                                                            <Col sm={9}>
+                                                                            <Col sm={12}>
                                                                                 <Input
                                                                                     required
                                                                                     onChange={handleChange}
@@ -193,7 +198,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                         <FormGroup row>
                                                                             <Label htmlFor="email" sm={3} style={{textAlign:"left"}}>Email
                                                                                 <span style={{color:"red"}}> *</span></Label>
-                                                                            <Col sm={9}>
+                                                                            <Col sm={12}>
                                                                                 <Input
                                                                                     required
                                                                                     onChange={handleChange}
@@ -206,7 +211,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                         <FormGroup row>
                                                                             <Label htmlFor="idNumber" sm={3} style={{textAlign:"left"}}>Number Identity
                                                                                 <span style={{color:"red"}}> *</span></Label>
-                                                                            <Col sm={9}>
+                                                                            <Col sm={12}>
                                                                                 <Input
                                                                                     required
                                                                                     onChange={handleNumber}
@@ -222,7 +227,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             <Label htmlFor="exampleText"
                                                                                    sm={3} style={{textAlign:"left"}}>Address
                                                                                 <span style={{color:"red"}}> *</span></Label>
-                                                                            <Col sm={9}>
+                                                                            <Col sm={12}>
                                                                                 <Input
                                                                                     required
                                                                                     onChange={handleChange}
@@ -235,7 +240,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                         <FormGroup row>
                                                                             <Label htmlFor="select" sm={3} style={{textAlign:"left"}}>Employee Type
                                                                                 <span style={{color:"red"}}> *</span></Label>
-                                                                            <Col sm={9}>
+                                                                            <Col sm={12}>
                                                                                 <DropdownList
                                                                                     data={[
                                                                                         // {value: "NON", label: "NON EMPLOYEE"},
@@ -262,8 +267,9 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                 <Label for="contractStart" sm={3} style={{textAlign:"left"}}>Contract
                                                                                     Start
                                                                                     <span style={{color:"red"}}> *</span></Label>
-                                                                                <Col sm={9}>
+                                                                                <Col sm={12}>
                                                                                     <Input
+                                                                                        required
                                                                                         onChange={handleChange}
                                                                                         value={data?.contractStart || ''}
                                                                                         type="date"
@@ -277,8 +283,9 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                     Duration
                                                                                     <span style={{color:"red"}}> *</span>
                                                                                     <p style={{fontSize:"0.7vw", color:"grey"}}>Month</p></Label>
-                                                                                <Col sm={9}>
+                                                                                <Col sm={12}>
                                                                                     <Input
+                                                                                        required
                                                                                         onChange={handleChange}
                                                                                         value={data?.contractLength || ''}
                                                                                         type="number" min="1"
@@ -292,8 +299,8 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                         <FormGroup row>
                                                                             <Label for="idPhoto" sm={3} style={{textAlign:"left"}}>ID Card
                                                                                 <span style={{color:"red"}}> *</span>
-                                                                                <p style={{fontSize:"0.7vw", color:"grey"}}>image (.jpeg / .png)</p></Label>
-                                                                            <Col sm={9}>
+                                                                                <p style={{fontSize:"0.7vw", color:"grey", marginBottom:'0px'}}>image (.jpeg / .png)</p></Label>
+                                                                            <Col sm={12}>
                                                                                 <Input
                                                                                     required
                                                                                     type="file"
@@ -307,8 +314,8 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             <Label for="profilePhoto" sm={3} style={{textAlign:"left"}}>Profile
                                                                                 Photo
                                                                                 <span style={{color:"red"}}> *</span>
-                                                                                <p style={{fontSize:"0.7vw", color:"grey"}}>image (.jpeg / .png)</p></Label>
-                                                                            <Col sm={9}>
+                                                                                <p style={{fontSize:"0.7vw", color:"grey", marginBottom:'0px'}}>image (.jpeg / .png)</p></Label>
+                                                                            <Col sm={12}>
                                                                                 <Input
                                                                                     required
                                                                                     type="file"
@@ -317,8 +324,10 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                     accept="image/jpeg, image/png"/>
                                                                             </Col>
                                                                         </FormGroup>
+
                                                                         <FormGroup check row>
-                                                                            <Col sm={{size: 10, offset: 2}}>
+                                                                            <Col sm={{size: 10, offset: 2}}
+                                                                                 style={{textAlign: "right"}}>
                                                                                 <Button style={{background: "#e42256"}}>
                                                                                     <FontAwesomeIcon icon={faSave}/>
                                                                                     Submit

@@ -51,9 +51,6 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                 approve: true
             }
         })
-        console.log(approval)
-        // history.push('/report')
-        // swal("Approve!", "Transaction has been approved!", "success");
         swal("Approve!", "Transaction has been approved!", "success").then(() => {
             return (
                 window.location.href = "/report"
@@ -74,22 +71,12 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                 approve: false
             }
         })
-        console.log(approval)
-        // history.push('/report')
-        // swal("Reject!", "Transaction has been rejected!", "success");
         swal("Reject!", "Transaction has been rejected!", "success").then(() => {
             return (
                 window.location.href = "/report"
             )
         })
     }
-    //
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     saveApprovalAction(approval)
-    //
-    //     console.log("handleSubmit", approval)
-    // }
 
     useEffect(() => {
         if (savedApprove) {
@@ -135,8 +122,8 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                             <div className="content-wrapper">
                                 <div className="content-header">
                                     <div className="container-fluid">
-                                        <div className="row mb-2">
-                                            <div className="col-sm-6">
+                                        <div className="row mb-2" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-sm-11">
                                                 <h1 className="m-0 text-dark">Detail Transaction</h1>
                                             </div>
                                         </div>
@@ -144,15 +131,11 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row">
-                                            <div className="col-lg-12">
+                                        <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-lg-11">
                                                 <div className="card">
                                                     <div className="card-header border-0">
-                                                        {/*<h3 className="card-title">Detail Customer</h3>*/}
                                                         <div className="card-tools">
-                                                            {/*<a href="/transaction/form" className="btn btn-tool btn-sm">*/}
-                                                            {/*    <i className="fas fa-pencil-alt"/>*/}
-                                                            {/*</a>*/}
                                                             {localStorage.getItem("inputTransaction") == "true" ?
                                                             <a href="/staff/transaction" className="btn btn-tool btn-sm">
                                                                 <i className="fas fa-arrow-left"/>

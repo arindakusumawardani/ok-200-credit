@@ -62,28 +62,24 @@ function CustomerListBySubmitter({
                     <div className="content-wrapper">
                         <div className="content-header">
                             <div className="container-fluid">
-                                <div className="row mb-2">
-                                    <div className="col-sm-6">
-                                        <h1 className="m-0 text-dark">List Customer</h1>
+                                <div className="row mb-2" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                    <div className="col-sm-11">
+                                        <h1 className="m-0 text-dark">Customer</h1>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="content">
                             <div className="container-fluid">
-                                <div className="row">
-                                    <div className="col-lg-12">
+                                <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                    <div className="col-lg-11">
 
                                         <div className="card">
                                             <div className="card-header border-0">
-                                                {/*<h1 className="card-title" style={{fontSize:"2vw"}}>List Customer</h1>*/}
                                                 <div className="card-tools">
-                                                    {/*<a href="#" className="btn btn-tool btn-sm">*/}
-                                                    {/*    <i className="fas fa-download"/>*/}
-                                                    {/*</a>*/}
                                                     {localStorage.getItem('inputCustomer') == "true" &&
-                                                    <a href="/customer/form" className="btn btn-tool btn-sm">
-                                                        <i className="fas fa-plus-circle"/>
+                                                    <a href="/customer/form" className="btn btn-tool btn-lg">
+                                                        <i className="fas fa-plus"/>
                                                     </a>}
                                                 </div>
                                             </div>

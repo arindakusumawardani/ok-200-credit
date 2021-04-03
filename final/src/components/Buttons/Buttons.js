@@ -7,12 +7,14 @@ import {
     DropdownToggle,
     DropdownMenu, DropdownItem
 } from "reactstrap";
-import {useState} from "react";
+import React, {useState} from "react";
 
 export const PaginationButton = (props) => {
     const [dropdownOpen, setDropdownOpen] = useState(false)
     return (
-        <Alert color="primary" style={{display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap'}}>
+        <div className="row mb-2" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
+            <div className="col-sm-11">
+        <Alert color="warning" style={{display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap'}}>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
                 <p style={{alignSelf: 'flex-end'}}>Show</p>
                 <ButtonDropdown style={{margin: '0px 10px', height: '70%'}} isOpen={dropdownOpen} toggle={() => {setDropdownOpen(!dropdownOpen)}}>
@@ -65,5 +67,7 @@ export const PaginationButton = (props) => {
                 </PaginationItem>
             </Pagination>
         </Alert>
+            </div>
+        </div>
     )
 }

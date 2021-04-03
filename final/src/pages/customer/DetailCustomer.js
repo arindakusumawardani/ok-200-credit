@@ -36,8 +36,8 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                             <div className="content-wrapper">
                                 <div className="content-header">
                                     <div className="container-fluid">
-                                        <div className="row mb-2">
-                                            <div className="col-sm-6">
+                                        <div className="row mb-2" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-sm-11">
                                                 <h1 className="m-0 text-dark">Detail Customer</h1>
                                             </div>
                                         </div>
@@ -45,8 +45,8 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
-                                            <div className="col-lg-8">
+                                        <div className="row" style={{ display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-lg-11">
                                                     <div className="card">
                                                         <div className="card-header border-0">
                                                             {/*<h3 className="card-title">Detail Customer</h3>*/}
@@ -73,7 +73,7 @@ function CustomerDetail({isLoading, customer, findCustomerByIdAction}) {
                                                             <table className="table table-borderless table-valign-middle">
                                                                 <tbody style={{textAlign: "left"}}>
                                                                 <tr>
-                                                                    <td style={{fontWeight:"bold"}}>Full Name</td>
+                                                                    <td style={{fontWeight:"bold", width:"20%"}}>Full Name</td>
                                                                     <td>{customer.name}</td>
                                                                 </tr>
                                                                 <tr>

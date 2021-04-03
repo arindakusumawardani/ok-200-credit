@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {findAllTotalAction} from "../../actions/totalAction";
 import Containers from '../../components/Containers/Container'
+import {Card} from "react-bootstrap";
+import CardDeck from 'react-bootstrap/CardDeck';
 
 function Content({
                      findAllTotalAction,
@@ -37,106 +39,89 @@ function Content({
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1 className="m-0 text-dark">Dashboard</h1>
+                                <h1 className="m-0 text-dark" style={{fontSize:"1.5vw"}}>Dashboard</h1>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* /.content-header */}
-                {/* Main content */}
+
                 <div className="content">
                     <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-lg-12">
+                        <Card style={{padding:"2vw"}}>
+                            <CardDeck>
+                                <Card>
+                                    <Card.Header style={{height:"3vw"}}>
+                                        <p className="text-success text-xl " >
+                                            <i className="ion ion-ios-people-outline"/>
+                                        </p>
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <Card.Title style={{fontSize:"1.3vw"}}>Total Customer</Card.Title>
 
-                                <div className="card">
+                                        <Card.Text  style={{fontSize:"2.5vw", height:"7vw"}}>
+                                            {data?.totalCustomer}
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted">  </small>
+                                    </Card.Footer>
+                                </Card>
+                                <Card >
+                                    <Card.Header style={{height:"3vw"}}>
+                                        <p className="text-warning text-xl">
+                                            <i className="ion ion-ios-cart-outline"/>
+                                        </p>
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <Card.Title style={{fontSize:"1.3vw"}}>Total Transaction</Card.Title>
 
-                                    <div className="card-body">
+                                        <Card.Text  style={{fontSize:"2.5vw", height:"7vw"}}>
+                                            {data?.totalTransaction}
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted">  </small>
+                                    </Card.Footer>
+                                </Card>
+                                <Card >
+                                    <Card.Header style={{height:"3vw"}}>
+                                        <p className="text-danger text-xl">
+                                            <i className="ion ion-ios-list-outline"/>
+                                        </p>
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <Card.Title style={{fontSize:"1.3vw"}}>Total Approved</Card.Title>
+                                        <Card.Text  style={{fontSize:"2.5vw", height:"7vw"}}>
+                                            {data?.totalApproved}
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted">  </small>
+                                    </Card.Footer>
+                                </Card>
+                                <Card >
+                                    <Card.Header style={{height:"3vw"}}>
+                                        <p className="text-success text-xl">
+                                            <i className="ion ion-ios-people-outline"/>
+                                        </p>
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <Card.Title style={{fontSize:"1.3vw"}}>Total Rejected</Card.Title>
 
-                                        {localStorage.getItem("master") == "false" &&
-                                            <>
-                                        <div
-                                            className="d-flex justify-content-between align-items-center border-bottom mb-3">
-                                            <p className="text-success text-xl">
-                                                <i className="ion ion-ios-people-outline"/>
-                                            </p>
-                                            <p className="d-flex flex-column text-right">
-                                              <span className="font-weight-bold">
-                                                  {data?.totalCustomer}
-                                              </span>
-                                                <span className="text-muted">Customer</span>
-                                            </p>
-                                        </div>
-                                        {/* /.d-flex */}
-                                        <div
-                                            className="d-flex justify-content-between align-items-center border-bottom mb-3">
-                                            <p className="text-warning text-xl">
-                                                <i className="ion ion-ios-cart-outline"/>
-                                            </p>
-                                            <p className="d-flex flex-column text-right">
-                                                  <span className="font-weight-bold">
-                                                    {/*<i className="ion ion-android-arrow-up text-warning"/>{" "}*/}
-                                                      {data?.totalTransaction}
-                                                  </span>
-                                                <span className="text-muted">Transaction</span>
-                                            </p>
-                                        </div>
-                                        {/* /.d-flex */}
-                                        <div
-                                            className="d-flex justify-content-between align-items-center border-bottom mb-3">
-                                            <p className="text-danger text-xl">
-                                                <i className="ion ion-ios-list-outline"/>
-                                            </p>
-                                            <p className="d-flex flex-column text-right">
-                                                  <span className="font-weight-bold">
-                                                    {/*<i className="ion ion-android-arrow-down text-danger"/>{" "}*/}
-                                                      {data?.totalApproved}
-                                                  </span>
-                                                <span className="text-muted">Approved</span>
-                                            </p>
-                                        </div>
+                                        <Card.Text  style={{fontSize:"2.5vw", height:"7vw"}}>
+                                            {data?.totalRejected}
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted">  </small>
+                                    </Card.Footer>
+                                </Card>
 
-                                        <div
-                                            className="d-flex justify-content-between align-items-center border-bottom mb-3">
-                                            <p className="text-success text-xl">
-                                                <i className="ion ion-ios-people-outline"/>
-                                            </p>
-                                            <p className="d-flex flex-column text-right">
-                                                  <span className="font-weight-bold">
-                                                    {/*<i className="ion ion-android-arrow-up text-success"/>{" "}*/}
-                                                      {data?.totalRejected}
-                                                  </span>
-                                                <span className="text-muted">Rejected</span>
-                                            </p>
-                                        </div>
-                                        </>
-                                        }
-                                        {localStorage.getItem("master") == "true" &&
-                                        <div
-                                            className="d-flex justify-content-between align-items-center border-bottom mb-3">
-                                            <p className="text-success text-xl">
-                                                <i className="ion ion-ios-people-outline"/>
-                                            </p>
-                                            <p className="d-flex flex-column text-right">
-                                                  <span className="font-weight-bold">
-                                                    {/*<i className="ion ion-android-arrow-up text-success"/>{" "}*/}
-                                                      {data?.totalUser}
-                                                  </span>
-                                                <span className="text-muted">Total User</span>
-                                            </p>
+                            </CardDeck>
+                        </Card>
 
-                                        </div>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                            {/* /.col-md-6 */}
-                        </div>
-                        {/* /.row */}
                     </div>
-                    {/* /.container-fluid */}
                 </div>
-                {/* /.content */}
             </div>
         </Containers>
 

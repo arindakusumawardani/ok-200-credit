@@ -145,49 +145,13 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                         <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
                                             <div className="col-lg-11">
                                                 <div className="card">
-                                                    {/*<div className="card-header border-0">*/}
-                                                    {/*    <div className="card-tools">*/}
-                                                    {/*        <a href="/master" className="btn btn-tool btn-sm">*/}
-                                                    {/*            <i className="fas fa-arrow-left"/>*/}
-                                                    {/*        </a>*/}
-                                                    {/*    </div>*/}
-                                                    {/*</div>*/}
                                                     <div className="card-body table-responsive p-md-5">
                                                         <div className="col-md-12">
                                                             <div className="form form-container">
-                                                                {/*<div className="row align-items-center">*/}
-
-                                                                    {/*<div className="col-md-5 pr-lg-5 mb-5 mb-md-0">*/}
-                                                                    {/*    <img src={undraw_Updated_resume_re_q1or} alt=""*/}
-                                                                    {/*         className="img-fluid mb-3 d-none d-md-block"/>*/}
-                                                                    {/*</div>*/}
-
-                                                                    {/*<div className="col-md-7 col-lg-6 ml-auto">*/}
-
-                                                                        {/*<h1 style={{*/}
-                                                                        {/*    color: "#e42256",*/}
-                                                                        {/*    fontSize: "55px"*/}
-                                                                        {/*}}>Account</h1>*/}
 
                                                                         {!isLoading ?
                                                                             <Form onSubmit={handleSubmit}>
                                                                                 <div className="row">
-                                                                                    {/*<div className="input-group col-lg-12 mb-4">*/}
-                                                                                    {/*    <div*/}
-                                                                                    {/*        className="input-group-prepend">*/}
-                                                                                    {/*        <span className="input-group-text bg-white px-4 border-md border-right-0">*/}
-                                                                                    {/*            <FontAwesomeIcon icon={faUserCircle}/>*/}
-                                                                                    {/*        </span>*/}
-                                                                                    {/*    </div>*/}
-                                                                                    {/*    <input*/}
-                                                                                    {/*        required*/}
-                                                                                    {/*        onChange={handleChange}*/}
-                                                                                    {/*        value={data?.fullName || ""}*/}
-                                                                                    {/*        type="text"*/}
-                                                                                    {/*        name="fullName"*/}
-                                                                                    {/*        placeholder="Full Name"*/}
-                                                                                    {/*        className="form-control bg-white border-left-0 border-md"/><br/>*/}
-                                                                                    {/*</div>*/}
 
                                                                                     <Label htmlFor="type" sm={3}
                                                                                            style={{textAlign: "left"}}>Full Name</Label>
@@ -227,63 +191,39 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                                                             placeholder="email address"/>
                                                                                     </Col>
 
-                                                                                    {/*<div*/}
-                                                                                    {/*    className="input-group col-lg-12 mb-4">*/}
-                                                                                    {/*    <div*/}
-                                                                                    {/*        className="input-group-prepend">*/}
-                                                                                    {/*        <span className="input-group-text bg-white px-4 border-md border-right-0">*/}
-                                                                                    {/*            <FontAwesomeIcon icon={faUser}/>*/}
-                                                                                    {/*        </span>*/}
-                                                                                    {/*    </div>*/}
-                                                                                    {/*    <input*/}
-                                                                                    {/*        required*/}
-                                                                                    {/*        onChange={handleChange}*/}
-                                                                                    {/*        value={data.username || ""}*/}
-                                                                                    {/*        type="text"*/}
-                                                                                    {/*        name="username"*/}
-                                                                                    {/*        placeholder="Username"*/}
-                                                                                    {/*        minLength={4}*/}
-                                                                                    {/*        maxLength={10}*/}
-                                                                                    {/*        className="form-control bg-white border-left-0 border-md"/>*/}
-                                                                                    {/*</div>*/}
-
-                                                                                    {/*<div*/}
-                                                                                    {/*    className="input-group col-lg-12 mb-4">*/}
-                                                                                    {/*    <div*/}
-                                                                                    {/*        className="input-group-prepend">*/}
-                                                                                    {/*        <span className="input-group-text bg-white px-4 border-md border-right-0">*/}
-                                                                                    {/*            <FontAwesomeIcon icon={faEnvelope}/>*/}
-                                                                                    {/*        </span>*/}
-                                                                                    {/*    </div>*/}
-                                                                                    {/*    <input*/}
-                                                                                    {/*        required*/}
-                                                                                    {/*        onChange={handleChange}*/}
-                                                                                    {/*        value={data.email || ""}*/}
-                                                                                    {/*        type="email"*/}
-                                                                                    {/*        name="email"*/}
-                                                                                    {/*        placeholder="Email Address"*/}
-                                                                                    {/*        className="form-control bg-white border-left-0 border-md"/><br/>*/}
-                                                                                    {/*</div>*/}
-
                                                                                     {
                                                                                         window.location.pathname != "/register" ?
-                                                                                            <div
-                                                                                                className="input-group col-lg-12 mb-4">
-                                                                                                <div
-                                                                                                    className="input-group-prepend">
-                                                                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                                                                                <FontAwesomeIcon icon={faKey}/>
-                                                                                            </span>
-                                                                                                </div>
-                                                                                                <input
+<>
+                                                                                            <Label htmlFor="type" sm={3}
+                                                                                                   style={{textAlign: "left"}}>New Password</Label>
+                                                                                            <Col sm={12} style={{marginBottom:"1vw"}}>
+                                                                                                <Input
                                                                                                     required
                                                                                                     onChange={handleChange}
                                                                                                     value={data.password || ""}
                                                                                                     type="password"
                                                                                                     name="password"
-                                                                                                    placeholder="Input new password"
-                                                                                                    className="form-control bg-white border-left-0 border-md"/><br/>
-                                                                                            </div>
+                                                                                                    placeholder="new password"/>
+                                                                                            </Col>
+                                                                                            </>
+
+                                                                                            // <div
+                                                                                            //     className="input-group col-lg-12 mb-4">
+                                                                                            //     <div
+                                                                                            //         className="input-group-prepend">
+                                                                                            // <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                            //     <FontAwesomeIcon icon={faKey}/>
+                                                                                            // </span>
+                                                                                            //     </div>
+                                                                                            //     <input
+                                                                                            //         required
+                                                                                            //         onChange={handleChange}
+                                                                                            //         value={data.password || ""}
+                                                                                            //         type="password"
+                                                                                            //         name="password"
+                                                                                            //         placeholder="Input new password"
+                                                                                            //         className="form-control bg-white border-left-0 border-md"/><br/>
+                                                                                            // </div>
 : <> </>
                                                                                     }
 
@@ -306,52 +246,6 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                                                             ))}
                                                                                         </select>
                                                                                     </Col>
-
-                                                                                    {/*<div className="col-lg-12 mb-4">*/}
-                                                                                    {/*    */}
-                                                                                    {/*        <Col sm={15}>*/}
-                                                                                    {/*            <select*/}
-                                                                                    {/*                style={{width:"100%", height:"calc(1.5em + .75rem + 10px)",*/}
-                                                                                    {/*                    borderRadius:"0.2vw", outlineColor:"#ced4da"}}*/}
-                                                                                    {/*                onChange={e => setData({*/}
-                                                                                    {/*                    ...data,*/}
-                                                                                    {/*                    role: e.target.value*/}
-                                                                                    {/*                })}>*/}
-                                                                                    {/*                <option selected disabled hidden>Choose role*/}
-                                                                                    {/*                </option>*/}
-                                                                                    {/*                {roles?.list?.map((e, i) => (*/}
-                                                                                    {/*                    <option key={i} value={e.name}*/}
-                                                                                    {/*                            data={e}*/}
-                                                                                    {/*                            selected={e.id == data?.id || false}>{e.name}</option>*/}
-                                                                                    {/*                ))}*/}
-                                                                                    {/*            </select>*/}
-                                                                                    {/*        </Col>*/}
-                                                                                    {/*    </div>*/}
-
-                                                                                    {/*<div*/}
-                                                                                    {/*    className="input-group col-lg-12 mb-4">*/}
-                                                                                    {/*    <FormGroup>*/}
-                                                                                    {/*        <Label for="profilePicture"*/}
-                                                                                    {/*               sm={4}>Profile*/}
-                                                                                    {/*            Photo</Label>*/}
-                                                                                    {/*        <Col sm={12}>*/}
-                                                                                    {/*            <Input*/}
-                                                                                    {/*                type="file"*/}
-                                                                                    {/*                name="profilePicture"*/}
-                                                                                    {/*                onChange={handlePhoto}*/}
-                                                                                    {/*                accept="image/jpeg, image/png"/>*/}
-                                                                                    {/*        </Col>*/}
-                                                                                    {/*    </FormGroup>*/}
-                                                                                    {/*</div>*/}
-
-                                                                                    {/*<div*/}
-                                                                                    {/*    className="form-group col-lg-12 mx-auto mb-0">*/}
-                                                                                    {/*    <Button*/}
-                                                                                    {/*        style={{background: "#e42256"}}*/}
-                                                                                    {/*        block>*/}
-                                                                                    {/*        <span className="font-weight-bold"*/}
-                                                                                    {/*              style={{color: "#ffff"}}>CREATE ACCOUNT</span>*/}
-                                                                                    {/*    </Button>*/}
                                                                                     </div>
 
                                                                                     <Row>
@@ -369,17 +263,12 @@ const SignUp = ({saveDispatch, error, saveAccount, account, isLoading, findAccou
                                                                                             </Button>
                                                                                         </Col>
                                                                                     </Row>
-
-                                                                                {/*</div>*/}
                                                                             </Form>
                                                                             :
                                                                             <div className="spinner">
                                                                                 <Spinner style={{ width: '5rem', height: '5rem', color:"#e42256" }} />{' '}
                                                                             </div>
                                                                         }
-
-                                                                    {/*</div>*/}
-                                                                {/*</div>*/}
                                                             </div>
                                                         </div>
                                                     </div>
