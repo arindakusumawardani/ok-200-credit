@@ -69,7 +69,7 @@ const ReasonUse = ({
                                 <div className="content-header">
                                     <div className="container-fluid">
                                         <div className="row mb-2" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
-                                            <div className="col-sm-8">
+                                            <div className="col-sm-11">
                                                 <h1 className="m-0 text-dark">Management Role</h1>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@ const ReasonUse = ({
                                 <div className="content">
                                     <div className="container-fluid">
                                         <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-                                            <div className="col-lg-8" >
+                                            <div className="col-lg-11" >
 
                                                 <div className="card">
                                                     <div className="card-header border-0">
@@ -87,8 +87,8 @@ const ReasonUse = ({
                                                             {/*<a href="#" className="btn btn-tool btn-sm">*/}
                                                             {/*    <i className="fas fa-download"/>*/}
                                                             {/*</a>*/}
-                                                            <a href="/role/form" className="btn btn-tool btn-sm">
-                                                                <i className="fas fa-plus-circle"/>
+                                                            <a href="/role/form" className="btn btn-tool btn-lg">
+                                                                <i className="fas fa-plus"/>
                                                             </a>
                                                         </div>
                                                     </div>

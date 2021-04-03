@@ -10,12 +10,28 @@ import {Row, Col, FormGroup, Input, Label, Button} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faSave} from "@fortawesome/free-solid-svg-icons";
 import swal from "sweetalert";
-import {findRoleByIdAction, removeByIdRoleAction, saveRoleAction, updateRoleAction} from "../../actions/roleAction";
+import {
+    findAllRoleAction,
+    findRoleByIdAction,
+    removeByIdRoleAction,
+    saveRoleAction,
+    updateRoleAction
+} from "../../actions/roleAction";
 
-
-const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByIdAction, updateRoleAction}) => {
+const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, roles, findRoleByIdAction, updateRoleAction, findAllRoleAction}) => {
     const {id} = useParams()
     const [redirect] = useState(false)
+    const [roleUsed, setRoleUsed] = useState([])
+
+    useEffect(() => {
+        findAllRoleAction()
+    }, [findAllRoleAction])
+
+    useEffect(() => {
+        setRoleUsed(roles.list)
+    }, [roles.list])
+
+    console.log("list role",roleUsed)
 
     const [data, setData] = useState({
         name: "",
@@ -46,35 +62,39 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
             swal("Add Loan Purpose Success", "", "success")
             history.push('/role')
         }
-        if (error) {
-            swal("Sorry data already exist", '', "error")
-        }
     }, [saveRole, history, error])
 
     const handleChange = (e) => {
         let name = e.target.name
         let value = e.target.value
-        setData({...data, [name]: value})
-
+        setData({...data, [name]: value.toUpperCase()})
     }
 
     const handleChecked = (e) => {
         let name = e.target.name
         let value = e.target.checked
         setData({...data, [name]: value})
-        console.log(data)
+        roleUsed.map((e,i)=>{
+            if(data.name == e.name){
+                setData({...data, name: ""})
+                swal("Sorry name is already exist", '', "error")
+            }
+        })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (id) {
-            updateRoleAction(id, data)
+        if (data.inputCustomer || data.readAllCustomer || data.inputTransaction || data.approveTransaction || data.readAllReportByTransaction || data.readAllReport || data.readAllTransaction){
+            if (id) {
+                updateRoleAction(id, data)
+            } else {
+                saveRoleAction(data)
+            }
+            swal("Save Success!", "", "success");
+            history.push('/role')
         } else {
-            saveRoleAction(data)
+            swal("Please select role access!", "", "error")
         }
-        swal("Save Success!", "", "success");
-        console.log("handlesubmit", data)
-        history.push('/role')
     }
 
     if (redirect === true) {
@@ -92,8 +112,8 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                             <div className="content-wrapper">
                                 <div className="content-header">
                                     <div className="container-fluid">
-                                        <div className="row mb-2" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
-                                            <div className="col-sm-6">
+                                        <div className="row mb-2" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-sm-11">
                                                 <h1 className="m-0 text-dark">Management Role</h1>
                                             </div>
                                         </div>
@@ -102,21 +122,26 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                 <div className="content">
                                     <div className="container-fluid">
                                         <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-                                            <div className="col-lg-8" style={{alignContent: "center"}}>
+                                            <div className="col-lg-11" >
 
                                                 <div className="card">
                                                     <div className="card-header border-0">
                                                     </div>
 
-                                                    <div className="card-body table-responsive">
+                                                    <div className="card-body table-responsive  p-md-5">
                                                         <form onSubmit={handleSubmit}>
                                                             <FormGroup row>
-                                                                <Col>
-                                                                    <h6 style={{textAlign: "left", color: "grey"}}>Role
-                                                                        name
-                                                                        <span style={{color: "red"}}> *</span>
-                                                                    </h6>
-                                                                </Col>
+                                                                <Label htmlFor="type" sm={3}
+                                                                       style={{textAlign: "left"}}>Role Name
+                                                                {/*<span style={{color: "red"}}> *</span>*/}
+                                                                </Label>
+
+                                                                {/*<Col>*/}
+                                                                {/*    <h6 style={{textAlign: "left", color: "grey"}}>Role*/}
+                                                                {/*        name*/}
+                                                                {/*        <span style={{color: "red"}}> *</span>*/}
+                                                                {/*    </h6>*/}
+                                                                {/*</Col>*/}
                                                                 <Col sm={12} style={{textAlign: "left"}}>
                                                                     <Input
                                                                         required
@@ -124,13 +149,21 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                                         value={data?.name}
                                                                         type="text"
                                                                         name="name"
-                                                                        placeholder="input role"/>
+                                                                        placeholder="role name"/>
                                                                 </Col>
                                                             </FormGroup><br/>
 
                                                             <Row>
+                                                                <Col>
+
+                                                                    <h6>Access :</h6>
+                                                                    <br/>
+                                                                </Col>
+                                                            </Row>
+
+                                                            <Row>
                                                                 <Col style={{textAlign: "left"}}>
-                                                                    <h4>Customer</h4>
+                                                                    <h6>Customer</h6>
                                                                 </Col>
                                                                 <Col style={{textAlign: "left"}}>
                                                                     <div className="form-check">
@@ -165,7 +198,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                             <hr/>
                                                             <Row>
                                                                 <Col style={{textAlign: "left"}}>
-                                                                    <h4>Transaction</h4>
+                                                                    <h6>Transaction</h6>
                                                                 </Col>
                                                                 <Col style={{textAlign: "left"}}>
                                                                     <div className="form-check">
@@ -213,7 +246,7 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                             <hr/>
                                                             <Row>
                                                                 <Col style={{textAlign: "left"}}>
-                                                                    <h4>Report</h4>
+                                                                    <h6>Report</h6>
                                                                 </Col>
                                                                 <Col style={{textAlign: "left"}}>
                                                                     <div className="form-check">
@@ -252,20 +285,19 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
                                                                 <Col sm={{size: 10, offset: 2}}
                                                                      style={{textAlign: "right"}}>
                                                                     <Button style={{background: "#e42256"}}>
-                                                                        <FontAwesomeIcon icon={faSave}/>
-                                                                        Submit
+                                                                        <FontAwesomeIcon icon={faSave} style={{marginRight:"0.5vw"}}/>
+                                                                         Submit
                                                                     </Button> {' '}
                                                                     <Button href="/role"
                                                                             style={{background: "#e42256"}}>
                                                                         <FontAwesomeIcon
-                                                                            icon={faArrowLeft}/>
-                                                                        Cancel
+                                                                            icon={faArrowLeft} style={{marginRight:"0.5vw"}}/>
+                                                                         Cancel
                                                                     </Button>
                                                                 </Col>
                                                             </Row>
                                                         </form>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -289,11 +321,11 @@ const RoleMenu = ({saveRoleAction, saveRole, error, isLoading, role, findRoleByI
 
 const mapStateToProps = (state) => {
     return {
-        saveRole: state.saveRoleReducer .data,
+        saveRole: state.saveRoleReducer.data,
         error: state.saveRoleReducer.error,
         isLoading: state.saveRoleReducer.isLoading || state.findRoleByIdReducer.isLoading,
         role: state.findRoleByIdReducer.data,
-
+        roles: state.findAllRoleReducer.data || []
     }
 }
 
@@ -301,7 +333,8 @@ const mapDispatchToProps = {
     saveRoleAction,
     findRoleByIdAction,
     removeByIdRoleAction,
-    updateRoleAction
+    updateRoleAction,
+    findAllRoleAction
 }
 
 

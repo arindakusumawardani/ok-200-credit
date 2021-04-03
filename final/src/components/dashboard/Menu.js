@@ -46,7 +46,7 @@ export default function Menu() {
                     <Link to="/role" className="nav-link">
                         <i className="nav-icon fas fa-cog"/>
                         <p>
-                            Management Roles
+                            Management Role
                         </p>
                     </Link>
                 </li>

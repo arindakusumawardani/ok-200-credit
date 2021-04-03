@@ -3,7 +3,7 @@ import {useHistory, useParams} from 'react-router-dom'
 import {Redirect} from "react-router-dom"
 import {connect} from "react-redux"
 import {Button, Form, FormGroup, Input, Label, Col, Spinner} from "reactstrap";
-import {findNeedByIdAction, saveNeedAction, updateNeedAction} from "../../actions/needAction";
+import {findAllNeedAction, findNeedByIdAction, saveNeedAction, updateNeedAction} from "../../actions/needAction";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -12,9 +12,22 @@ import Footer from "../../components/dashboard/Footer";
 import Error from "../Error";
 import swal from "sweetalert";
 
-const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, findNeedByIdAction, update, updateNeedAction}) => {
+const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, findNeedByIdAction, update, updateNeedAction, findAllNeedAction, needs}) => {
     const {id} = useParams()
     const [redirect] = useState(false)
+    console.log("handlesubmit", error)
+
+    const [needUsed, setNeedUsed] = useState([])
+
+    useEffect(() => {
+        findAllNeedAction()
+    }, [findAllNeedAction])
+
+    useEffect(() => {
+        setNeedUsed(needs.list)
+    }, [needs.list])
+
+    console.log("needUsed", needUsed)
 
     const [data, setData] = useState({})
     const history = useHistory()
@@ -45,21 +58,29 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
     const handleChange = (e) => {
         let name = e.target.name
         let value = e.target.value
-        setData({...data, [name]: value})
-
+        setData({...data, [name]: value.toUpperCase()})
         console.log("handlechange", data)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (id) {
-            updateNeedAction(id, data)
+        let oke = true
+        needUsed.map((e,i)=>{
+            if(data.type == e.type){
+                oke = false
+            }
+        })
+        if(oke){
+            if (id) {
+                updateNeedAction(id, data)
+            } else {
+                saveNeedAction(data)
+            }
+            swal("Save Success!", "", "success");
+            history.push('/need')
         } else {
-            saveNeedAction(data)
+            swal("Sorry loan purpose is already exist!", "", "error")
         }
-        swal("Save Success!", "", "success");
-        console.log("handlesubmit", data)
-        history.push('/need')
     }
 
     if (redirect === true) {
@@ -83,8 +104,8 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
                                             justifyContent: "center",
                                             alignItems: "center"
                                         }}>
-                                            <div className="col-sm-6">
-                                                <h1 className="m-0 text-dark">Need Type</h1>
+                                            <div className="col-sm-11">
+                                                <h1 className="m-0 text-dark">Loan Purpose</h1>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +114,7 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
                                     <div className="container-fluid">
                                         <div className="row"
                                              style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                            <div className="col-lg-8" style={{alignContent: "center"}}>
+                                            <div className="col-lg-11" style={{alignContent: "center"}}>
                                                 <div className="card">
                                                     <div className="card-body table-responsive p-md-5">
                                                         <div className="col-md-12">
@@ -102,29 +123,28 @@ const ReasonForm = ({saveNeedAction, saveNeedType, error, isLoading, needType, f
                                                                     <Form onSubmit={(e) => handleSubmit(e)}>
                                                                         <FormGroup row>
                                                                             <Label htmlFor="type" sm={3}
-                                                                                   style={{textAlign: "left"}}>Need
-                                                                                Type</Label>
-                                                                            <Col sm={9}>
+                                                                                   style={{textAlign: "left"}}>Loan Purpose</Label>
+                                                                            <Col sm={12}>
                                                                                 <Input
                                                                                     required
                                                                                     onChange={handleChange}
                                                                                     value={data?.type || ''}
                                                                                     type="text"
                                                                                     name="type"
-                                                                                    placeholder="input need type"/>
+                                                                                    placeholder="loan purpose"/>
                                                                             </Col>
                                                                         </FormGroup>
                                                                         <FormGroup check >
                                                                             {/*<Col sm={{size: 10, offset: 2}}>*/}
                                                                             <div className="buttonForm">
-                                                                                <Button style={{background: "#e42256"}}>
-                                                                                    <FontAwesomeIcon icon={faSave}/>
+                                                                                <Button style={{background: "#e42256", marginRight:"0.2vw"}}>
+                                                                                    <FontAwesomeIcon icon={faSave} style={{marginRight:"0.5vw"}}/>
                                                                                     Submit
-                                                                                </Button> {' '}
+                                                                                </Button>
                                                                                 <Button href="/need"
                                                                                         style={{background: "#e42256"}}>
                                                                                     <FontAwesomeIcon
-                                                                                        icon={faArrowLeft}/>
+                                                                                        icon={faArrowLeft} style={{marginRight:"0.5vw"}}/>
                                                                                     Cancel
                                                                                 </Button>
                                                                             </div>
@@ -167,16 +187,16 @@ const mapStateToProps = (state) => {
         error: state.saveNeedReducer.error,
         isLoading: state.saveNeedReducer.isLoading || state.findNeedTypeByIdReducer.isLoading,
         needType: state.findNeedTypeByIdReducer.data,
-        update: state.updateNeedTypeReducer.data
-
-
+        update: state.updateNeedTypeReducer.data,
+        needs: state.findAllNeedReducer.data || []
     }
 }
 
 const mapDispatchToProps = {
     saveNeedAction,
     updateNeedAction,
-    findNeedByIdAction
+    findNeedByIdAction,
+    findAllNeedAction
 }
 
 

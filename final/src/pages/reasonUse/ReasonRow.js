@@ -6,10 +6,10 @@ const ReasonRow = ({data, number, onUpdate, onDeleted}) => {
             <td>{number}</td>
             <td>{data.type} </td>
             <td>
-                <a onClick={onUpdate} href={`/need/${data.id}`} className="text-muted">
+                <a onClick={onUpdate} href={`/need/${data.id}`} className="text-muted btn-lg">
                     <i className="fas fa-pencil-alt"/>
                 </a>{' '}
-                <a onClick={onDeleted} className="text-muted">
+                <a onClick={onDeleted} className="text-muted btn-lg">
                     <i className="fas fa-trash-alt"/>
                 </a>{' '}</td>
 
