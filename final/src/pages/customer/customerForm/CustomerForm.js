@@ -282,7 +282,7 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                                 <Label for="contractLength" sm={3} style={{textAlign:"left"}}>Contract
                                                                                     Duration
                                                                                     <span style={{color:"red"}}> *</span>
-                                                                                    <p style={{fontSize:"0.7vw", color:"grey"}}>Month</p></Label>
+                                                                                    <p style={{fontSize:"0.7vw", color:"grey", marginBottom:'0'}}>Month</p></Label>
                                                                                 <Col sm={12}>
                                                                                     <Input
                                                                                         required
@@ -325,17 +325,20 @@ const CustomerForm = ({error, isLoading, saveCustomer, saveCustomerAction, custo
                                                                             </Col>
                                                                         </FormGroup>
 
-                                                                        <FormGroup check row>
+                                                                        <p style={{fontSize:"1vw", color:"red", marginBottom:'0px'}}>* is required</p>
+
+
+                                                                    <FormGroup check row>
                                                                             <Col sm={{size: 10, offset: 2}}
                                                                                  style={{textAlign: "right"}}>
                                                                                 <Button style={{background: "#e42256"}}>
-                                                                                    <FontAwesomeIcon icon={faSave}/>
+                                                                                    <FontAwesomeIcon icon={faSave} style={{marginRight:"0.5vw"}}/>
                                                                                     Submit
                                                                                 </Button> {' '}
                                                                                 <Button href="/staff/customer"
                                                                                         style={{background: "#e42256"}}>
                                                                                     <FontAwesomeIcon
-                                                                                        icon={faArrowLeft}/>
+                                                                                        icon={faArrowLeft} style={{marginRight:"0.5vw"}}/>
                                                                                     Cancel
                                                                                 </Button>
                                                                             </Col>

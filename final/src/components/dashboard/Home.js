@@ -37,8 +37,8 @@ function Content({
                 {/* Content Header (Page header) */}
                 <div className="content-header">
                     <div className="container-fluid">
-                        <div className="row mb-2">
-                            <div className="col-sm-6">
+                        <div className="row mb-2" style={{marginTop: '30px', display:"flex", justifyContent:"center", alignItems:"center"}}>
+                            <div className="col-sm-11">
                                 <h1 className="m-0 text-dark" style={{fontSize:"1.5vw"}}>Dashboard</h1>
                             </div>
                         </div>
@@ -47,7 +47,10 @@ function Content({
 
                 <div className="content">
                     <div className="container-fluid">
-                        <Card style={{padding:"2vw"}}>
+                        <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+                            <div className="col-lg-11">
+                                <div className="card p-lg-5">
+                        {/*<Card style={{padding:"2vw"}}>*/}
                             <CardDeck>
                                 <Card>
                                     <Card.Header style={{height:"3vw"}}>
@@ -118,8 +121,8 @@ function Content({
                                 </Card>
 
                             </CardDeck>
-                        </Card>
-
+                        {/*</Card>*/}
+                                </div></div></div>
                     </div>
                 </div>
             </div>

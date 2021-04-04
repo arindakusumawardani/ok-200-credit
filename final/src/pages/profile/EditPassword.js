@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {Link, Redirect, useHistory, useParams} from 'react-router-dom'
 import gambar from "../../assets/images/undraw_authentication_fsn5.svg"
 import {
-    faKey, faLock, faLockOpen,
+    faArrowLeft,
+    faKey, faLock, faLockOpen, faSave,
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../account/login.css"
-import {Button,Form,  Spinner} from "reactstrap";
+import {Button, Col, Form, Input, Label, Row, Spinner} from "reactstrap";
 import Header from "../../components/dashboard/Header";
 import Menu from "../../components/dashboard/Menu";
 import Footer from "../../components/dashboard/Footer";
@@ -86,112 +87,177 @@ const EditPassword = ({isLoading, changePasswordAction, changePassword, error}) 
                             <Menu/>
                             <div className="content-wrapper">
                                 <div className="content-header">
-
+                                    <div className="container-fluid">
+                                        <div className="row mb-2" style={{
+                                            marginTop: '30px',
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center"
+                                        }}>
+                                            <div className="col-sm-11">
+                                                <h1 className="m-0 text-dark">Change Password</h1>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="content">
                                     <div className="container-fluid">
-                                        <div className="row">
-                                            <div className="col-lg-12">
+                                        <div className="row" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+                                            <div className="col-lg-11">
                                                 <div className="card">
-                                                    <div className="card-header border-0">
-                                                        {/*<h3 className="card-title">Detail Customer</h3>*/}
-                                                        <div className="card-tools">
-                                                            <Link to="/dashboard" className="btn btn-tool btn-sm">
-                                                                <i className="fas fa-arrow-left"/>
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                                                    <div className="card-body table-responsive p-0">
+                                                    {/*<div className="card-header border-0">*/}
+                                                    {/*    <div className="card-tools">*/}
+                                                    {/*        <Link to="/dashboard" className="btn btn-tool btn-lg">*/}
+                                                    {/*            <i className="fas fa-arrow-left"/>*/}
+                                                    {/*        </Link>*/}
+                                                    {/*    </div>*/}
+                                                    {/*</div>*/}
+                                                    <div className="card-body table-responsive p-md-5">
                                                         <div className="col-md-12">
                                                             <div className="form form-container">
-                                                                <div className="row align-items-center">
+                                                                {/*<div className="row align-items-center">*/}
 
-                                                                    <div className="col-md-5 pr-lg-5 mb-5 mb-md-0">
-                                                                        <img src={gambar} alt=""
-                                                                             className="img-fluid mb-3 d-none d-md-block"/>
-                                                                    </div>
+                                                                    {/*<div className="col-md-5 pr-lg-5 mb-5 mb-md-0">*/}
+                                                                    {/*    <img src={gambar} alt=""*/}
+                                                                    {/*         className="img-fluid mb-3 d-none d-md-block"/>*/}
+                                                                    {/*</div>*/}
 
-                                                                    <div className="col-md-7 col-lg-6 ml-auto">
+                                                                    {/*<div className="col-md-7 col-lg-6 ml-auto">*/}
 
-                                                                        <h1 style={{
-                                                                            color: "#e42256",
-                                                                            fontSize: "55px"
-                                                                        }}>Change Password</h1>
+                                                                    {/*    <h1 style={{*/}
+                                                                    {/*        color: "#e42256",*/}
+                                                                    {/*        fontSize: "55px"*/}
+                                                                    {/*    }}>Change Password</h1>*/}
                                                                         {!isLoading ?
-                                                                            <Form >
+                                                                            <Form onSubmit={handleSubmit}>
                                                                                 <div className="row">
-                                                                                    <div
-                                                                                        className="input-group col-lg-12 mb-4">
-                                                                                        <div
-                                                                                            className="input-group-prepend">
-                                                                                                <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                                                                                    <FontAwesomeIcon icon={faLock}/>
-                                                                                                </span>
-                                                                                        </div>
-                                                                                        <input
+
+                                                                                    <Label htmlFor="type" sm={3}
+                                                                                           style={{textAlign: "left"}}>Password</Label>
+                                                                                    <Col sm={12} style={{marginBottom:"1vw"}}>
+                                                                                        <Input
                                                                                             required
                                                                                             type="password"
                                                                                             name="password"
                                                                                             value={oldPassword}
                                                                                             onChange={(e) => setOldPassword(e.target.value)}
-                                                                                            placeholder="old password"
-                                                                                            className="form-control bg-white border-left-0 border-md"/><br/>
+                                                                                            placeholder="password"/>
+                                                                                    </Col>
 
-                                                                                    </div>
-                                                                                    <p style={{fontSize: 12, color: "red"}}>{oldPasswordError}</p>
+                                                                                    {/*<div*/}
+                                                                                    {/*    className="input-group col-lg-12 mb-4">*/}
+                                                                                    {/*    <div*/}
+                                                                                    {/*        className="input-group-prepend">*/}
+                                                                                    {/*            <span className="input-group-text bg-white px-4 border-md border-right-0">*/}
+                                                                                    {/*                <FontAwesomeIcon icon={faLock}/>*/}
+                                                                                    {/*            </span>*/}
+                                                                                    {/*    </div>*/}
+                                                                                    {/*    <input*/}
+                                                                                    {/*        required*/}
+                                                                                    {/*        type="password"*/}
+                                                                                    {/*        name="password"*/}
+                                                                                    {/*        value={oldPassword}*/}
+                                                                                    {/*        onChange={(e) => setOldPassword(e.target.value)}*/}
+                                                                                    {/*        placeholder="old password"*/}
+                                                                                    {/*        className="form-control bg-white border-left-0 border-md"/><br/>*/}
+
+                                                                                    {/*</div>*/}
+                                                                                    {/*<p style={{fontSize: 12, color: "red"}}>{oldPasswordError}</p>*/}
 
 
-                                                                                    <div
-                                                                                        className="input-group col-lg-12 mb-4">
-                                                                                        <div
-                                                                                            className="input-group-prepend">
-                                                                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                                                                                <FontAwesomeIcon icon={faKey}/>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                        <input
+                                                                                    <Label htmlFor="type" sm={3}
+                                                                                           style={{textAlign: "left"}}>New Password</Label>
+                                                                                    <Col sm={12} style={{marginBottom:"1vw"}}>
+                                                                                        <Input
                                                                                             required
                                                                                             type="password"
                                                                                             name="newPassword"
                                                                                             value={newPassword}
                                                                                             onChange={(e) => setNewPassword(e.target.value)}
-                                                                                            placeholder="password"
-                                                                                            className="form-control bg-white border-left-0 border-md"/>
+                                                                                            placeholder="new password"/>
+                                                                                    </Col>
 
-                                                                                    </div>
-                                                                                    <p style={{fontSize: 12, color: "red"}}>{newPasswordError}</p>
+                                                                                    {/*<div*/}
+                                                                                    {/*    className="input-group col-lg-12 mb-4">*/}
+                                                                                    {/*    <div*/}
+                                                                                    {/*        className="input-group-prepend">*/}
+                                                                                    {/*        <span className="input-group-text bg-white px-4 border-md border-right-0">*/}
+                                                                                    {/*            <FontAwesomeIcon icon={faKey}/>*/}
+                                                                                    {/*        </span>*/}
+                                                                                    {/*    </div>*/}
+                                                                                    {/*    <input*/}
+                                                                                    {/*        required*/}
+                                                                                    {/*        type="password"*/}
+                                                                                    {/*        name="newPassword"*/}
+                                                                                    {/*        value={newPassword}*/}
+                                                                                    {/*        onChange={(e) => setNewPassword(e.target.value)}*/}
+                                                                                    {/*        placeholder="password"*/}
+                                                                                    {/*        className="form-control bg-white border-left-0 border-md"/>*/}
 
-                                                                                    <div
-                                                                                        className="input-group col-lg-12 mb-4">
-                                                                                        <div
-                                                                                            className="input-group-prepend">
-                                                                                                <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                                                                                    <FontAwesomeIcon icon={faLockOpen}/>
-                                                                                                </span>
-                                                                                        </div>
-                                                                                        <input
+                                                                                    {/*</div>*/}
+                                                                                    {/*<p style={{fontSize: 12, color: "red"}}>{newPasswordError}</p>*/}
+
+
+                                                                                    <Label htmlFor="type" sm={3}
+                                                                                           style={{textAlign: "left"}}>Confirm Password</Label>
+                                                                                    <Col sm={12} style={{marginBottom:"1vw"}}>
+                                                                                        <Input
                                                                                             required
                                                                                             type="password"
                                                                                             name="confirmPassword"
                                                                                             value={confirmPassword}
                                                                                             onChange={(e) => setConfirmPassword(e.target.value)}
-                                                                                            placeholder="confirm password"
-                                                                                            className="form-control bg-white border-left-0 border-md"/><br/>
-                                                                                    </div>
-                                                                                    <p style={{fontSize: 12, color: "red"}}>{confirmPasswordError}</p>
+                                                                                            placeholder="confirm password"/>
+                                                                                    </Col>
 
-                                                                                    <div
-                                                                                        className="form-group col-lg-12 mx-auto mb-0">
-                                                                                        <Button
-                                                                                            onClick={handleSubmit}
-                                                                                            style={{background: "#e42256"}}
-                                                                                            block>
-                                                                                                <span className="font-weight-bold"
-                                                                                                      style={{color: "#ffff"}}>CHANGE PASSWORD</span>
-                                                                                        </Button>
-                                                                                    </div>
-
+                                                                                    {/*<div*/}
+                                                                                    {/*    className="input-group col-lg-12 mb-4">*/}
+                                                                                    {/*    <div*/}
+                                                                                    {/*        className="input-group-prepend">*/}
+                                                                                    {/*            <span className="input-group-text bg-white px-4 border-md border-right-0">*/}
+                                                                                    {/*                <FontAwesomeIcon icon={faLockOpen}/>*/}
+                                                                                    {/*            </span>*/}
+                                                                                    {/*    </div>*/}
+                                                                                    {/*    <input*/}
+                                                                                    {/*        required*/}
+                                                                                    {/*        type="password"*/}
+                                                                                    {/*        name="confirmPassword"*/}
+                                                                                    {/*        value={confirmPassword}*/}
+                                                                                    {/*        onChange={(e) => setConfirmPassword(e.target.value)}*/}
+                                                                                    {/*        placeholder="confirm password"*/}
+                                                                                    {/*        className="form-control bg-white border-left-0 border-md"/><br/>*/}
+                                                                                    {/*</div>*/}
+                                                                                    {/*<p style={{fontSize: 12, color: "red"}}>{confirmPasswordError}</p>*/}
                                                                                 </div>
+
+                                                                                    <Row>
+                                                                                        <Col sm={{size: 10, offset: 2}}
+                                                                                             style={{textAlign: "right"}}>
+                                                                                            <Button onClick={handleSubmit} style={{background: "#e42256"}}>
+                                                                                                <FontAwesomeIcon icon={faSave} style={{marginRight:"0.5vw"}}/>
+                                                                                                Submit
+                                                                                            </Button> {' '}
+                                                                                            <Button href="/dashboard"
+                                                                                                    style={{background: "#e42256"}}>
+                                                                                                <FontAwesomeIcon
+                                                                                                    icon={faArrowLeft} style={{marginRight:"0.5vw"}}/>
+                                                                                                Cancel
+                                                                                            </Button>
+                                                                                        </Col>
+                                                                                    </Row>
+
+                                                                                    {/*<div*/}
+                                                                                    {/*    className="form-group col-lg-12 mx-auto mb-0">*/}
+                                                                                    {/*    <Button*/}
+                                                                                    {/*        onClick={handleSubmit}*/}
+                                                                                    {/*        style={{background: "#e42256"}}*/}
+                                                                                    {/*        block>*/}
+                                                                                    {/*            <span className="font-weight-bold"*/}
+                                                                                    {/*                  style={{color: "#ffff"}}>CHANGE PASSWORD</span>*/}
+                                                                                    {/*    </Button>*/}
+                                                                                    {/*</div>*/}
+
+
                                                                             </Form>
                                                                             :
                                                                             // <div>
@@ -206,8 +272,8 @@ const EditPassword = ({isLoading, changePasswordAction, changePassword, error}) 
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                {/*    </div>*/}
+                                                {/*</div>*/}
                                             </div>
                                         </div>
                                     </div>

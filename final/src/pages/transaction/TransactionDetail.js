@@ -137,10 +137,10 @@ function TransactionDetail({findByIdDispatch, transaction, isLoading, saveApprov
                                                     <div className="card-header border-0">
                                                         <div className="card-tools">
                                                             {localStorage.getItem("inputTransaction") == "true" ?
-                                                            <a href="/staff/transaction" className="btn btn-tool btn-sm">
+                                                            <a href="/staff/transaction" className="btn btn-tool btn-lg">
                                                                 <i className="fas fa-arrow-left"/>
                                                             </a>:
-                                                                <a href="/transaction" className="btn btn-tool btn-sm">
+                                                                <a href="/transaction" className="btn btn-tool btn-lg">
                                                                     <i className="fas fa-arrow-left"/>
                                                                 </a>}
                                                         </div>

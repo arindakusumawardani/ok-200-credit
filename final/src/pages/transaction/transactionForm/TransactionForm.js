@@ -318,15 +318,18 @@ const TransactionForm = ({savedTransaction, isLoading, error, saveTransactionAct
                                                                                 placeholder="input note"/>
                                                                         </Col>
                                                                     </FormGroup>
+
+                                                                    <p style={{fontSize:"1vw", color:"red", marginBottom:'0px'}}>* is required</p>
+
                                                                     <FormGroup check row>
-                                                                        <Col sm={{size: 10, offset: 2}}>
+                                                                        <Col sm={{size: 10, offset: 2}} style={{textAlign: "right"}}>
                                                                             <Button style={{background: "#e42256"}}>
-                                                                                <FontAwesomeIcon icon={faSave}/>
+                                                                                <FontAwesomeIcon icon={faSave} style={{marginRight:"0.5vw"}}/>
                                                                                 Submit
                                                                             </Button> {' '}
-                                                                            <Button href="/customer/staff"
+                                                                            <Button href="/staff/customer"
                                                                                     style={{background: "#e42256"}}>
-                                                                                <FontAwesomeIcon icon={faArrowLeft}/>
+                                                                                <FontAwesomeIcon icon={faArrowLeft} style={{marginRight:"0.5vw"}}/>
                                                                                 Cancel
                                                                             </Button>
                                                                         </Col>
